@@ -1,27 +1,29 @@
 package com.dhruv.angularapps.settings_app.settings
 
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
+import com.dhruv.angularapps.R
 import com.dhruv.angularapps.settings_app.LabelForFloat
 import com.dhruv.angularapps.settings_app.LabelForInt
 
@@ -32,168 +34,249 @@ fun Settings(
     modifier: Modifier = Modifier,
     vm: SettingsVM
 ) {
-    val context = LocalContext.current
-    var popup by remember { mutableIntStateOf(0) }
-    val dpInv = 1f/1.dp.value
+    @Composable
+    fun card(pageIdx: Int, icon: Int, text: String, description: String) {
 
-    val slideInTransition = slideInVertically(initialOffsetY = { it + 50 }) + fadeIn()
-    val slideOutTransition = slideOutVertically(targetOffsetY = { it + 50 }) + fadeOut()
+        val textStyle = TextStyle(
+            fontWeight = FontWeight.W800,
+            fontSize = TextUnit(25f, TextUnitType.Sp)
+        )
+        val descriptionStyle = TextStyle(
+            fontWeight = FontWeight.W400,
+            fontSize = TextUnit(15f, TextUnitType.Sp),
+        )
+
+        Card(
+            onClick = { vm.openPopup(pageIdx) },
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp, vertical = 4.dp)
+        ) {
+            Row(
+                Modifier
+                    .padding(bottom = 8.dp),
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    modifier = Modifier
+                        .padding(start = 20.dp, end = 16.dp)
+                        .size(28.dp),
+                    painter = painterResource(id = icon),
+                    contentDescription = text,
+                )
+                Column {
+                    Text(text = text, Modifier.padding(8.dp), style = textStyle)
+                    Text(text = description, Modifier.padding(8.dp), style = descriptionStyle)
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun touch() {
+        Column {
+            LabelForFloat(key = "X", min = -20f, value = vm.touchOffset.x, max = 20f) {
+                vm.touchOffset = vm.touchOffset.copy(x = it)
+            }
+            LabelForFloat(key = "Y", min = -20f, value = vm.touchOffset.y, max = 20f) {
+                vm.touchOffset = vm.touchOffset.copy(y = it)
+            }
+        }
+    }
+
+    @Composable
+    fun slider() {
+
+        Row(
+            Modifier,
+            Arrangement.SpaceBetween,
+            Alignment.Bottom
+        ) {
+            Column {
+                LabelForInt(key = "height", min = 100, value = vm.slHeight, max = 1000) {
+                    vm.slHeight = it
+                }
+                LabelForInt(key = "width", min = 100, value = vm.slWidth, max = 1000) {
+                    vm.slWidth = it
+                }
+                LabelForInt(
+                    key = "distance from bottom",
+                    min = 0,
+                    value = vm.slBottomPadding,
+                    max = 1000
+                ) {
+                    vm.slBottomPadding = it
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun apps() {
+
+        Row(
+            Modifier,
+            Arrangement.SpaceBetween,
+            Alignment.Bottom
+        ) {
+            Column {
+                LabelForInt(key = "base radius", min = 10, value = vm.appsBaseRad, max = 100) {
+                    vm.appsBaseRad = it
+                }
+                LabelForInt(
+                    key = "selection radius",
+                    min = 10,
+                    value = vm.appsSelectionRad,
+                    max = 100
+                ) {
+                    vm.appsSelectionRad = it
+                }
+                LabelForInt(key = "apps pop", min = 10, value = vm.appsPop, max = 100) {
+                    vm.appsPop = it
+                }
+                LabelForFloat(
+                    key = "first ring radius",
+                    min = 50f,
+                    value = vm.firstRingRadius,
+                    max = 500f
+                ) {
+                    vm.appsPositioning = vm.appsPositioning.copy(startingRadius = it.toDouble())
+                }
+                LabelForFloat(
+                    key = "difference between rings",
+                    min = 25f,
+                    value = vm.radiusDiff,
+                    max = 300f
+                ) {
+                    vm.appsPositioning = vm.appsPositioning.copy(radiusDiff = it.toDouble())
+                }
+                LabelForFloat(
+                    key = "distance between icons",
+                    min = 25f,
+                    value = vm.iconsDiff,
+                    max = 300f
+                ) {
+                    vm.appsPositioning = vm.appsPositioning.copy(iconDistance = it.toDouble())
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun groups() {
+
+        Row(
+            Modifier,
+            Arrangement.SpaceBetween,
+            Alignment.Bottom
+        ) {
+            Column {
+                LabelForInt(key = "base radius", min = 10, value = vm.groupBaseRad, max = 100) {
+                    vm.groupBaseRad = it
+                }
+                LabelForInt(
+                    key = "selection radius",
+                    min = 10,
+                    value = vm.groupSelectionRad,
+                    max = 100
+                ) {
+                    vm.groupSelectionRad = it
+                }
+                LabelForInt(key = "base pop", min = 0, value = vm.groupBasePop, max = 200) {
+                    vm.groupBasePop = it
+                }
+                LabelForInt(
+                    key = "selection pop",
+                    min = 0,
+                    value = vm.groupSelectionPop,
+                    max = 200
+                ) {
+                    vm.groupSelectionPop = it
+                }
+                // todo : pick between different curves
+            }
+        }
+    }
 
     Box(modifier = modifier) {
         Column(
             Modifier
         ) {
-            Button(onClick = { popup = 1 }) {
-                Text(text = "adjust touch offset")
-            }
-            Button(onClick = { popup = 2 }) {
-                Text(text = "adjust slider dimensions")
-            }
-            Button(onClick = { popup = 3 }) {
-                Text(text = "adjust apps look")
-            }
-            Button(onClick = { popup = 4 }) {
-                Text(text = "adjust groups look")
-            }
+
+            Spacer(modifier = Modifier.height(25.dp))
+            card(
+                1,
+                R.drawable.round_pan_tool_alt_24,
+                "adjust touch offset",
+                "where the finger touches the screen and what is registered can be different"
+            )
+            card(
+                pageIdx = 2,
+                icon = R.drawable.round_swipe_vertical_24,
+                text = "adjust slider dimensions",
+                description = "the slider is the bar present on bottom right position"
+            )
+            card(
+                pageIdx = 3,
+                icon = R.drawable.round_apps_24,
+                text = "adjust apps look",
+                description = "customize how the apps look"
+            )
+            card(
+                pageIdx = 4,
+                icon = R.drawable.baseline_group_work_24,
+                text = "adjust groups look",
+                description = "customize how the groups on slider look"
+            )
         }
 
-        // dark bg
-//        AnimatedVisibility(visible = popup != 0, enter = fadeIn(), exit = fadeOut()) {
-//            Box(modifier = Modifier
-//                .fillMaxSize()
-//                .drawBehind {
-//                    drawRect(
-//                        Color.Black,
-//                        alpha = 0.5f,
-//                        topLeft = Offset(0f, 0f),
-//                        size = Size(
-//                            context.resources.displayMetrics.widthPixels.toFloat(),
-//                            context.resources.displayMetrics.heightPixels.toFloat()
-//                        )
-//                    )
-//                }
-//                .clickable {
-//                    popup = 0
-//                }
-//                .padding(5.dp)
-//            )
-//        }
-
-        if (popup != 0) {
+        if (vm.popup != 0) {
             AlertDialog(
-                onDismissRequest = { popup = 0 },
-                confirmButton = {},
+                onDismissRequest = { vm.popup = 0 },
                 text = {
-                    when (popup) {
-                        1 -> {
-                            var offset by remember { mutableStateOf(vm.touchOffset()) }
-
-                            Column {
-
-                                LabelForFloat(key = "X", min = -20f, value = offset.x, max = 20f) {
-                                    offset = offset.copy(x = it)
-                                    vm.saveTouchOffset(offset)
-                                }
-                                LabelForFloat(key = "Y", min = -20f, value = offset.y, max = 20f) {
-                                    offset = offset.copy(y = it)
-                                    vm.saveTouchOffset(offset)
-                                }
-                            }
-                        }
-
-                        2 -> {
-                            var height by remember { mutableIntStateOf(vm.sliderHeight()) }
-                            var width by remember { mutableIntStateOf(vm.sliderWidth()) }
-                            var bottomPadding by remember { mutableIntStateOf(vm.bottomPadding()) }
-
-                            Row(
-                                Modifier,
-                                Arrangement.SpaceBetween,
-                                Alignment.Bottom
-                            ) {
-                                Column{
-                                    LabelForInt(key = "height", min = 100, value = height, max = 1000) {
-                                        height = it; vm.saveSliderHeight(it)
-                                    }
-                                    LabelForInt(key = "width", min = 100, value = width, max = 1000) {
-                                        width = it; vm.saveSliderWidth(it)
-                                    }
-                                    LabelForInt(key = "distance from bottom", min = 0, value = bottomPadding, max = 1000) {
-                                        bottomPadding = it; vm.saveBottomPadding(it)
-                                    }
-                                }
-                            }
-                        }
-
-                        3 -> {
-                            var baseRad by remember { mutableIntStateOf(vm.appsBaseRadius()) }
-                            var selectionRad by remember { mutableIntStateOf(vm.appsSelectionRadius()) }
-
-                            val appsPositioning = vm.appsPositioning()
-                            var appsPop by remember { mutableIntStateOf(vm.appsPop()) }
-                            var firstRingRadius by remember { mutableFloatStateOf(appsPositioning.startingRadius.toFloat()) }
-                            var radiusDiff by remember { mutableFloatStateOf(appsPositioning.radiusDiff.toFloat()) }
-                            var iconsDiff by remember { mutableFloatStateOf(appsPositioning.iconDistance.toFloat()) }
-
-                            Row(
-                                Modifier,
-                                Arrangement.SpaceBetween,
-                                Alignment.Bottom
-                            ) {
-                                Column{
-                                    LabelForInt(key = "base radius", min = 10, value = baseRad, max = 100) {
-                                        baseRad = it; vm.saveAppsBaseRadius(it)
-                                    }
-                                    LabelForInt(key = "selection radius", min = 10, value = selectionRad, max = 100) {
-                                        selectionRad = it; vm.saveAppsSelectionRadius(it)
-                                    }
-                                    LabelForInt(key = "apps pop", min = 10, value = appsPop, max = 100) {
-                                        appsPop = it; vm.saveAppsPop(it)
-                                    }
-                                    LabelForFloat(key = "first ring radius", min = 50f, value = firstRingRadius, max = 500f) {
-                                        firstRingRadius = it; vm.saveAppsPositioning(appsPositioning.copy(startingRadius = firstRingRadius.toDouble()))
-                                    }
-                                    LabelForFloat(key = "difference between rings", min = 25f, value = radiusDiff, max = 300f) {
-                                        radiusDiff = it;  vm.saveAppsPositioning(appsPositioning.copy(radiusDiff = radiusDiff.toDouble()))
-                                    }
-                                    LabelForFloat(key = "distance between icons", min = 25f, value = iconsDiff, max = 300f) {
-                                        iconsDiff = it;  vm.saveAppsPositioning(appsPositioning.copy(iconDistance = iconsDiff.toDouble()))
-                                    }
-                                }
-                            }
-                        }
-
-                        4 -> {
-                            var baseRad by remember { mutableIntStateOf(vm.groupsBaseRadius()) }
-                            var basePop by remember { mutableIntStateOf(vm.groupsBasePop()) }
-                            var selectionRad by remember { mutableIntStateOf(vm.groupsSelectionRadius()) }
-                            var selectionPop by remember { mutableIntStateOf(vm.groupsSelectionPop()) }
-
-                            Row(
-                                Modifier,
-                                Arrangement.SpaceBetween,
-                                Alignment.Bottom
-                            ) {
-                                Column{
-                                    LabelForInt(key = "base radius", min = 10, value = baseRad, max = 100) {
-                                        baseRad = it; vm.saveGroupsBaseRadius(it)
-                                    }
-                                    LabelForInt(key = "selection radius", min = 10, value = selectionRad, max = 100) {
-                                        selectionRad = it; vm.saveGroupsSelectionRadius(it)
-                                    }
-                                    LabelForInt(key = "base pop", min = 0, value = basePop, max = 200) {
-                                        basePop = it; vm.saveGroupsBasePop(it)
-                                    }
-                                    LabelForInt(key = "selection pop", min = 0, value = selectionPop, max = 200) {
-                                        selectionPop = it; vm.saveGroupsSelectionPop(it)
-                                    }
-                                    // todo : pick between different curves
-                                }
-                            }
-                        }
+                    when (vm.popup) {
+                        1 -> touch()
+                        2 -> slider()
+                        3 -> apps()
+                        4 -> groups()
                         else -> {
                             Text(text = "page not created")
                         }
+                    }
+                },
+                confirmButton = {
+                    Button(
+                        onClick = { vm.confirm() }
+                    ) { Text(text = "Confirm") }
+                },
+                dismissButton = {
+                    Button(
+                        onClick = { vm.dismiss() }
+                    ) { Text(text = "Dismiss") }
+                },
+                icon = {
+                    Icon(
+                        modifier = Modifier
+                            .padding(start = 20.dp, end = 16.dp)
+                            .size(28.dp),
+                        painter = painterResource(
+                            id = when (vm.popup) {
+                                1 -> R.drawable.round_pan_tool_alt_24
+                                2 -> R.drawable.round_swipe_vertical_24
+                                3 -> R.drawable.round_apps_24
+                                4 -> R.drawable.baseline_group_work_24
+                                else -> R.drawable.round_report_gmailerrorred_24
+                            }
+                        ),
+                        contentDescription = "popup : ${vm.popup}",
+                    )
+                    when (vm.popup) {
+                        1 -> {}
+                        2 -> {}
+                        3 -> {}
+                        4 -> {}
+                        else -> {}
                     }
                 }
             )

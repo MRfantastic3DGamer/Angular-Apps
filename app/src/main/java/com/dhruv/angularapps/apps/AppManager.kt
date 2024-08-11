@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dhruv.angularapps.data.models.AppData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -23,8 +22,8 @@ class AppManager @Inject constructor() {
     val appsIcon: LiveData<Map<String, Drawable>?>
         get() = _appsIconData
 
-    private val _appsData = MutableLiveData<List<AppData>?>(null)
-    val appsData: LiveData<List<AppData>?>
+    private val _appsData = MutableLiveData<Map<String,String>?>(null)
+    val appsData: LiveData<Map<String,String>?>
         get() = _appsData
 
     private var initialized = false
@@ -59,7 +58,7 @@ class AppManager @Inject constructor() {
             val newDataAsync = async { getAllInstalledAppsData(packageManager, appsL) }
             val newData = newDataAsync.await()
             _appsData.postValue(newData)
-            Log.d(TAG, "initialized: apps data => ${newData.map { it.packageName }}")
+            Log.d(TAG, "initialized: apps data => ${newData.map { it.value }}")
         }
     }
 
@@ -69,20 +68,15 @@ class AppManager @Inject constructor() {
         suspend fun getAllInstalledAppsData (
             packageManager: PackageManager,
             appsL: MutableList<ResolveInfo>
-        ): List<AppData> {
+        ): Map<String,String> {
             return withContext(Dispatchers.IO){
-                val apps: MutableList<AppData> = mutableListOf()
-                val icons: MutableList<Drawable?> = mutableListOf()
+                val apps: MutableMap<String,String> = mutableMapOf()
 
                 for (app in appsL) {
-                    apps.add(AppData(
-                        name = app.loadLabel(packageManager) as String,
-                        packageName = app.activityInfo.packageName
-                    ))
-                    icons.add(app.loadIcon(packageManager))
+                    apps[app.activityInfo.packageName] = app.loadLabel(packageManager) as String
                 }
 
-                apps.toList()
+                apps
             }
         }
 
@@ -94,6 +88,7 @@ class AppManager @Inject constructor() {
                 val icons: MutableMap<String, Drawable> = mutableMapOf()
 
                 for (app in appsL) {
+                    if (app.activityInfo.packageName == "com.google.android.googlequicksearchbox") continue
                     icons[app.activityInfo.packageName] = app.loadIcon(packageManager)
                 }
                 icons

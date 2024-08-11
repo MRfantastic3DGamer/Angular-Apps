@@ -19,6 +19,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
@@ -195,13 +196,14 @@ fun LabelForFloat(
     description: String? = null,
     update: (Float)->Unit,
 ) {
-    Column(
+    Card(
         modifier = Modifier
-            .padding(vertical = 2.dp)
-            .clip(RoundedCornerShape(4.dp))
-            .background(Color.Black)
+            .padding(vertical = 4.dp)
     ) {
-        Row {
+        Row(
+            modifier = Modifier
+                .padding(top = 4.dp)
+        ) {
             H3(text = "$key:")
             EditableText("${(value * 100.0).roundToInt() / 100.0}", onUpdate = { it.toFloatOrNull()?.let { update(it) } })
         }

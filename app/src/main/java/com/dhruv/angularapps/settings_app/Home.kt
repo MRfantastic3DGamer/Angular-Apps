@@ -1,12 +1,16 @@
 package com.dhruv.angularapps.settings_app
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,25 +46,44 @@ fun Home(
     ) {
         Text(text = "start the service to get quick access to your apps.")
 
-        if (!haveOverlayPermission) {
-            Text(text = "You have not given the overlay permission to use the app")
-            Button(onClick = enableOverlayPermission) {
-                Row(
+        Spacer(modifier = Modifier.height(8.dp))
+
+        AnimatedVisibility(
+            visible = !haveOverlayPermission
+        ) {
+            Card {
+                Text(
+                    text = "You have not given the overlay permission to use the app",
                     Modifier
-                        .fillMaxWidth()
-                        .padding(10.dp),
+                        .padding(16.dp)
+                )
+                Row (
+                    Modifier.fillMaxWidth(),
                     Arrangement.Center,
                     Alignment.CenterVertically
-                ) {
-                    Text(text = "Give permission to draw over other apps")
-                    Icon(
-                        painter = painterResource(R.drawable.round_arrow_outward_24),
-                        contentDescription = "out_link"
-                    )
+                ){
+                    Button(
+                        onClick = enableOverlayPermission,
+                        Modifier.padding(bottom = 16.dp)
+                    ) {
+                        Row(
+                            Modifier
+                                .padding(8.dp),
+                            Arrangement.Center,
+                            Alignment.CenterVertically
+                        ) {
+                            Text(text = "Give permission to draw over other apps")
+                            Icon(
+                                painter = painterResource(R.drawable.round_arrow_outward_24),
+                                contentDescription = "out_link"
+                            )
+                        }
+                    }
                 }
             }
         }
 
+        Spacer(modifier = Modifier.height(8.dp))
         when (isOverlayRunning) {
             true -> Button(
                 onClick = {
@@ -79,7 +102,9 @@ fun Home(
             }
             false -> Button(
                 onClick = {
-                    startOverlayService()
+                    if (haveOverlayPermission){
+                        startOverlayService()
+                    }
                     isOverlayRunning = isOverlayServiceRunning()
                 },
                 Modifier

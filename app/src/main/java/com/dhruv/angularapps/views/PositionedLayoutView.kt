@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.painter.Painter
 
 data class ItemValues(
     val radius: Float,
@@ -45,17 +44,12 @@ class PositionedLayoutView @JvmOverloads constructor(
         invalidate()
     }
 
-    fun updateVisuals(keys: List<String>, forceReset: Boolean = false, getVisuals: (String) -> Pair<Drawable?, Painter?>){
+    fun updateVisuals(keys: List<String>, forceReset: Boolean = false, getVisuals: (String) -> Drawable?){
         keys.forEach {
             val res = getVisuals(it)
-            if (res.first != null){
+            if (res != null){
                 if ((drawables.containsKey(it) && forceReset) or !drawables.containsKey(it)){
-                    drawables[it] = res.first!!
-                }
-            }
-            if (res.second != null){
-                if ((painters.containsKey(it) && forceReset) or !painters.containsKey(it)){
-                    painters[it] = res.second!!
+                    drawables[it] = res
                 }
             }
         }
@@ -65,15 +59,12 @@ class PositionedLayoutView @JvmOverloads constructor(
     private var offsets: List<Offset> = emptyList()
     private var radiuses: List<Float> = emptyList()
     private var drawables = mutableMapOf<String, Drawable>()
-    private var painters = mutableMapOf<String, Painter>()
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         for (i in offsets.indices) {
             val offset = offsets[i]
             val radius = radiuses[i]
-//            Log.d(TAG, "onDraw: available drawables : ${drawables.keys}")
-//            Log.d(TAG, "onDraw: available painters : ${painters.keys}")
             val drawable = drawables[keys[i]]
             if (drawable == null) {
                 canvas.drawCircle(offset.x, offset.y, radius, paint)

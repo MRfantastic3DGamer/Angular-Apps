@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModel
 import com.dhruv.angularapps.R
 import com.dhruv.angularapps.apps.AppManager
 import com.dhruv.angularapps.data.UserPref
-import com.dhruv.angularapps.data.models.AppData
 import com.dhruv.angularapps.data.models.Group
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.runBlocking
@@ -27,15 +26,15 @@ class GroupsEditorVM @Inject constructor(appManager: AppManager, val userPref: U
     var nameValue                   by mutableStateOf                       (TextFieldValue())
     var keyValue                    by mutableStateOf                       ("")
     var groups                      =                                       userPref.getGroupsFlow()
-    var apps                        by mutableStateOf                       (emptyList<AppData>())
+    var apps                        by mutableStateOf                       (emptyMap<String,String>())
     var message                     by mutableStateOf                       ("")
     var appsIcons                   by mutableStateOf                       (emptyMap<String, Drawable>())
-    private var selectedApps        by mutableStateOf                       (emptyList<AppData>())
+    private var selectedApps        by mutableStateOf                       (emptyList<String>())
 
     init {
         appManager.appsData.observeForever {
-            apps = it ?: emptyList()
-            Log.d("Apps Manager in VM", apps.map { it.packageName }.toList().toString())
+            apps = it ?: emptyMap()
+            Log.d(TAG, apps.values.toString())
         }
 
         appManager.appsIcon.observeForever { iconsMap ->
@@ -75,17 +74,17 @@ class GroupsEditorVM @Inject constructor(appManager: AppManager, val userPref: U
         }
     }
 
-    fun isAppSelected(app: AppData): Boolean {
-        return selectedApps.firstOrNull{it.packageName == app.packageName} != null
+    fun isAppSelected(app: String): Boolean {
+        return selectedApps.contains(app)
     }
 
-    fun addApp(app: AppData){
+    fun addApp(app: String){
         val prev = selectedApps.toMutableList()
         prev.add(app)
         selectedApps = prev.toList()
     }
 
-    fun removeApp(app: AppData){
+    fun removeApp(app: String){
         val prev = selectedApps.toMutableList()
         prev.remove(app)
         selectedApps = prev.toList()

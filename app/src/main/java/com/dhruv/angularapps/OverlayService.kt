@@ -92,6 +92,7 @@ class OverlayService : Service(), OnTouchListener{
     private var groupSelectionPop = 70
     private var appsPop = 60
     private var appsPositioning = AppsIconsPositioning.IconCoordinatesGenerationScheme()
+    private var appsName = mapOf<String, String>()
 
     private val overlayService = this@OverlayService
     private val type = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY else WindowManager.LayoutParams.TYPE_PHONE
@@ -102,6 +103,9 @@ class OverlayService : Service(), OnTouchListener{
         updatesFromPreferences()
 
         appsManager.initialize(packageManager)
+        appsManager.appsData.observeForever {
+            appsName = it ?: emptyMap()
+        }
 
         if (Build.VERSION.SDK_INT >= 26) {
             val CHANNEL_ID = "channel1"
@@ -262,19 +266,18 @@ class OverlayService : Service(), OnTouchListener{
                         val resources = resources
                         this.updateVisuals(groups.map { it.key }){ key ->
                             val drawable = Drawable.createFromXml(resources, resources.getXml( GroupIcons[key] ?: R.drawable.round_report_gmailerrorred_24))
-                            Pair(drawable, null)
+                            drawable
                         }
                     }
                     appsPositionedLayoutView?.apply {
                         visibility = VISIBLE
-                        if (groupSelection in groups.indices)
-                            updateVisuals(
-                                (appsManager.appsIcon.value?.keys?.toList() ?: emptyList())
-                            ) { key ->
-                                val drawable = appsManager.appsIcon.value?.getOrDefault(key, null)
-                                if (drawable == null) { Log.d(TAG, "onTouch: drawable is null for $key") }
-                                Pair(drawable, null)
-                            }
+                        updateVisuals(
+                            (appsManager.appsIcon.value?.keys?.toList() ?: emptyList())
+                        ) { key ->
+                            val drawable = appsManager.appsIcon.value?.getOrDefault(key, null)
+                            if (drawable == null) { Log.d(TAG, "onTouch: drawable is null for $key") }
+                            drawable
+                        }
                     }
                     BGPrams!!.width = dpToPx(sliderWidthOnActive)
 
@@ -396,7 +399,7 @@ class OverlayService : Service(), OnTouchListener{
                 ItemValues(
                     radius = lerp(dpToPxF(appBaseRadius), dpToPxF(appSelectionRadius), appSelectionValues.getOrDefault(index, 0f)),
                     offset = usedOffsets[index],
-                    key = selectedGroupApps[index].packageName,
+                    key = selectedGroupApps[index],
                 )
             }
         }
@@ -415,7 +418,7 @@ class OverlayService : Service(), OnTouchListener{
         val selectedApp = selectedGroup.apps[appSelection]
         labelText?.apply {
             visibility = VISIBLE
-            text = selectedApp.name
+            text = appsName[selectedApp]
         }
     }
     // endregion
@@ -429,12 +432,12 @@ class OverlayService : Service(), OnTouchListener{
         val selectedApp = selectedGroup.apps[appSelection]
 
         // launch
-        val launchIntent = packageManager.getLaunchIntentForPackage(selectedApp.packageName)
-        println("got intent for ${selectedApp.packageName}: ${launchIntent}")
+        val launchIntent = packageManager.getLaunchIntentForPackage(selectedApp)
+        println("got intent for ${selectedApp}: ${launchIntent}")
         if (launchIntent != null) {
             startActivity(launchIntent)
         }
-        println("launched app ${selectedApp.name}")
+        println("launched app ${selectedApp}")
     }
 
     override fun onDestroy() {
