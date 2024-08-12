@@ -21,7 +21,7 @@ class PositionedLayoutView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    private val paint = Paint().apply {
+    private val nullPainterPaint = Paint().apply {
         color = Color.RED
         style = Paint.Style.FILL
     }
@@ -67,7 +67,7 @@ class PositionedLayoutView @JvmOverloads constructor(
             val radius = radiuses[i]
             val drawable = drawables[keys[i]]
             if (drawable == null) {
-                canvas.drawCircle(offset.x, offset.y, radius, paint)
+                canvas.drawCircle(offset.x, offset.y, radius, nullPainterPaint)
             } else {
                 // Calculate the bounds for the Drawable
                 val left = (offset.x - radius).toInt()
