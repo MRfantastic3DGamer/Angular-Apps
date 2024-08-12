@@ -40,6 +40,7 @@ import com.dhruv.angularapps.settings_app.settings.sliderWidthKey
 import com.dhruv.angularapps.settings_app.settings.touchOffsetKey
 import com.dhruv.angularapps.views.ItemValues
 import com.dhruv.angularapps.views.PositionedLayoutView
+import com.dhruv.angularapps.views.SliderView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
@@ -58,8 +59,10 @@ class OverlayService : Service(), OnTouchListener{
     // components
     private var wm: WindowManager? = null
 
-    private var BG: View? = null
-    private var BGPrams: WindowManager.LayoutParams? = null
+
+    private var slider: SliderView? = null
+    private var trigger: View? = null
+    private var triggerPrams: WindowManager.LayoutParams? = null
 
     private var labelText: TextView? = null
     private var labelPrams: WindowManager.LayoutParams? = null
@@ -103,9 +106,7 @@ class OverlayService : Service(), OnTouchListener{
         updatesFromPreferences()
 
         appsManager.initialize(packageManager)
-        appsManager.appsData.observeForever {
-            appsName = it ?: emptyMap()
-        }
+        appsManager.appsData.observeForever { appsName = it ?: emptyMap() }
 
         if (Build.VERSION.SDK_INT >= 26) {
             val CHANNEL_ID = "channel1"
@@ -129,7 +130,8 @@ class OverlayService : Service(), OnTouchListener{
 
         wm = getSystemService(WINDOW_SERVICE) as WindowManager
 
-        bgSetUp()
+        triggerSetUp()
+        sliderSetUp()
 //        debugSetUp()
         groupsSetUp()
         appsSetUp()
@@ -162,13 +164,15 @@ class OverlayService : Service(), OnTouchListener{
     }
 
     // region set up
-    private fun bgSetUp(){
-        BG = View(this).apply {
-            setBackgroundColor(Color.BLACK)
+    private fun triggerSetUp(){
+
+
+        trigger = View(this).apply {
+            setBackgroundColor(Color.TRANSPARENT)
             setOnTouchListener(overlayService)
             z = sliderZ
         }
-        BGPrams = WindowManager.LayoutParams(
+        triggerPrams = WindowManager.LayoutParams(
             dpToPx(sliderWidthOnInactive),
             dpToPx(sliderHeight),
             type,
@@ -178,7 +182,24 @@ class OverlayService : Service(), OnTouchListener{
             y = 10000
             gravity = Gravity.END or Gravity.TOP
         }
-        wm!!.addView(BG, BGPrams)
+        wm!!.addView(trigger, triggerPrams)
+    }
+
+    private fun sliderSetUp() {
+        slider = SliderView(this).apply {
+            setOnTouchListener(overlayService)
+            z = 1000f
+        }
+        wm!!.addView(
+            slider,
+            WindowManager.LayoutParams(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT,
+                type,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                PixelFormat.TRANSLUCENT
+            )
+        )
     }
 
     private fun debugSetUp(){
@@ -196,7 +217,6 @@ class OverlayService : Service(), OnTouchListener{
         )
         wm!!.addView(DebugText, DebugPrams)
     }
-
 
     private fun groupsSetUp(){
         // groups
@@ -240,7 +260,7 @@ class OverlayService : Service(), OnTouchListener{
         labelText = TextView(this).apply {
             z = labelZ
             textSize = 30f
-            text = "app name"
+            text = ""
         }
         labelPrams = WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
@@ -260,7 +280,7 @@ class OverlayService : Service(), OnTouchListener{
 
                     updatesFromPreferences()
 
-                    BG?.apply { visibility = VISIBLE }
+                    trigger?.apply { visibility = VISIBLE }
                     groupsPositionedLayoutView?.apply {
                         visibility = VISIBLE
                         val resources = resources
@@ -279,16 +299,15 @@ class OverlayService : Service(), OnTouchListener{
                             drawable
                         }
                     }
-                    BGPrams!!.width = dpToPx(sliderWidthOnActive)
 
-                    initialY = BGPrams!!.y
+                    initialY = triggerPrams!!.y
                     initialTouchY = initialY.toFloat()
                 }
                 MotionEvent.ACTION_UP -> {
-                    BGPrams?.apply {
+                    triggerPrams?.apply {
                         y = resources.displayMetrics.heightPixels - height - sliderBottomPadding ; width = dpToPx(sliderWidthOnInactive);
                     }
-                    wm!!.updateViewLayout(BG, BGPrams)
+                    wm!!.updateViewLayout(trigger, triggerPrams)
                     groupsPositionedLayoutView?.apply { visibility = GONE }
                     appsPositionedLayoutView?.apply { visibility = GONE }
                     labelText?.apply { visibility = GONE }
@@ -296,10 +315,10 @@ class OverlayService : Service(), OnTouchListener{
                     v?.performClick()
                 }
                 MotionEvent.ACTION_CANCEL -> {
-                    BGPrams?.apply {
+                    triggerPrams?.apply {
                         y = resources.displayMetrics.heightPixels - height - sliderBottomPadding ; width = dpToPx(sliderWidthOnInactive);
                     }
-                    wm!!.updateViewLayout(BG, BGPrams)
+                    wm!!.updateViewLayout(trigger, triggerPrams)
                     groupsPositionedLayoutView?.apply { visibility = GONE }
                     appsPositionedLayoutView?.apply { visibility = GONE }
                     labelText?.apply { visibility = GONE }
@@ -311,15 +330,16 @@ class OverlayService : Service(), OnTouchListener{
 
                     touchOnSliderSide = X >= resources.displayMetrics.widthPixels - dpToPx(sliderWidthOnActive)
                     if (touchOnSliderSide) {
+                        updateTrigger(Y)
                         updateSlider(Y)
                     }
 
-                    val touchPositionOnSlider = Y.roundToInt() - BGPrams!!.y
+                    val touchPositionOnSlider = Y.roundToInt() - triggerPrams!!.y
                     val perGroupNotchHeight = dpToPx((sliderHeight.toFloat() / groups.size).roundToInt())
                     if (touchOnSliderSide) {
                         groupSelection = max(0, (touchPositionOnSlider - perGroupNotchHeight / 2) / perGroupNotchHeight)
                     }
-                    val selectedGroupY = BGPrams!!.y + ((groupSelection + 0.5f) * perGroupNotchHeight).roundToInt()
+                    val selectedGroupY = triggerPrams!!.y + ((groupSelection + 0.5f) * perGroupNotchHeight).roundToInt()
                     val selectedGroupOffset = Offset(
                         resources.displayMetrics.widthPixels - dpToPx(appsPop).toFloat(),
                         selectedGroupY.toFloat()
@@ -334,7 +354,7 @@ class OverlayService : Service(), OnTouchListener{
                                 allOffsets = appPositionsPreCompute.iconOffset,
                                 center = selectedGroupOffset,
                                 count = groups[groupSelection].apps.size,
-                                sliderPosY = BGPrams!!.y.toFloat(),
+                                sliderPosY = triggerPrams!!.y.toFloat(),
                                 sliderHeight = sliderHeight.toFloat(),
                                 right = resources.displayMetrics.widthPixels - dpToPx(sliderWidthOnActive),
                                 left = dpToPx(100),
@@ -362,15 +382,29 @@ class OverlayService : Service(), OnTouchListener{
     }
 
     // region updation
-    private fun updateSlider(touchY: Float) {
+    private fun updateTrigger(touchY: Float) {
         val yOffset = (touchY - initialTouchY).roundToInt()
-        if (initialY + yOffset < BGPrams!!.y){
-            BGPrams!!.y = initialY + yOffset
+        if (initialY + yOffset < triggerPrams!!.y){
+            triggerPrams!!.y = initialY + yOffset
         }
-        else if (initialY + yOffset > BGPrams!!.y + dpToPx(sliderHeight)){
-            BGPrams!!.y = initialY + yOffset - dpToPx(sliderHeight)
+        else if (initialY + yOffset > triggerPrams!!.y + dpToPx(sliderHeight)){
+            triggerPrams!!.y = initialY + yOffset - dpToPx(sliderHeight)
         }
-        wm!!.updateViewLayout(BG, BGPrams)
+        wm!!.updateViewLayout(trigger, triggerPrams)
+    }
+
+    private fun updateSlider(touchY: Float) {
+        slider?.apply {
+            updateVisuals(
+                Offset(width.toFloat() - 100, triggerPrams!!.y.toFloat()),
+                selectionRadius = 25f,
+                width = dpToPxF(sliderWidthOnActive),
+                height = dpToPxF(sliderHeight),
+                radius = 25f,
+                selectionPos = touchY - triggerPrams!!.y,
+                vertexCount = 20
+            )
+        }
     }
 
     private fun updateGroups(perGroupNotchHeight: Int, groupSelection: Int) {
@@ -381,7 +415,7 @@ class OverlayService : Service(), OnTouchListener{
                     dpToPxF(if(selected) groupSelectionRadius else groupBaseRadius),
                     Offset(
                         x = resources.displayMetrics.widthPixels - if (selected) dpToPxF(groupSelectionPop) else dpToPxF(groupBasePop),
-                        y = BGPrams!!.y + ((index + 0.5f) * perGroupNotchHeight) - groupBaseRadius/2
+                        y = triggerPrams!!.y + ((index + 0.5f) * perGroupNotchHeight) - groupBaseRadius/2
                     ),
                     groups[index].key
                 )
@@ -442,8 +476,8 @@ class OverlayService : Service(), OnTouchListener{
 
     override fun onDestroy() {
         super.onDestroy()
-        if (BG != null) {
-            wm!!.removeView(BG); BG = null
+        if (trigger != null) {
+            wm!!.removeView(trigger); trigger = null
         }
         if (appsPositionedLayoutView != null){
             wm!!.removeView(appsPositionedLayoutView); appsPositionedLayoutView = null
