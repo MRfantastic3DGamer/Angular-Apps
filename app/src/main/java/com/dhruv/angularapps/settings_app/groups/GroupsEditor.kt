@@ -42,6 +42,10 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.dhruv.angularapps.R
 import com.dhruv.angularapps.data.models.Group
@@ -75,7 +79,7 @@ fun GroupsEditor (
                         Modifier
                             .size(48.dp)
                             .padding(2.dp)
-                            .clickable { vm.keyValue = icon },
+                            .clickable { vm.keyValue = icon; vm.showGroupIconChoices = false },
                         Alignment.Center
                     )
                 }
@@ -265,6 +269,29 @@ fun GroupsEditor (
                     onClick = { vm.delete() }
                 ) { Text(text = "Delete") }
             },
+        )
+    }
+
+    if (vm.errorPop){
+        AlertDialog(
+            onDismissRequest = { vm.closeErrorPopup() },
+            confirmButton = {  },
+            text = { Text(
+                text = vm.errorMessage,
+                style = TextStyle(
+                    color = Color(1.0f, 0.498f, 0.498f, 1.0f),
+                    fontWeight = FontWeight.W700,
+                    fontSize = TextUnit(15f, TextUnitType.Sp)
+                )
+            ) },
+            icon = {
+                Icon(
+                    painter = painterResource(id = R.drawable.round_report_gmailerrorred_24),
+                    contentDescription = "error",
+                    tint = Color.Red,
+                    modifier = Modifier.size(25.dp)
+                )
+            }
         )
     }
 }

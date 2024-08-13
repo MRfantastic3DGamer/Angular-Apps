@@ -15,10 +15,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
+const val MAX_APPS_PER_GROUP = 10
+const val MAX_GROUPS = 6
+
 @HiltViewModel
 class GroupsEditorVM @Inject constructor(appManager: AppManager, val userPref: UserPref) : ViewModel() {
     // editor state
     var showGroupEditingDialog      by mutableStateOf                       (false)
+    var errorPop                    by mutableStateOf                       (false)
+    var errorMessage                by mutableStateOf                       ("")
     var showGroupIconChoices        by mutableStateOf                       (false)
     // editing
     var selectedGroup               by mutableStateOf<Group?>               (null)
@@ -61,16 +66,23 @@ class GroupsEditorVM @Inject constructor(appManager: AppManager, val userPref: U
         )
         runBlocking {
             val prev = userPref.getGroups().toMutableList()
-            Log.d("User Pref", "adding new to : " + prev.toString())
-            prev.add(g)
-            Log.d("User Pref", "new list : " + prev.toString())
-            userPref.saveGroups(prev.toList())
-            selectedGroup = g
-            selectedGroupPos = 0
-            selectedApps = emptyList()
-            nameValue = TextFieldValue(g.name)
-            keyValue = g.key
-            showGroupEditingDialog = true
+            if (prev.size >= MAX_GROUPS){
+                errorPop = true
+                errorMessage = "We recommend you to use maximum of $MAX_GROUPS groups for ease of use"
+            }
+            else{
+                showGroupIconChoices = true
+                Log.d("User Pref", "adding new to : " + prev.toString())
+                prev.add(g)
+                Log.d("User Pref", "new list : " + prev.toString())
+                userPref.saveGroups(prev.toList())
+                selectedGroup = g
+                selectedGroupPos = 0
+                selectedApps = emptyList()
+                nameValue = TextFieldValue(g.name)
+                keyValue = g.key
+                showGroupEditingDialog = true
+            }
         }
     }
 
@@ -80,14 +92,24 @@ class GroupsEditorVM @Inject constructor(appManager: AppManager, val userPref: U
 
     fun addApp(app: String){
         val prev = selectedApps.toMutableList()
-        prev.add(app)
-        selectedApps = prev.toList()
+        if (prev.size >= MAX_APPS_PER_GROUP){
+            errorPop = true
+            errorMessage = "We recommend adding at most $MAX_APPS_PER_GROUP apps to a group to make them easier to find"
+        }
+        else{
+            prev.add(app)
+            selectedApps = prev.toList()
+        }
     }
 
     fun removeApp(app: String){
         val prev = selectedApps.toMutableList()
         prev.remove(app)
         selectedApps = prev.toList()
+    }
+
+    fun closeErrorPopup(){
+        errorPop = false
     }
 
     fun confirm() {
@@ -116,5 +138,4 @@ class GroupsEditorVM @Inject constructor(appManager: AppManager, val userPref: U
     fun dismiss (){
         showGroupEditingDialog = false
     }
-
 }

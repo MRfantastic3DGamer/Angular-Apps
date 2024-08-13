@@ -8,7 +8,9 @@ import android.graphics.Color
 import android.graphics.PixelFormat
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import android.util.Log
 import android.view.Gravity
 import android.view.MotionEvent
@@ -21,6 +23,7 @@ import android.widget.TextView
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.util.lerp
 import androidx.core.app.NotificationCompat
+import androidx.core.math.MathUtils.clamp
 import com.dhruv.angularapps.apps.AppManager
 import com.dhruv.angularapps.apps.AppsIconsPositioning
 import com.dhruv.angularapps.data.UserPref
@@ -44,7 +47,6 @@ import com.dhruv.angularapps.views.SliderView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
-import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
 
@@ -97,6 +99,28 @@ class OverlayService : Service(), OnTouchListener{
     private var appsPositioning = AppsIconsPositioning.IconCoordinatesGenerationScheme()
     private var appsName = mapOf<String, String>()
 
+    private val perGroupNotchHeight:Int
+        get() = dpToPx((sliderHeight.toFloat() / groups.size).roundToInt())
+
+    // animations
+    private val handler = Handler(Looper.getMainLooper())
+    private val updateRunnable = object : Runnable {
+        override fun run() {
+            // update groups
+            updateGroups()
+            handler.postDelayed(this, 16)  // Roughly 60 FPS
+        }
+    }
+
+    private val groupAnimatedValues = mutableMapOf<Int,Float>()
+    private val groupAnimators = mutableMapOf<Int, AnimatedFloat>()
+    private var triggerTouchYPos = 0f // updated only while touch is in slider region
+    private var sliderVisibility = 0f
+    private val sliderVisibilityAnimator = AnimatedFloat(0f, 300L){
+        sliderVisibility = it
+        Log.d(TAG, "On slider visibility change: $it")
+    }
+
     private val overlayService = this@OverlayService
     private val type = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY else WindowManager.LayoutParams.TYPE_PHONE
 
@@ -142,6 +166,16 @@ class OverlayService : Service(), OnTouchListener{
 
     private fun updatesFromPreferences(){
         runBlocking {
+
+            val newGroups = pref.getGroups()
+            if (groups != newGroups) {
+                groups = newGroups
+                groupAnimators.clear()
+                List(groups.size) { i ->
+                    groupAnimators[i] = AnimatedFloat(0f) { groupAnimatedValues[i] = it }
+                }
+            }
+
             val touchOff = pref.getData(touchOffsetKey)?.split("#") ?: listOf("0","0")
             touchOffset = Offset(touchOff[0].toFloat(), touchOff[1].toFloat())
             sliderHeight = pref.getData(sliderHeightKey)?.toInt() ?: 300
@@ -221,6 +255,10 @@ class OverlayService : Service(), OnTouchListener{
     private fun groupsSetUp(){
         // groups
         groups = runBlocking { pref.getGroups() }
+        List(groups.size) { i ->
+            groupAnimators[i] = AnimatedFloat(0f){ groupAnimatedValues[i] = it }
+        }
+
         groupsPositionedLayoutView = PositionedLayoutView(this).apply {
             z = groupsZ
             visibility = GONE
@@ -261,6 +299,8 @@ class OverlayService : Service(), OnTouchListener{
             z = labelZ
             textSize = 30f
             text = ""
+            setTextColor(Color.WHITE)
+            setBackgroundColor(Color.BLACK)
         }
         labelPrams = WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
@@ -281,10 +321,12 @@ class OverlayService : Service(), OnTouchListener{
                     updatesFromPreferences()
 
                     trigger?.apply { visibility = VISIBLE }
+                    slider?.apply { visibility = VISIBLE }
+                    sliderVisibilityAnimator.setTargetValue(1f)
                     groupsPositionedLayoutView?.apply {
                         visibility = VISIBLE
                         val resources = resources
-                        this.updateVisuals(groups.map { it.key }){ key ->
+                        updateVisuals(groups.map { it.key }){ key ->
                             val drawable = Drawable.createFromXml(resources, resources.getXml( GroupIcons[key] ?: R.drawable.round_report_gmailerrorred_24))
                             drawable
                         }
@@ -303,17 +345,7 @@ class OverlayService : Service(), OnTouchListener{
                     initialY = triggerPrams!!.y
                     initialTouchY = initialY.toFloat()
                 }
-                MotionEvent.ACTION_UP -> {
-                    triggerPrams?.apply {
-                        y = resources.displayMetrics.heightPixels - height - sliderBottomPadding ; width = dpToPx(sliderWidthOnInactive);
-                    }
-                    wm!!.updateViewLayout(trigger, triggerPrams)
-                    groupsPositionedLayoutView?.apply { visibility = GONE }
-                    appsPositionedLayoutView?.apply { visibility = GONE }
-                    labelText?.apply { visibility = GONE }
-                    launchAppIfPossible(touchOnSliderSide)
-                    v?.performClick()
-                }
+                MotionEvent.ACTION_UP,
                 MotionEvent.ACTION_CANCEL -> {
                     triggerPrams?.apply {
                         y = resources.displayMetrics.heightPixels - height - sliderBottomPadding ; width = dpToPx(sliderWidthOnInactive);
@@ -321,7 +353,10 @@ class OverlayService : Service(), OnTouchListener{
                     wm!!.updateViewLayout(trigger, triggerPrams)
                     groupsPositionedLayoutView?.apply { visibility = GONE }
                     appsPositionedLayoutView?.apply { visibility = GONE }
+                    sliderVisibilityAnimator.setTargetValue(0f)
+                    slider?.apply { visibility = GONE }
                     labelText?.apply { visibility = GONE }
+                    launchAppIfPossible(touchOnSliderSide)
                 }
                 MotionEvent.ACTION_MOVE -> {
 
@@ -329,26 +364,25 @@ class OverlayService : Service(), OnTouchListener{
                     val Y = event.rawY + touchOffset.y
 
                     touchOnSliderSide = X >= resources.displayMetrics.widthPixels - dpToPx(sliderWidthOnActive)
+                    val touchPositionOnSlider = Y.roundToInt() - triggerPrams!!.y
                     if (touchOnSliderSide) {
                         updateTrigger(Y)
-                        updateSlider(Y)
+                        updateSlider(touchPositionOnSlider)
+                        triggerTouchYPos = Y
                     }
 
-                    val touchPositionOnSlider = Y.roundToInt() - triggerPrams!!.y
-                    val perGroupNotchHeight = dpToPx((sliderHeight.toFloat() / groups.size).roundToInt())
                     if (touchOnSliderSide) {
-                        groupSelection = max(0, (touchPositionOnSlider - perGroupNotchHeight / 2) / perGroupNotchHeight)
+                        groupSelection = clamp(touchPositionOnSlider/perGroupNotchHeight, 0, groups.size-1)
                     }
                     val selectedGroupY = triggerPrams!!.y + ((groupSelection + 0.5f) * perGroupNotchHeight).roundToInt()
                     val selectedGroupOffset = Offset(
                         resources.displayMetrics.widthPixels - dpToPx(appsPop).toFloat(),
-                        selectedGroupY.toFloat()
+                        triggerTouchYPos
                     )
 
                     if (groups.isNotEmpty() && groupSelection != -1){
 
-                        updateGroups(perGroupNotchHeight, groupSelection)
-
+                        updateGroups()
                         val usableData = runBlocking {
                             AppsIconsPositioning.getUsableOffsets(
                                 allOffsets = appPositionsPreCompute.iconOffset,
@@ -393,32 +427,46 @@ class OverlayService : Service(), OnTouchListener{
         wm!!.updateViewLayout(trigger, triggerPrams)
     }
 
-    private fun updateSlider(touchY: Float) {
+    private fun updateSlider(touchPositionOnSlider: Int) {
         slider?.apply {
+            val currentWidth = dpToPxF(sliderWidthOnActive) * sliderVisibility
             updateVisuals(
-                Offset(width.toFloat() - 100, triggerPrams!!.y.toFloat()),
-                selectionRadius = 25f,
-                width = dpToPxF(sliderWidthOnActive),
+                Offset(width.toFloat() - currentWidth, triggerPrams!!.y.toFloat()),
+                selectionPos = touchPositionOnSlider.toFloat(),
+                width = currentWidth,
                 height = dpToPxF(sliderHeight),
-                radius = 25f,
-                selectionPos = touchY - triggerPrams!!.y,
+                radius = 125f * sliderVisibility,
+                selectionPop = 60f * sliderVisibility,
                 vertexCount = 20
             )
         }
     }
 
-    private fun updateGroups(perGroupNotchHeight: Int, groupSelection: Int) {
+    private fun updateGroups() {
         groupsPositionedLayoutView?.apply {
-            updateValues(groups.size){ index ->
+            updateValues(groups.size) { index ->
                 val selected = index == groupSelection
+
+                groupAnimators[index]?.setTargetValue(if (selected) 1f else 0f)
+
+                val transitionValue = groupAnimatedValues[index] ?: if (selected) 1f else 0f
                 ItemValues(
-                    dpToPxF(if(selected) groupSelectionRadius else groupBaseRadius),
+                    dpToPxF(lerp(groupBaseRadius, groupSelectionRadius, transitionValue)),
                     Offset(
-                        x = resources.displayMetrics.widthPixels - if (selected) dpToPxF(groupSelectionPop) else dpToPxF(groupBasePop),
-                        y = triggerPrams!!.y + ((index + 0.5f) * perGroupNotchHeight) - groupBaseRadius/2
+                        x = resources.displayMetrics.widthPixels - lerp(
+                            dpToPxF(sliderWidthOnActive)*0.5f,
+                            dpToPxF(groupSelectionPop),
+                            transitionValue
+                        ),
+                        y = triggerPrams!!.y + lerp(
+                            ((index + 0.5f) * perGroupNotchHeight) - groupBaseRadius / 2,
+                            triggerTouchYPos - triggerPrams!!.y,
+                            transitionValue
+                        )
                     ),
                     groups[index].key
                 )
+
             }
         }
     }
@@ -454,6 +502,10 @@ class OverlayService : Service(), OnTouchListener{
             visibility = VISIBLE
             text = appsName[selectedApp]
         }
+        labelPrams?.apply {
+            y = triggerPrams!!.y - this.height
+        }
+        wm!!.updateViewLayout(labelText, labelPrams)
     }
     // endregion
 

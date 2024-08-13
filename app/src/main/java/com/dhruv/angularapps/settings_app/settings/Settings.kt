@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -39,7 +40,8 @@ fun Settings(
 
         val textStyle = TextStyle(
             fontWeight = FontWeight.W800,
-            fontSize = TextUnit(25f, TextUnitType.Sp)
+            fontSize = TextUnit(25f, TextUnitType.Sp),
+            color = Color.White
         )
         val descriptionStyle = TextStyle(
             fontWeight = FontWeight.W400,
@@ -60,14 +62,15 @@ fun Settings(
             ) {
                 Icon(
                     modifier = Modifier
-                        .padding(start = 20.dp, end = 16.dp)
-                        .size(28.dp),
+                        .padding(16.dp)
+                        .size(40.dp),
                     painter = painterResource(id = icon),
                     contentDescription = text,
+                    tint = Color.White
                 )
                 Column {
-                    Text(text = text, Modifier.padding(8.dp), style = textStyle)
-                    Text(text = description, Modifier.padding(8.dp), style = descriptionStyle)
+                    Text(text = text, Modifier.padding(top = 8.dp), style = textStyle)
+                    Text(text = description, Modifier.padding(bottom = 8.dp), style = descriptionStyle)
                 }
             }
         }

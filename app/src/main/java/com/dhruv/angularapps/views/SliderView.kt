@@ -26,7 +26,7 @@ class SliderView @JvmOverloads constructor(
     private var width: Float = 0f
     private var height: Float = 0f
     private var radius: Float = 20f
-    private var selectionRadius: Float = 20f
+    private var selectionPop: Float = 0f
     private var vertexCount: Int = 20
 
 
@@ -39,7 +39,8 @@ class SliderView @JvmOverloads constructor(
         offset: Offset,
         selectionPos: Float,
         width: Float, height: Float,
-        radius: Float, selectionRadius: Float,
+        radius: Float,
+        selectionPop: Float,
         vertexCount: Int
     ) {
         this.offset = offset
@@ -47,7 +48,7 @@ class SliderView @JvmOverloads constructor(
         this.width = width
         this.height = height
         this.radius = radius
-        this.selectionRadius = selectionRadius
+        this.selectionPop = selectionPop
         this.vertexCount = vertexCount
 
         invalidate() // Invalidate the view to trigger a redraw
@@ -57,7 +58,13 @@ class SliderView @JvmOverloads constructor(
         super.onDraw(canvas)
 
         val path = SliderPath(
-            offset,selectionPos,width,height,radius,selectionRadius,vertexCount
+            offset = offset,
+            selectionPos = selectionPos,
+            width = width,
+            height = height,
+            radius = radius,
+            selectionPop = selectionPop,
+            vertexCount = vertexCount
         )
 //        canvas.clipPath(path)
         canvas.drawPath(path, nullPainterPaint)
@@ -71,7 +78,8 @@ private fun SliderPath(
     selectionPos: Float,
 
     width: Float, height: Float,
-    radius: Float, selectionRadios: Float,
+    radius: Float,
+    selectionPop: Float,
 
     vertexCount: Int
 ): Path {
@@ -90,8 +98,6 @@ private fun SliderPath(
     val triggerTopArcMid = triggerOffset + Offset(triggerArcRadius, min(0f, selectionPos - radius + triggerArcRadius))
     val triggerDownArcMid = triggerOffset + Offset(triggerArcRadius, max(height, selectionPos + radius - triggerArcRadius))
 
-    val sidePadding = 100f
-
     repeat(vertexCount) {
         val angle = deltaAngle_trigg * it
         triggerArcTop.add(triggerTopArcMid + Offset(-(cos(angle) * triggerArcRadius), -(sin(angle) * triggerArcRadius)))
@@ -102,10 +108,10 @@ private fun SliderPath(
 
     val triggerOpenPath = Path()
 
-    triggerOpenPath.moveTo(offset.x - sidePadding, offset.y + selectionPos - selectionRadios)
+    triggerOpenPath.moveTo(offset.x - selectionPop, offset.y + selectionPos - radius)
 
-    val topLeft = triggerOffset + Offset(-sidePadding - selectionRadios, selectionPos - selectionRadios)
-    val bottomRight = triggerOffset + Offset(-sidePadding + selectionRadios, selectionPos + selectionRadios)
+    val topLeft = triggerOffset + Offset(-selectionPop - radius, selectionPos - radius)
+    val bottomRight = triggerOffset + Offset(-selectionPop + radius, selectionPos + radius)
 
     // selection arc
     triggerOpenPath.addArc(
@@ -114,10 +120,10 @@ private fun SliderPath(
         180f,
     )
 
-    val minY = offset.y + selectionPos - selectionRadios
-    val maxY = offset.y + selectionPos + selectionRadios
+    val minY = offset.y + selectionPos - radius
+    val maxY = offset.y + selectionPos + radius
 
-    triggerOpenPath.lineTo( if (triggerArcTop.size > 0) triggerArcTop.first().x else 0f, triggerOffset.y + selectionPos - selectionRadios)
+    triggerOpenPath.lineTo( if (triggerArcTop.size > 0) triggerArcTop.first().x else 0f, triggerOffset.y + selectionPos - radius)
 
     // top arc
     for (i in 0 until triggerArcTop.size / 2)
@@ -131,7 +137,7 @@ private fun SliderPath(
     for (i in triggerArcBot.size / 2 + 1 until triggerArcBot.size)
         triggerOpenPath.lineTo(triggerArcBot[i].x, max(maxY, triggerArcBot[i].y))
 
-    triggerOpenPath.lineTo(triggerArcTop.first().x, triggerOffset.y + selectionPos + selectionRadios)
+    triggerOpenPath.lineTo(triggerArcTop.first().x, triggerOffset.y + selectionPos + radius)
 
     triggerOpenPath.close()
     return triggerOpenPath
