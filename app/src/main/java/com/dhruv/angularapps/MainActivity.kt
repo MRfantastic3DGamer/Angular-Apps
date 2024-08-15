@@ -50,7 +50,7 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        appManager.initialize(packageManager)
+        appManager.initialize(this)
         val groupsEditorVM: GroupsEditorVM by viewModels()
         val settingsVM: SettingsVM by viewModels()
         enableEdgeToEdge()

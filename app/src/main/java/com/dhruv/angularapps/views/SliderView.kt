@@ -31,8 +31,14 @@ class SliderView @JvmOverloads constructor(
 
 
     private val nullPainterPaint = Paint().apply {
-        color = Color.RED
+        color = Color.BLACK
         style = Paint.Style.FILL
+    }
+
+    private val strokePaint = Paint().apply {
+        color = Color.WHITE
+        strokeWidth = 10f
+        style = Paint.Style.STROKE
     }
 
     fun updateVisuals(
@@ -68,6 +74,7 @@ class SliderView @JvmOverloads constructor(
         )
 //        canvas.clipPath(path)
         canvas.drawPath(path, nullPainterPaint)
+        canvas.drawPath(path, strokePaint)
 //        canvas.drawRect(0f,0f,10000f,10000f, nullPainterPaint)
     }
 }

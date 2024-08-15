@@ -108,7 +108,8 @@ class OverlayService : Service(), OnTouchListener{
         override fun run() {
             // update groups
             updateGroups()
-            handler.postDelayed(this, 16)  // Roughly 60 FPS
+            updateSlider()
+            handler.postDelayed(this, 8)  // Roughly 60 FPS
         }
     }
 
@@ -129,7 +130,7 @@ class OverlayService : Service(), OnTouchListener{
 
         updatesFromPreferences()
 
-        appsManager.initialize(packageManager)
+        appsManager.initialize(this)
         appsManager.appsData.observeForever { appsName = it ?: emptyMap() }
 
         if (Build.VERSION.SDK_INT >= 26) {
@@ -344,6 +345,8 @@ class OverlayService : Service(), OnTouchListener{
 
                     initialY = triggerPrams!!.y
                     initialTouchY = initialY.toFloat()
+
+                    handler.post(updateRunnable)
                 }
                 MotionEvent.ACTION_UP,
                 MotionEvent.ACTION_CANCEL -> {
@@ -356,6 +359,7 @@ class OverlayService : Service(), OnTouchListener{
                     sliderVisibilityAnimator.setTargetValue(0f)
                     slider?.apply { visibility = GONE }
                     labelText?.apply { visibility = GONE }
+                    handler.removeCallbacks(updateRunnable)
                     launchAppIfPossible(touchOnSliderSide)
                 }
                 MotionEvent.ACTION_MOVE -> {
@@ -367,7 +371,6 @@ class OverlayService : Service(), OnTouchListener{
                     val touchPositionOnSlider = Y.roundToInt() - triggerPrams!!.y
                     if (touchOnSliderSide) {
                         updateTrigger(Y)
-                        updateSlider(touchPositionOnSlider)
                         triggerTouchYPos = Y
                     }
 
@@ -382,7 +385,7 @@ class OverlayService : Service(), OnTouchListener{
 
                     if (groups.isNotEmpty() && groupSelection != -1){
 
-                        updateGroups()
+//                        updateGroups()
                         val usableData = runBlocking {
                             AppsIconsPositioning.getUsableOffsets(
                                 allOffsets = appPositionsPreCompute.iconOffset,
@@ -405,7 +408,10 @@ class OverlayService : Service(), OnTouchListener{
                         updateApps(usedOffsets, appSelectionResult.selectionValues)
                     }
 
-                    updateLabel(touchOnSliderSide)
+                    updateSlider()
+                    updateGroups()
+                    updateLabel()
+
 
                     // debugging
 //                    DebugText!!.text = touchOnSliderSide.toString()
@@ -427,12 +433,12 @@ class OverlayService : Service(), OnTouchListener{
         wm!!.updateViewLayout(trigger, triggerPrams)
     }
 
-    private fun updateSlider(touchPositionOnSlider: Int) {
+    private fun updateSlider() {
         slider?.apply {
             val currentWidth = dpToPxF(sliderWidthOnActive) * sliderVisibility
             updateVisuals(
                 Offset(width.toFloat() - currentWidth, triggerPrams!!.y.toFloat()),
-                selectionPos = touchPositionOnSlider.toFloat(),
+                selectionPos = triggerTouchYPos - triggerPrams!!.y,
                 width = currentWidth,
                 height = dpToPxF(sliderHeight),
                 radius = 125f * sliderVisibility,
@@ -487,7 +493,7 @@ class OverlayService : Service(), OnTouchListener{
         }
     }
 
-    private fun updateLabel(touchOnSliderSide: Boolean) {
+    private fun updateLabel() {
         if (touchOnSliderSide or (groupSelection !in groups.indices)) {
             labelText?.apply { visibility = GONE }
             return
