@@ -56,20 +56,6 @@ class AppManager @Inject constructor() {
         val newData = getAllAppsDAta(context, appsL)
         _appsData.postValue(newData.first)
         _appsIconData.postValue(newData.second)
-
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val newDataAsync = async { getAllAppIcons(packageManager, appsL) }
-//            val newData = newDataAsync.await()
-//            _appsIconData.postValue(newData)
-//            Log.d(TAG, "initialized: apps icons => ${newData.map { it.key }}")
-//        }
-//
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val newDataAsync = async { getAllInstalledAppsData(packageManager, appsL) }
-//            val newData = newDataAsync.await()
-//            _appsData.postValue(newData)
-//            Log.d(TAG, "initialized: apps data => ${newData.map { it.value }}")
-//        }
     }
 
     companion object {

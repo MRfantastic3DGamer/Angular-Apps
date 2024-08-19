@@ -115,7 +115,11 @@ class OverlayService : Service(), OnTouchListener{
 
     private val groupAnimatedValues = mutableMapOf<Int,Float>()
     private val groupAnimators = mutableMapOf<Int, AnimatedFloat>()
-    private var triggerTouchYPos = 0f // updated only while touch is in slider region
+
+    /**
+     * updated only while touch is in slider region
+     */
+    private var triggerTouchYPos = 0f
     private var sliderVisibility = 0f
     private val sliderVisibilityAnimator = AnimatedFloat(0f, 300L){
         sliderVisibility = it
@@ -173,7 +177,7 @@ class OverlayService : Service(), OnTouchListener{
                 groups = newGroups
                 groupAnimators.clear()
                 List(groups.size) { i ->
-                    groupAnimators[i] = AnimatedFloat(0f) { groupAnimatedValues[i] = it }
+                    groupAnimators[i] = AnimatedFloat(0f, duration = 50L) { groupAnimatedValues[i] = it }
                 }
             }
 

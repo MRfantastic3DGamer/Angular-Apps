@@ -243,11 +243,10 @@ fun GroupsEditor (
                     if (vm.apps.isEmpty()) {
                         ProgressBar(context)
                     } else {
-                        Log.d(TAG, "GroupsEditor: ${vm.apps}")
-                        Log.d(TAG, "GroupsEditor: ${vm.appsIcons}")
+                        val apps = vm.apps.keys.sortedBy { vm.apps[it] }
                         LazyColumn {
                             items(
-                                vm.apps.keys.toList(),
+                                apps,
                                 key = {it}
                             ) { app ->
                                 if (vm.apps.containsKey(app) && vm.appsIcons.containsKey(app)) {

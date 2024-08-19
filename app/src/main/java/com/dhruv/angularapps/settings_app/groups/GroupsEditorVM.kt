@@ -15,8 +15,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
-const val MAX_APPS_PER_GROUP = 10
-const val MAX_GROUPS = 6
+const val MAX_APPS_PER_GROUP = 15
+const val MAX_GROUPS = 10
 
 @HiltViewModel
 class GroupsEditorVM @Inject constructor(appManager: AppManager, val userPref: UserPref) : ViewModel() {
@@ -39,7 +39,6 @@ class GroupsEditorVM @Inject constructor(appManager: AppManager, val userPref: U
     init {
         appManager.appsData.observeForever {
             apps = it ?: emptyMap()
-            Log.d(TAG, apps.values.toString())
         }
 
         appManager.appsIcon.observeForever { iconsMap ->

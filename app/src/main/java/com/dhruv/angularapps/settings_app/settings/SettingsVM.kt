@@ -1,6 +1,7 @@
 package com.dhruv.angularapps.settings_app.settings
 
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -16,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
 
-    var popup               by mutableIntStateOf(0)
+    var popup               by mutableFloatStateOf(0f)
 
 
     // offset
@@ -33,8 +34,8 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
     var appsBaseRad         by mutableStateOf(appsBaseRadius())
     var appsSelectionRad    by mutableStateOf(appsSelectionRadius())
 
-    var appsPositioning     by mutableStateOf(appsPositioning())
     var appsPop             by mutableIntStateOf(appsPop())
+    var appsPositioning     by mutableStateOf(appsPositioning())
     val firstRingRadius: Float
         get() = appsPositioning.startingRadius.toFloat()
     val radiusDiff: Float
@@ -61,7 +62,7 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
     }
 
     private fun sliderHeight(): Int {
-        return runBlocking { pref.getData(sliderHeightKey)?.toInt() ?: 300 }
+        return runBlocking { pref.getData(sliderHeightKey)?.toInt() ?: 150 }
     }
 
     private fun saveSliderHeight(height: Int) {
@@ -77,7 +78,7 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
     }
 
     private fun bottomPadding(): Int {
-        return runBlocking { pref.getData(sliderBottomPaddingKey)?.toInt() ?: 50 }
+        return runBlocking { pref.getData(sliderBottomPaddingKey)?.toInt() ?: 20 }
     }
 
     private fun saveBottomPadding(bottomPadding: Int) {
@@ -85,7 +86,7 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
     }
 
     private fun appsBaseRadius(): Int {
-        return runBlocking { pref.getData(appsBaseRadiusKey)?.toInt() ?: 30 }
+        return runBlocking { pref.getData(appsBaseRadiusKey)?.toInt() ?: 20 }
     }
 
     private fun saveAppsBaseRadius(rad: Int) {
@@ -93,7 +94,7 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
     }
 
     private fun appsSelectionRadius(): Int {
-        return runBlocking { pref.getData(appsSelectionRadiusKey)?.toInt() ?: 50 }
+        return runBlocking { pref.getData(appsSelectionRadiusKey)?.toInt() ?: 40 }
     }
 
     private fun saveAppsSelectionRadius(rad: Int) {
@@ -101,7 +102,7 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
     }
 
     private fun groupsBaseRadius(): Int {
-        return runBlocking { pref.getData(groupsBaseRadiusKey)?.toInt() ?: 50 }
+        return runBlocking { pref.getData(groupsBaseRadiusKey)?.toInt() ?: 25 }
     }
 
     private fun saveGroupsBaseRadius(rad: Int) {
@@ -109,7 +110,7 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
     }
 
     private fun groupsSelectionRadius(): Int {
-        return runBlocking { pref.getData(groupsSelectionRadiusKey)?.toInt() ?: 70 }
+        return runBlocking { pref.getData(groupsSelectionRadiusKey)?.toInt() ?: 40 }
     }
 
     private fun saveGroupsSelectionRadius(rad: Int) {
@@ -154,7 +155,7 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
     }
     // endregion
 
-    fun openPopup(pop: Int) {
+    fun openPopup(pop: Float) {
 
         // offset
         touchOffset = touchOffset()
@@ -178,33 +179,39 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
 
     fun confirm() {
         when (popup) {
-            1 -> {
+            1.1f -> {
                 saveTouchOffset(touchOffset)
             }
-            2 -> {
+            2.1f -> {
                 saveSliderHeight(slHeight)
                 saveSliderWidth(slWidth)
+            }
+            2.2f -> {
                 saveBottomPadding(slBottomPadding)
             }
-            3 -> {
+            3.1f -> {
                 saveAppsPositioning(appsPositioning)
                 saveAppsPop(appsPop)
+            }
+            3.2f -> {
                 saveAppsBaseRadius(appsBaseRad)
                 saveAppsSelectionRadius(appsSelectionRad)
             }
-            4 -> {
+            4.1f -> {
                 saveGroupsBasePop(groupBasePop)
-                saveGroupsBaseRadius(groupBaseRad)
                 saveGroupsSelectionPop(groupSelectionPop)
+            }
+            4.2f -> {
+                saveGroupsBaseRadius(groupBaseRad)
                 saveGroupsSelectionRadius(groupSelectionRad)
             }
             else -> {}
         }
-        popup = 0
+        popup = 0f
     }
 
     fun dismiss() {
-        popup = 0
+        popup = 0f
     }
 }
 
