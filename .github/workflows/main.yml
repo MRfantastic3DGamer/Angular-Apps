@@ -5,6 +5,9 @@ on:
     branches:
       - main
       - populating-readme
+
+permissions:
+  contents: write
 jobs:
   get_data:
     runs-on: ubuntu-latest
