@@ -186,10 +186,10 @@ class OverlayService : Service(), OnTouchListener{
             sliderHeight = pref.getData(sliderHeightKey)?.toInt() ?: 300
             sliderWidthOnActive = pref.getData(sliderWidthKey)?.toInt() ?: 50
             sliderBottomPadding = pref.getData(sliderBottomPaddingKey)?.toInt() ?: 50
-            appBaseRadius = pref.getData(appsBaseRadiusKey)?.toInt() ?: 30
-            appSelectionRadius = pref.getData(appsSelectionRadiusKey)?.toInt() ?: 50
-            groupBaseRadius = pref.getData(groupsBaseRadiusKey)?.toInt() ?: 30
-            groupSelectionRadius = pref.getData(groupsSelectionRadiusKey)?.toInt() ?: 50
+            appBaseRadius = pref.getData(appsBaseRadiusKey)?.toInt() ?: 20
+            appSelectionRadius = pref.getData(appsSelectionRadiusKey)?.toInt() ?: 40
+            groupBaseRadius = pref.getData(groupsBaseRadiusKey)?.toInt() ?: 25
+            groupSelectionRadius = pref.getData(groupsSelectionRadiusKey)?.toInt() ?: 40
             groupBasePop = pref.getData(groupBasePopKey)?.toInt() ?: 30
             groupSelectionPop = pref.getData(groupSelectionPopKey)?.toInt() ?: 70
             appsPop = pref.getData(appsPopKey)?.toInt() ?: 60
