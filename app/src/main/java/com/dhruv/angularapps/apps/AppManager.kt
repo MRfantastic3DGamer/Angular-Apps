@@ -111,6 +111,9 @@ class AppManager @Inject constructor() {
                     val width = layerDrawable.intrinsicWidth
                     val height = layerDrawable.intrinsicHeight
 
+                    if (!(width > 0 && height > 0)){
+                        throw PackageManager.NameNotFoundException(packageName)
+                    }
                     var bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
                     val canvas = Canvas(bitmap)
 

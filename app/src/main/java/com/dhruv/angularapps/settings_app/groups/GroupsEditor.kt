@@ -27,8 +27,10 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -38,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -64,7 +67,14 @@ fun GroupsEditor (
 
     @Composable
     fun GroupIconChoices() {
-        Card {
+        Card(
+            colors = CardColors(
+                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                disabledContentColor = MaterialTheme.colorScheme.background,
+            )
+        ) {
             LazyVerticalGrid (
                 columns = GridCells.Adaptive( minSize = 48.dp ),
                 Modifier
@@ -80,7 +90,8 @@ fun GroupsEditor (
                             .size(48.dp)
                             .padding(2.dp)
                             .clickable { vm.keyValue = icon; vm.showGroupIconChoices = false },
-                        Alignment.Center
+                        Alignment.Center,
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondaryContainer)
                     )
                 }
             }
@@ -88,30 +99,44 @@ fun GroupsEditor (
     }
 
     @Composable
-    fun Group(data: Group, select: ()->Unit) {
-        Card (
+    fun Group(data: Group, select: () -> Unit) {
+        Card(
             onClick = select,
             modifier = Modifier
-                .padding(5.dp)
+                .padding(5.dp),
+            colors = CardColors(
+                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                disabledContentColor = MaterialTheme.colorScheme.background,
+            )
         ) {
-            Row (
-                Modifier
-                    .fillMaxWidth(),
-                Arrangement.Start,
-                Alignment.CenterVertically,
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically,
             ) {
-                var painter : Painter = if ( GroupIcons.containsKey(data.key)) painterResource(id = GroupIcons[data.key]!!) else painterResource(id = R.drawable.round_report_gmailerrorred_24)
+                val painter: Painter = if (GroupIcons.containsKey(data.key)) {
+                    painterResource(id = GroupIcons[data.key]!!)
+                } else {
+                    painterResource(id = R.drawable.round_report_gmailerrorred_24)
+                }
+
+                // Applying the tint using the LocalContentColor
                 Image(
                     painter = painter,
                     contentDescription = data.key,
-                    Modifier
+                    modifier = Modifier
                         .padding(10.dp)
                         .size(48.dp),
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondaryContainer),
                 )
+
                 H2(text = data.name)
             }
         }
     }
+
 
     @Composable
     fun App(app: String) {
@@ -137,19 +162,11 @@ fun GroupsEditor (
                     }
                 }
         ) {
-            if (drawable != null) {
-                Image(
-                    modifier = Modifier.size(50.dp),
-                    painter = rememberDrawablePainter(drawable = drawable),
-                    contentDescription = app
-                )
-            } else {
-                Image(
-                    modifier = Modifier.size(50.dp),
-                    painter = painterResource(id = R.drawable.round_report_gmailerrorred_24),
-                    contentDescription = app
-                )
-            }
+            Image(
+                modifier = Modifier.size(50.dp),
+                painter = if (drawable != null) rememberDrawablePainter(drawable = drawable) else painterResource(id = R.drawable.round_report_gmailerrorred_24),
+                contentDescription = app,
+            )
 
             Text(
                 text = name ?: "",
@@ -222,6 +239,7 @@ fun GroupsEditor (
                                     .size(60.dp),
                                 Alignment.Center,
                                 ContentScale.Fit,
+                                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondaryContainer),
                             )
                         }
                         Spacer(modifier = Modifier.width(4.dp))
@@ -253,7 +271,7 @@ fun GroupsEditor (
                                     App(app)
                                 }
                             }
-                            item { Spacer(modifier = Modifier.height(500.dp)) }
+                            item { Spacer(modifier = Modifier.height(100.dp)) }
                         }
                     }
                 }

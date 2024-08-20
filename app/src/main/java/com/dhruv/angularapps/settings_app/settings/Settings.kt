@@ -14,8 +14,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
@@ -23,10 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.dhruv.angularapps.R
 import com.dhruv.angularapps.settings_app.LabelForFloat
@@ -51,20 +49,23 @@ fun Settings(
     @Composable
     fun groupedCards(vararg cards: SettingsCard, title: String, description: String, icon: Int){
 
-        val textStyle = TextStyle(
-            fontWeight = FontWeight.W600,
-            fontSize = TextUnit(20f, TextUnitType.Sp),
-            color = Color.White
+        val textStyle = MaterialTheme.typography.headlineMedium.copy(
+            color = MaterialTheme.colorScheme.onSecondaryContainer
         )
-        val descriptionStyle = TextStyle(
-            fontWeight = FontWeight.W200,
-            fontSize = TextUnit(15f, TextUnitType.Sp),
+        val descriptionStyle = MaterialTheme.typography.bodyMedium.copy(
+            color = MaterialTheme.colorScheme.secondary
         )
 
         Card(
             Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
+                .padding(8.dp),
+            colors = CardColors(
+                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                contentColor = MaterialTheme.colorScheme.secondary,
+                disabledContentColor = MaterialTheme.colorScheme.primary,
+            )
         ) {
             Column {
                 Row(Modifier.padding(8.dp)) {
@@ -74,22 +75,19 @@ fun Settings(
                             .size(50.dp),
                         painter = painterResource(id = icon),
                         contentDescription = title,
-                        tint = Color.White
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                     Column {
                         Text(
                             text = title,
-                            style = TextStyle(
-                                fontWeight = FontWeight.W900,
-                                fontSize = TextUnit(28f, TextUnitType.Sp),
-                                color = Color.White
+                            style = MaterialTheme.typography.headlineLarge.copy(
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
                             ),
                         )
                         Text(
                             text = description,
-                            style = TextStyle(
-                                fontWeight = FontWeight.W500,
-                                fontSize = TextUnit(18f, TextUnitType.Sp),
+                            style = MaterialTheme.typography.bodyLarge.copy(
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
                             ),
                         )
                     }
@@ -109,7 +107,7 @@ fun Settings(
                                 .size(40.dp),
                             painter = painterResource(id = card.icon),
                             contentDescription = card.text,
-                            tint = Color.White
+//                            tint = Color.White
                         )
                         Column {
                             Text(text = card.text, Modifier.padding(top = 8.dp), style = textStyle)
