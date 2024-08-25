@@ -18,7 +18,7 @@ import kotlin.math.sin
 class SliderView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) : View(context, attrs, defStyleAttr) {
 
     private var offset: Offset = Offset(0f, 0f)
@@ -31,7 +31,7 @@ class SliderView @JvmOverloads constructor(
 
 
     private val nullPainterPaint = Paint().apply {
-        color = Color.BLACK
+        color = -0x80000000
         style = Paint.Style.FILL
     }
 
@@ -47,7 +47,7 @@ class SliderView @JvmOverloads constructor(
         width: Float, height: Float,
         radius: Float,
         selectionPop: Float,
-        vertexCount: Int
+        vertexCount: Int,
     ) {
         this.offset = offset
         this.selectionPos = selectionPos
@@ -88,7 +88,7 @@ private fun SliderPath(
     radius: Float,
     selectionPop: Float,
 
-    vertexCount: Int
+    vertexCount: Int,
 ): Path {
 
     val triggerOffset = offset

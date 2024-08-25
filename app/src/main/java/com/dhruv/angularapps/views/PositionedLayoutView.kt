@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
@@ -55,10 +57,17 @@ class PositionedLayoutView @JvmOverloads constructor(
         }
     }
 
+    fun updateFilterColor(color: Int){
+        val colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN)
+    }
+
     private var keys: List<String> = emptyList()
     private var offsets: List<Offset> = emptyList()
     private var radiuses: List<Float> = emptyList()
     private var drawables = mutableMapOf<String, Drawable>()
+
+    // Set the color filter to change the white color to the desired color
+    private var colorFilter: PorterDuffColorFilter? = null
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -69,6 +78,8 @@ class PositionedLayoutView @JvmOverloads constructor(
             if (drawable == null) {
                 canvas.drawCircle(offset.x, offset.y, radius, nullPainterPaint)
             } else {
+                drawable.colorFilter = colorFilter
+
                 // Calculate the bounds for the Drawable
                 val left = (offset.x - radius).toInt()
                 val top = (offset.y - radius).toInt()

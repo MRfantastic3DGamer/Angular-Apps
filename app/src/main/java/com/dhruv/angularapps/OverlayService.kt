@@ -4,14 +4,17 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.PixelFormat
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
@@ -20,9 +23,12 @@ import android.view.View.OnTouchListener
 import android.view.View.VISIBLE
 import android.view.WindowManager
 import android.widget.TextView
+import androidx.annotation.ColorInt
+import androidx.annotation.RequiresApi
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.util.lerp
 import androidx.core.app.NotificationCompat
+import androidx.core.graphics.toColor
 import androidx.core.math.MathUtils.clamp
 import com.dhruv.angularapps.apps.AppManager
 import com.dhruv.angularapps.apps.AppsIconsPositioning
@@ -41,6 +47,7 @@ import com.dhruv.angularapps.settings_app.settings.sliderBottomPaddingKey
 import com.dhruv.angularapps.settings_app.settings.sliderHeightKey
 import com.dhruv.angularapps.settings_app.settings.sliderWidthKey
 import com.dhruv.angularapps.settings_app.settings.touchOffsetKey
+import com.dhruv.angularapps.settings_app.settings.triggerColorKey
 import com.dhruv.angularapps.views.ItemValues
 import com.dhruv.angularapps.views.PositionedLayoutView
 import com.dhruv.angularapps.views.SliderView
@@ -52,6 +59,9 @@ import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 class OverlayService : Service(), OnTouchListener{
+
+    val context = this
+
     //dependencies
     @Inject
     lateinit var pref: UserPref
@@ -96,6 +106,7 @@ class OverlayService : Service(), OnTouchListener{
     private var groupBasePop = 30
     private var groupSelectionPop = 70
     private var appsPop = 60
+    private var triggerColor = Color.TRANSPARENT.toColor()
     private var appsPositioning = AppsIconsPositioning.IconCoordinatesGenerationScheme()
     private var appsName = mapOf<String, String>()
 
@@ -128,6 +139,10 @@ class OverlayService : Service(), OnTouchListener{
 
     private val overlayService = this@OverlayService
     private val type = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY else WindowManager.LayoutParams.TYPE_PHONE
+
+    // theme
+    private var onPrimary: Int = Color.WHITE
+    private var onBackground: Int = Color.BLACK
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         super.onCreate()
@@ -193,6 +208,36 @@ class OverlayService : Service(), OnTouchListener{
             groupBasePop = pref.getData(groupBasePopKey)?.toInt() ?: 30
             groupSelectionPop = pref.getData(groupSelectionPopKey)?.toInt() ?: 70
             appsPop = pref.getData(appsPopKey)?.toInt() ?: 60
+            val tColorV = (pref.getData(triggerColorKey) ?: "1f,1f,1f,0.25f").split(",").map { it.toFloat() }
+            triggerColor = Color.valueOf(tColorV[0],tColorV[1],tColorV[2],tColorV[3])
+            trigger?.apply { setBackgroundColor(triggerColor.toArgb()) }
+
+            @RequiresApi(Build.VERSION_CODES.S)
+            @ColorInt
+            fun getDynamicColor(attr: Int, defaultColor: Int): Int {
+                val typedValue = TypedValue()
+                val theme = applicationContext.theme
+                val resolved = theme.resolveAttribute(attr, typedValue, true)
+                return if (resolved) {
+                    when (typedValue.type) {
+                        TypedValue.TYPE_STRING -> applicationContext.getColor(typedValue.resourceId)
+                        TypedValue.TYPE_REFERENCE -> applicationContext.getColor(typedValue.resourceId)
+                        else -> typedValue.data
+                    }
+                } else {
+                    defaultColor
+                }
+            }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val isDarkMode = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+                onPrimary = if (isDarkMode) -0x10000 else -0x777778
+                onBackground = if (isDarkMode) -0x777778 else -0x10000
+                Log.d(TAG, "updatesFromPreferences: $onPrimary")
+                groupsPositionedLayoutView?.apply {
+                    this.updateFilterColor(onPrimary)
+                }
+            }
 
             val positioning = AppsIconsPositioning.IconCoordinatesGenerationScheme.fromString(pref.getData(appsPositioningKey) ?: AppsIconsPositioning.IconCoordinatesGenerationScheme().toString())
             if (positioning != appsPositioning) {
@@ -204,10 +249,13 @@ class OverlayService : Service(), OnTouchListener{
 
     // region set up
     private fun triggerSetUp(){
-
-
+        val roundedBackground = GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            cornerRadius = 100f
+            setColor(triggerColor.toArgb())
+        }
         trigger = View(this).apply {
-            setBackgroundColor(Color.TRANSPARENT)
+            background = roundedBackground
             setOnTouchListener(overlayService)
             z = sliderZ
         }
@@ -325,7 +373,6 @@ class OverlayService : Service(), OnTouchListener{
 
                     updatesFromPreferences()
 
-                    trigger?.apply { visibility = VISIBLE }
                     slider?.apply { visibility = VISIBLE }
                     sliderVisibilityAnimator.setTargetValue(1f)
                     groupsPositionedLayoutView?.apply {
@@ -353,10 +400,19 @@ class OverlayService : Service(), OnTouchListener{
                     handler.post(updateRunnable)
                 }
                 MotionEvent.ACTION_UP,
-                MotionEvent.ACTION_CANCEL -> {
+                MotionEvent.ACTION_CANCEL,
+                -> {
                     triggerPrams?.apply {
-                        y = resources.displayMetrics.heightPixels - height - sliderBottomPadding ; width = dpToPx(sliderWidthOnInactive);
+                        y =
+                            resources.displayMetrics.heightPixels - height - sliderBottomPadding; width =
+                        dpToPx(sliderWidthOnInactive);
                     }
+                    val roundedBackground = GradientDrawable().apply {
+                        shape = GradientDrawable.RECTANGLE
+                        cornerRadius = 100f
+                        setColor(triggerColor.toArgb())
+                    }
+                    trigger?.apply { background = roundedBackground }
                     wm!!.updateViewLayout(trigger, triggerPrams)
                     groupsPositionedLayoutView?.apply { visibility = GONE }
                     appsPositionedLayoutView?.apply { visibility = GONE }
@@ -434,6 +490,12 @@ class OverlayService : Service(), OnTouchListener{
         else if (initialY + yOffset > triggerPrams!!.y + dpToPx(sliderHeight)){
             triggerPrams!!.y = initialY + yOffset - dpToPx(sliderHeight)
         }
+        val roundedBackground = GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            cornerRadius = 100f
+            setColor(triggerColor.toArgb())
+        }
+        trigger?.apply { background = roundedBackground }
         wm!!.updateViewLayout(trigger, triggerPrams)
     }
 

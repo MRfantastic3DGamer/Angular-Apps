@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import com.dhruv.angularapps.R
 import com.dhruv.angularapps.settings_app.LabelForFloat
 import com.dhruv.angularapps.settings_app.LabelForInt
+import com.dhruv.angularapps.settings_app.RgbaTextFields
 
 const val TAG = "Settings"
 
@@ -155,7 +156,6 @@ fun Settings(
 
     @Composable
     fun sliderOffset() {
-
         Row(
             Modifier,
             Arrangement.SpaceBetween,
@@ -169,6 +169,22 @@ fun Settings(
                     max = 1000
                 ) {
                     vm.slBottomPadding = it
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun sliderLook() {
+        Row(
+            Modifier,
+            Arrangement.SpaceBetween,
+            Alignment.Bottom
+        ) {
+            Column {
+                Text(text = "Color")
+                RgbaTextFields(vm.tColor){
+                    vm.tColor = it
                 }
             }
         }
@@ -309,6 +325,12 @@ fun Settings(
                         text = "Positioning",
                         description = "starting point of interaction"
                     ),
+//                    SettingsCard(
+//                        2.3f,
+//                        icon = R.drawable.round_looks_24,
+//                        text = "Look",
+//                        description = "Trigger is that thing that will always be there on the bottom right corner from where you can start your interaction."
+//                    ),
                     title = "adjust slider",
                     description = "the slider is the bar present on bottom right position",
                     icon = R.drawable.round_swipe_vertical_24
@@ -366,6 +388,7 @@ fun Settings(
                         1.1f -> touch()
                         2.1f -> sliderSize()
                         2.2f -> sliderOffset()
+                        2.3f -> sliderLook()
                         3.1f -> appsPositioning()
                         3.2f -> appsLook()
                         4.1f -> groupsPositioning()
@@ -393,7 +416,7 @@ fun Settings(
                         painter = painterResource(
                             id = when (vm.popup) {
                                 1.1f -> R.drawable.round_pan_tool_alt_24
-                                2.1f ,2.2f -> R.drawable.round_swipe_vertical_24
+                                2.1f ,2.2f, 2.3f -> R.drawable.round_swipe_vertical_24
                                 3.1f ,3.2f -> R.drawable.round_apps_24
                                 4.1f ,4.2f -> R.drawable.baseline_group_work_24
                                 else -> R.drawable.round_report_gmailerrorred_24

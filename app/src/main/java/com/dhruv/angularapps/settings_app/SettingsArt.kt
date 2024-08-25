@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -25,6 +26,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,6 +40,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
@@ -218,6 +221,72 @@ fun LabelForFloat(
         )
     }
 }
+
+@Composable
+fun RgbaTextFields(
+    color: Color,
+    onColorChange: (Color) -> Unit
+) {
+    var red by remember { mutableStateOf((color.red * 255).toInt().toString()) }
+    var green by remember { mutableStateOf((color.green * 255).toInt().toString()) }
+    var blue by remember { mutableStateOf((color.blue * 255).toInt().toString()) }
+    var alpha by remember { mutableStateOf((color.alpha * 255).toInt().toString()) }
+
+    val updateColor = {
+        val r = red.toIntOrNull()?.coerceIn(0, 255) ?: 0
+        val g = green.toIntOrNull()?.coerceIn(0, 255) ?: 0
+        val b = blue.toIntOrNull()?.coerceIn(0, 255) ?: 0
+        val a = alpha.toIntOrNull()?.coerceIn(0, 255) ?: 0
+        onColorChange(Color(r / 255f, g / 255f, b / 255f, a / 255f))
+    }
+
+    fun validateAndSet(value: String, setter: (Int) -> Unit) {
+        val intValue = value.toIntOrNull()?.coerceIn(0, 125)
+        if (intValue != null) {
+            setter(intValue)
+            onColorChange(Color(red.toInt(), green.toInt(), blue.toInt(), alpha.toInt()))
+        }
+    }
+
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+
+        val textFieldModifier = Modifier
+            .width(60.dp)
+
+        TextField(
+            value = red,
+            onValueChange = { validateAndSet(it) { red = it.toString() } },
+            modifier = textFieldModifier,
+            singleLine = true,
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+        )
+        TextField(
+            value = green.toString(),
+            onValueChange = { validateAndSet(it) { green = it.toString() } },
+            modifier = textFieldModifier,
+            singleLine = true,
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+        )
+        TextField(
+            value = blue.toString(),
+            onValueChange = { validateAndSet(it) { blue = it.toString() } },
+            modifier = textFieldModifier,
+            singleLine = true,
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+        )
+        TextField(
+            value = alpha.toString(),
+            onValueChange = { validateAndSet(it) { alpha = it.toString() } },
+            modifier = textFieldModifier,
+            singleLine = true,
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
+        )
+    }
+}
+
 
 @Composable
 fun LabelForBool(key: String, value: Boolean, description: String?, onUpdate: (Boolean) -> Unit) {

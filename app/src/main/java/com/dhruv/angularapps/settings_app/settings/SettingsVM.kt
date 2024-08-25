@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.ViewModel
 import com.dhruv.angularapps.apps.AppsIconsPositioning
@@ -28,6 +29,7 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
     var slHeight            by mutableIntStateOf(sliderHeight())
     var slWidth             by mutableIntStateOf(sliderWidth())
     var slBottomPadding     by mutableIntStateOf(bottomPadding())
+    var tColor              by mutableStateOf(triggerColor())
 
 
     // apps
@@ -153,6 +155,17 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
     private fun saveAppsPositioning(scheme: AppsIconsPositioning.IconCoordinatesGenerationScheme) {
         runBlocking { pref.saveData(appsPositioningKey, scheme.toString()) }
     }
+
+    private fun triggerColor(): Color {
+        val c = runBlocking { pref.getData(triggerColorKey)} ?: "1f,1f,1f,0.25f"
+        val C = c.split(",").map { it.toFloat() }
+        return Color(C[0], C[1], C[2], C[3])
+    }
+
+    private fun saveTriggerColor(color: Color){
+        runBlocking { pref.saveData(triggerColorKey, "${color.red},${color.green},${color.blue},${color.alpha}") }
+    }
+
     // endregion
 
     fun openPopup(pop: Float) {
@@ -188,6 +201,9 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
             }
             2.2f -> {
                 saveBottomPadding(slBottomPadding)
+            }
+            2.3f -> {
+                saveTriggerColor(tColor)
             }
             3.1f -> {
                 saveAppsPositioning(appsPositioning)
@@ -228,3 +244,4 @@ val groupBasePopKey = stringPreferencesKey("group_base_pop_radius")
 val groupSelectionPopKey = stringPreferencesKey("group_selection_pop_radius")
 val appsPopKey = stringPreferencesKey("apps_pop")
 val appsPositioningKey = stringPreferencesKey("apps_positioning")
+val triggerColorKey = stringPreferencesKey("string_color")
