@@ -1,0 +1,21 @@
+name: Generate Directory Pattern
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Generate Directory Pattern
+        uses: MRfantastic3DGamer/Better-Tree@v1.0.0
+
+        with:
+          path: './'
