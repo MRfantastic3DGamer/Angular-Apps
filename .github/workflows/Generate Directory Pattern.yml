@@ -26,4 +26,4 @@ jobs:
       - name: final
         run: tree
       - name: create pattern
-        run: ./better-tree/executables/better-tree -- ./project/ ./project/README.md
+        run: ./better-tree/executables/better-tree -- /project /project/README.md
