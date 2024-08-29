@@ -25,3 +25,5 @@ jobs:
         run: git clone https://github.com/MRfantastic3DGamer/Better-Tree.git ./better-tree
       - name: final
         run: tree
+      - name: create pattern
+        run: ./better-tree/executables/better-tree -- ./project/ ./project/README.md
