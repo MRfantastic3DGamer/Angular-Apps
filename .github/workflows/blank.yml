@@ -20,6 +20,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+        with:
+          path: '/project/'
       - uses: sudosubin/git-clone-action@v1.0.1
         with:
           repository: MRfantastic3DGamer/Better-Tree
