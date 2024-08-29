@@ -24,6 +24,8 @@ jobs:
       - name: Clone Better-Tree Repository
         run: git clone https://github.com/MRfantastic3DGamer/Better-Tree.git ./better-tree
       - name: final
-        run: tree
+        run: |
+          tree
+          ls
       - name: create pattern
         run: ./better-tree/executables/better-tree -- /project /project/README.md
