@@ -27,5 +27,6 @@ jobs:
         run: |
           tree
           ls
+          pwd
       - name: create pattern
         run: ./better-tree/executables/better-tree -- /project /project/README.md
