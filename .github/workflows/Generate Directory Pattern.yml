@@ -15,8 +15,6 @@ jobs:
       - name: original content
         run: ls
       - uses: actions/checkout@v4
-        with:
-          path: '/project/'
       - name: content after checkout
         run: ls
       - name: move content to project directory
