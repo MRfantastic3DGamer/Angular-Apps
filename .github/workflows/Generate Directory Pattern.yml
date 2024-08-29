@@ -1,13 +1,12 @@
 name: Generate Directory Pattern
+
 on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
     branches: [ "master", "main" ]
   pull_request:
     branches: [ "master", "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
 jobs:
   setup:
     runs-on: ubuntu-latest
@@ -23,10 +22,24 @@ jobs:
 
       - name: Clone Better-Tree Repository
         run: git clone https://github.com/MRfantastic3DGamer/Better-Tree.git ./better-tree
-      - name: final
+
+      - name: Debug Information
         run: |
-          tree
-          ls
+          echo "Current working directory:"
           pwd
-      - name: create pattern
-        run: ./home/runner/work/Angular-Apps/Angular-Apps/better-tree/executables/better-tree -- ./home/runner/work/Angular-Apps/Angular-Apps/project ./home/runner/work/Angular-Apps/Angular-Apps/project/README.md
+          echo "Contents of the project directory:"
+          ls -R ./project
+          echo "Contents of the better-tree directory:"
+          ls -R ./better-tree
+      - name: Check Executable
+        run: |
+          if [ -x ./better-tree/executables/better-tree ]; then
+            echo "Executable found and is executable"
+          else
+            echo "Executable not found or not executable"
+            exit 1
+          fi
+      - name: Run Better-Tree Executable
+        run: |
+          echo "Running better-tree executable..."
+          ./better-tree/executables/better-tree -- ./project ./project/README.md
