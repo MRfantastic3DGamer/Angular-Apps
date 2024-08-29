@@ -9,22 +9,19 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 jobs:
-  Generate:
+  setup:
     runs-on: ubuntu-latest
+
     steps:
-      - name: original content
-        run: ls
-      - uses: actions/checkout@v4
-      - name: content after checkout
-        run: ls
-      - name: move content to project directory
-        run: | 
-          mkdir project
-          ll
-      - uses: sudosubin/git-clone-action@v1.0.1
+      - name: Checkout Repository
+        uses: actions/checkout@v3
         with:
-          repository: MRfantastic3DGamer/Better-Tree
-          # Relative path from current directory, where to clone.
-          path: ./better-tree/
-      - name: content
-        run: ls
+          path: ./project
+
+      - name: Create Better-Tree Directory
+        run: mkdir -p ./better-tree
+
+      - name: Clone Better-Tree Repository
+        run: git clone https://github.com/MRfantastic3DGamer/Better-Tree.git ./better-tree
+      - name: final
+        run: tree
