@@ -8,20 +8,21 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  Generate:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: original content
+        run: ll
       - uses: actions/checkout@v4
         with:
           path: '/project/'
+      - name: content after checkout
+        run: ll
+      - name: move content to project directory
+        run: | 
+          mkdir project
+          ll
       - uses: sudosubin/git-clone-action@v1.0.1
         with:
           repository: MRfantastic3DGamer/Better-Tree
