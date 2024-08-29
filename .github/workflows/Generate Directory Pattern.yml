@@ -31,21 +31,18 @@ jobs:
           ls -R ./project
           echo "Contents of the better-tree directory:"
           ls -R ./better-tree
+
       - name: Check Directory Paths
         run: |
           echo "Checking if directories exist:"
           if [ -d ./project ]; then echo "./project exists"; else echo "./project does not exist"; fi
-          if [ -d ./project/README.md ]; then echo "./project/README.md is a file"; else echo "./project/README.md is not a file"; fi
+          if [ -f ./project/README.md ]; then echo "./project/README.md is a file"; else echo "./project/README.md is not a file"; fi
 
-      - name: Check Executable
-        run: |
-          if [ -x ./better-tree/executables/better-tree ]; then
-            echo "Executable found and is executable"
-          else
-            echo "Executable not found or not executable"
-            exit 1
-          fi
       - name: Run Better-Tree Executable
         run: |
-          echo "Running better-tree executable..."
-          ./better-tree/executables/better-tree -- ./project ./project/README.md
+          ABSOLUTE_PROJECT_PATH=$(pwd)/project
+          ABSOLUTE_README_PATH=$(pwd)/project/README.md
+          echo "Running better-tree executable with:"
+          echo "Project Path: $ABSOLUTE_PROJECT_PATH"
+          echo "README Path: $ABSOLUTE_README_PATH"
+          ./better-tree/executables/better-tree -- "$ABSOLUTE_PROJECT_PATH" "$ABSOLUTE_README_PATH"
