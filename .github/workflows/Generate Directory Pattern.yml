@@ -13,12 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: original content
-        run: ll
+        run: ls
       - uses: actions/checkout@v4
         with:
           path: '/project/'
       - name: content after checkout
-        run: ll
+        run: ls
       - name: move content to project directory
         run: | 
           mkdir project
