@@ -31,6 +31,12 @@ jobs:
           ls -R ./project
           echo "Contents of the better-tree directory:"
           ls -R ./better-tree
+      - name: Check Directory Paths
+        run: |
+          echo "Checking if directories exist:"
+          if [ -d ./project ]; then echo "./project exists"; else echo "./project does not exist"; fi
+          if [ -d ./project/README.md ]; then echo "./project/README.md is a file"; else echo "./project/README.md is not a file"; fi
+
       - name: Check Executable
         run: |
           if [ -x ./better-tree/executables/better-tree ]; then
