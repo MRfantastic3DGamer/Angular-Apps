@@ -17,6 +17,7 @@ You can get this app on play store ```link will be awailable soon```
 ![Visualization of the codebase](./diagram.svg)
 
 ### Project Structure Visualization
+<!---BETTER_FILES_TREE-->
 ```
 ├───app
 │   └───src
