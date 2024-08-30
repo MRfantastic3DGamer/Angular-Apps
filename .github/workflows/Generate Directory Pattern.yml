@@ -21,13 +21,14 @@ jobs:
         run: mkdir -p ./better-tree
 
       - name: Get Better-Tree
-        run: |
-          curl -L -o better-tree https://raw.githubusercontent.com/MRfantastic3DGamer/Better-Tree/main/executables/better-tree
-          chmod +x better-tree
+        run: curl -L -o better-tree https://raw.githubusercontent.com/MRfantastic3DGamer/Better-Tree/main/executables/better-tree
+
+      - name: Better-Tree set up
+        run: chmod +x better-tree
 
       - name: Run Better-Tree Executable
         run: |
-          ./better-tree ./app -n
+          ./better-tree ./app 
 
       - name: Push updated docs
         working-directory: ./project
