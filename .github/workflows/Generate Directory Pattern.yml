@@ -27,6 +27,7 @@ jobs:
 
       - name: Run Better-Tree Executable
         run: |
+          tree
           ./better-tree app/ -n
           ./better-tree app/ README.md/
 
