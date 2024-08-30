@@ -28,7 +28,6 @@ jobs:
       - name: Run Better-Tree Executable
         run: |
           ./better-tree ./app -n
-          ./better-tree ./app ./README.md
 
       - name: Push updated docs
         working-directory: ./project
