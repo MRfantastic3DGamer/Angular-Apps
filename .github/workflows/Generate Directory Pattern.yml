@@ -17,13 +17,8 @@ jobs:
         with:
           path: ./project
 
-      - name: Create Better-Tree Directory
-        run: |
-          su
-          mkdir -p ./better-tree
-
       - name: Get Better-Tree
-        run: curl -L -o better-tree https://raw.githubusercontent.com/MRfantastic3DGamer/Better-Tree/main/executables/better-tree
+        run: sudo curl -L -o better-tree https://raw.githubusercontent.com/MRfantastic3DGamer/Better-Tree/main/executables/better-tree
 
       - name: Better-Tree set up
         run: chmod +x better-tree
