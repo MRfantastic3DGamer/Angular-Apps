@@ -49,7 +49,7 @@ jobs:
           ./better-tree/executables/better-tree ~/work/Angular-Apps/Angular-Apps/ ~/work/Angular-Apps/Angular-Apps/project/README.md
       
       - name: Push updated docs
-        working-directory: ~/work/Angular-Apps/Angular-Apps/project
+        working-directory: ./project
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
