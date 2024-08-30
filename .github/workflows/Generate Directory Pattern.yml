@@ -1,60 +1,24 @@
-name: Generate Directory Pattern
+name: Better-Tree Workflow
 
 on:
   push:
-    branches: [ "master", "main" ]
-  pull_request:
-    branches: [ "master", "main" ]
-  workflow_dispatch:
+    branches:
+      - main
+      - master
 
 jobs:
-  setup:
+  better-tree-job:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Better-Tree Action
+        uses: your-username/better-tree-action@v1
         with:
-          path: ./project
-
-      - name: Create Better-Tree Directory
-        run: mkdir -p ./better-tree
-
-      - name: Clone Better-Tree Repository
-        run: git clone https://github.com/MRfantastic3DGamer/Better-Tree.git ./better-tree
-
-      - name: Debug Information
-        run: |
-          echo "Current working directory:"
-          pwd
-          echo "Contents of the project directory:"
-          ls -R ./project
-          echo "Contents of the better-tree directory:"
-          ls -R ./better-tree
-
-      - name: Check Directory Paths
-        run: |
-          echo "Checking if directories exist:"
-          if [ -d ./project ]; then echo "./project exists"; else echo "./project does not exist"; fi
-          if [ -f ./project/README.md ]; then echo "./project/README.md is a file"; else echo "./project/README.md is not a file"; fi
-
-      - name: Run Better-Tree Executable
-        run: |
-          tree ~/work/Angular-Apps/Angular-Apps/ -d
-          ABSOLUTE_PROJECT_PATH=$(pwd)/project
-          ABSOLUTE_README_PATH=$(pwd)/project/README.md
-          echo "Running better-tree executable with:"
-          echo "Project Path: $ABSOLUTE_PROJECT_PATH"
-          echo "README Path: $ABSOLUTE_README_PATH"
-          ./better-tree/executables/better-tree ~/work/Angular-Apps/Angular-Apps/project/app ~/work/Angular-Apps/Angular-Apps/project/README.md -i gradle/
-      
-      - name: Push updated docs
-        working-directory: ./project
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add ~/work/Angular-Apps/Angular-Apps/project/README.md
-          git commit -m "[bot]Update Folder Structure"
-          git push origin master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          root: "~/work/Angular-Apps/Angular-Apps/project/app"
+          doc: "~/work/Angular-Apps/Angular-Apps/project/README.md"
+          no-files: "false"
+          stack-folders: "false"
+          show-hidden: "false"
+          ignored-locations: "gradle/"
