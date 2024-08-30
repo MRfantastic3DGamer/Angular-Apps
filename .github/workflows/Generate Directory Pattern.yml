@@ -46,4 +46,4 @@ jobs:
           echo "Running better-tree executable with:"
           echo "Project Path: $ABSOLUTE_PROJECT_PATH"
           echo "README Path: $ABSOLUTE_README_PATH"
-          ./better-tree/executables/better-tree -- ./ "$ABSOLUTE_README_PATH"
+          ./better-tree/executables/better-tree -- ~/work/ ~/work/Angular-Apps/Angular-Apps/project/README.md
