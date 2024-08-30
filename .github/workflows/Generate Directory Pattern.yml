@@ -40,10 +40,10 @@ jobs:
 
       - name: Run Better-Tree Executable
         run: |
-          tree ~/work/ -d
+          tree ~/work/Angular-Apps/Angular-Apps/ -d
           ABSOLUTE_PROJECT_PATH=$(pwd)/project
           ABSOLUTE_README_PATH=$(pwd)/project/README.md
           echo "Running better-tree executable with:"
           echo "Project Path: $ABSOLUTE_PROJECT_PATH"
           echo "README Path: $ABSOLUTE_README_PATH"
-          ./better-tree/executables/better-tree -- ~/work/ ~/work/Angular-Apps/Angular-Apps/project/README.md
+          ./better-tree/executables/better-tree -- ~/work/Angular-Apps/Angular-Apps/ ~/work/Angular-Apps/Angular-Apps/project/README.md
