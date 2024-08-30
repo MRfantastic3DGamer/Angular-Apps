@@ -46,7 +46,7 @@ jobs:
           echo "Running better-tree executable with:"
           echo "Project Path: $ABSOLUTE_PROJECT_PATH"
           echo "README Path: $ABSOLUTE_README_PATH"
-          ./better-tree/executables/better-tree ~/work/Angular-Apps/Angular-Apps/project/ ~/work/Angular-Apps/Angular-Apps/project/README.md
+          ./better-tree/executables/better-tree ~/work/Angular-Apps/Angular-Apps/project/ ~/work/Angular-Apps/Angular-Apps/project/README.md -s
       
       - name: Push updated docs
         working-directory: ./project
