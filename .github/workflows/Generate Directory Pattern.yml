@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run Better-Tree Action
-        uses: your-username/better-tree-action@v1
+        uses: MRfantastic3DGamer/Better-Tree-Action@v0.1.1-alpha
         with:
           root: "~/work/Angular-Apps/Angular-Apps/project/app"
           doc: "~/work/Angular-Apps/Angular-Apps/project/README.md"
