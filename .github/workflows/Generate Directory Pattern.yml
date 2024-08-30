@@ -29,7 +29,7 @@ jobs:
         run: |
           tree
           ./better-tree project/ -n
-          ./better-tree project/ project/README.md/
+          ./better-tree project/ project/README.md
 
       - name: Push updated docs
         working-directory: ./project
