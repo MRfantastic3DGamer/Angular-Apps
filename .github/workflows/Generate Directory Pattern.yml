@@ -40,7 +40,7 @@ jobs:
 
       - name: Run Better-Tree Executable
         run: |
-          tree ~/ -d
+          tree ~/home/runner/ -d
           ABSOLUTE_PROJECT_PATH=$(pwd)/project
           ABSOLUTE_README_PATH=$(pwd)/project/README.md
           echo "Running better-tree executable with:"
