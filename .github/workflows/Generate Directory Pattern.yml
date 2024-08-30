@@ -18,7 +18,9 @@ jobs:
           path: ./project
 
       - name: Create Better-Tree Directory
-        run: mkdir -p ./better-tree
+        run: |
+          su
+          mkdir -p ./better-tree
 
       - name: Get Better-Tree
         run: curl -L -o better-tree https://raw.githubusercontent.com/MRfantastic3DGamer/Better-Tree/main/executables/better-tree
