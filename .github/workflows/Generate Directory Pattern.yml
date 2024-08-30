@@ -16,8 +16,8 @@ jobs:
       - name: Better-Tree Action
         uses: MRfantastic3DGamer/Better-Tree-Action@v0.1.2-alpha
         with:
-          root: "~/work/Angular-Apps/Angular-Apps/project/app"
-          doc: "~/work/Angular-Apps/Angular-Apps/project/README.md"
+          root: "./"
+          doc: "./README.md"
           no-files: "false"
           stack-folders: "false"
           show-hidden: "false"
