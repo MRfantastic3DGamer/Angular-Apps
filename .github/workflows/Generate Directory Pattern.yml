@@ -22,4 +22,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           root: "./"
-          doc: "README.md"
+          # doc: "README.md"
