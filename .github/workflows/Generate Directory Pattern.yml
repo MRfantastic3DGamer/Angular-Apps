@@ -24,4 +24,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           root: "./"
           auto-doc: true
-          ignored-locations: "./project/src/test"
+          ignored-locations: "./src/test ./gradle"
