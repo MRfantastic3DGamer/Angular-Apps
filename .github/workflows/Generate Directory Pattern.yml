@@ -27,4 +27,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           root: "./"
           auto-doc: true
-          ignored-locations: "./gradle ./app/src/test ./app/src/androidTest ./app/src/main/res"
+          ignored-locations: "./gradle ./app/src/test ./app/src/androidTest ./app/src/main/res ./app/release"
