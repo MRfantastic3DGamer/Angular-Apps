@@ -19,7 +19,7 @@ jobs:
           tree ./
           ls
       - name: Checkout Repository
-        uses: MRfantastic3DGamer/Better-Tree-Action@v0.2.1-alpha
+        uses: MRfantastic3DGamer/Better-Tree-Action@v0.2.2-alpha
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           root: "./"
