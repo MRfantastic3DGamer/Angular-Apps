@@ -13,6 +13,6 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: MRfantastic3DGamer/Better-Tree-Action@v0.1.3-alpha
+        uses: MRfantastic3DGamer/Better-Tree-Action@v0.1.4-alpha
         with:
           root: "./"
