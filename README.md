@@ -19,7 +19,7 @@ You can get this app on play store ```link will be awailable soon```
 ### Project Structure Visualization
 <!---BETTER_FILES_TREE-->
 ```
-┏ project━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┏ Angular-Apps━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┣diagram.svg                                      ┃
 ┣settings.gradle.kts                              ┃
 ┣gradlew.bat                                      ┃
@@ -31,6 +31,7 @@ You can get this app on play store ```link will be awailable soon```
 ┃┃┣gradle-wrapper.jar        ┃ ┃                  ┃
 ┃┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃                  ┃
 ┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛                  ┃
+┣better-tree                                      ┃
 ┣README.md                                        ┃
 ┣┏ app━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃
 ┃┣proguard-rules.pro                            ┃ ┃
