@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Debug
+        run: tree
       - name: Checkout Repository
         uses: MRfantastic3DGamer/Better-Tree-Action@v0.1.7-alpha
         with:
