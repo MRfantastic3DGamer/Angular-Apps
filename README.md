@@ -24,13 +24,6 @@ You can get this app on play store ```link will be awailable soon```
 ┣settings.gradle.kts                              ┃
 ┣gradlew.bat                                      ┃
 ┣gradlew                                          ┃
-┣┏ gradle━━━━━━━━━━━━━━━━━━━━━━┓                  ┃
-┃┣libs.versions.toml           ┃                  ┃
-┃┣┏ wrapper━━━━━━━━━━━━━━━━━━┓ ┃                  ┃
-┃┃┣gradle-wrapper.properties ┃ ┃                  ┃
-┃┃┣gradle-wrapper.jar        ┃ ┃                  ┃
-┃┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃                  ┃
-┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛                  ┃
 ┣better-tree                                      ┃
 ┣README.md                                        ┃
 ┣┏ app━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃
