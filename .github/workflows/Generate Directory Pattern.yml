@@ -24,3 +24,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           root: "./"
           auto-doc: true
+          ignored-locations: |
+            "./project/src/test"
