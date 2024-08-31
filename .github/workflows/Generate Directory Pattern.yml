@@ -19,10 +19,9 @@ jobs:
           tree ./
           ls
       - name: Checkout Repository
-        uses: MRfantastic3DGamer/Better-Tree-Action@v0.2.0-alpha
+        uses: MRfantastic3DGamer/Better-Tree-Action@v0.2.1-alpha
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           root: "./"
           auto-doc: true
-          ignored-locations: |
-            "./project/src/test"
+          ignored-locations: "./project/src/test"
