@@ -13,31 +13,4 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          path: ./project
-
-      - name: Get Better-Tree
-        run: |
-          sudo chmod u+w .
-          curl -L -o better-tree https://raw.githubusercontent.com/MRfantastic3DGamer/Better-Tree/main/executables/better-tree
-
-      - name: Get exicute permission for Better-Tree
-        run: sudo chmod +x better-tree
-
-      - name: Run Better-Tree Executable
-        run: |
-          tree
-          ./better-tree project/ -n
-          ./better-tree project/ project/README.md
-
-      - name: Push updated docs
-        working-directory: ./project
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "[bot]Update Folder Structure"
-          git push origin master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: MRfantastic3DGamer/Better-Tree-Action@v0.1.3-alpha
