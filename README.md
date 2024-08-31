@@ -94,19 +94,6 @@ You can get this app on play store ```link will be awailable soon```
 ┃┃┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃ ┃ ┃
 ┃┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃ ┃
 ┃┣build.gradle.kts                             ┃ ┃
-┃┣┏ release━━━━━━━━━━━━━┓                      ┃ ┃
-┃┃┣┏ baselineProfiles━┓ ┃                      ┃ ┃
-┃┃┃┣┏ 1━━━━━━━━━━━━━┓ ┃ ┃                      ┃ ┃
-┃┃┃┃┣app-release.dm ┃ ┃ ┃                      ┃ ┃
-┃┃┃┃┗━━━━━━━━━━━━━━━┛ ┃ ┃                      ┃ ┃
-┃┃┃┣┏ 0━━━━━━━━━━━━━┓ ┃ ┃                      ┃ ┃
-┃┃┃┃┣app-release.dm ┃ ┃ ┃                      ┃ ┃
-┃┃┃┃┗━━━━━━━━━━━━━━━┛ ┃ ┃                      ┃ ┃
-┃┃┃┗━━━━━━━━━━━━━━━━━━┛ ┃                      ┃ ┃
-┃┃┣app-release.apk      ┃                      ┃ ┃
-┃┃┣app-release.aab      ┃                      ┃ ┃
-┃┃┣output-metadata.json ┃                      ┃ ┃
-┃┃┗━━━━━━━━━━━━━━━━━━━━━┛                      ┃ ┃
 ┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃
 ┣gradle.properties                               ┃
 ┣build.gradle.kts                                ┃
