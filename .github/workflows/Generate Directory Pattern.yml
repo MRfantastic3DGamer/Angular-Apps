@@ -16,6 +16,7 @@ jobs:
         run: |
           tree
           tree ./
+          ls
       - name: Checkout Repository
         uses: MRfantastic3DGamer/Better-Tree-Action@v0.1.7-alpha
         with:
