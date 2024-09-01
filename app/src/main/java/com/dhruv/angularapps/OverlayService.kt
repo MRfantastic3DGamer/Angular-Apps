@@ -123,7 +123,6 @@ class OverlayService : Service(), OnTouchListener{
     private var sliderVisibility = 0f
     private val sliderVisibilityAnimator = AnimatedFloat(0f, 300L){
         sliderVisibility = it
-        Log.d(TAG, "On slider visibility change: $it")
     }
 
     private val overlayService = this@OverlayService
@@ -183,7 +182,7 @@ class OverlayService : Service(), OnTouchListener{
 
             val touchOff = pref.getData(touchOffsetKey)?.split("#") ?: listOf("0","0")
             touchOffset = Offset(touchOff[0].toFloat(), touchOff[1].toFloat())
-            sliderHeight = pref.getData(sliderHeightKey)?.toInt() ?: 300
+            sliderHeight = pref.getData(sliderHeightKey)?.toInt() ?: 150
             sliderWidthOnActive = pref.getData(sliderWidthKey)?.toInt() ?: 50
             sliderBottomPadding = pref.getData(sliderBottomPaddingKey)?.toInt() ?: 50
             appBaseRadius = pref.getData(appsBaseRadiusKey)?.toInt() ?: 20
@@ -205,9 +204,9 @@ class OverlayService : Service(), OnTouchListener{
     // region set up
     private fun triggerSetUp(){
 
-
         trigger = View(this).apply {
-            setBackgroundColor(Color.TRANSPARENT)
+            setBackgroundColor(Color.WHITE)
+            alpha = 0.1f
             setOnTouchListener(overlayService)
             z = sliderZ
         }
@@ -326,7 +325,10 @@ class OverlayService : Service(), OnTouchListener{
                     updatesFromPreferences()
 
                     trigger?.apply { visibility = VISIBLE }
-                    slider?.apply { visibility = VISIBLE }
+                    slider?.apply {
+                        visibility = VISIBLE
+                        alpha = 0.3f
+                    }
                     sliderVisibilityAnimator.setTargetValue(1f)
                     groupsPositionedLayoutView?.apply {
                         visibility = VISIBLE
