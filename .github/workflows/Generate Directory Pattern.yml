@@ -14,28 +14,17 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+      - name: Debug
+        run: |
+          pwd
+          tree
+          tree ./
+          ls
+      - name: Checkout Repository
+        uses: MRfantastic3DGamer/Better-Tree-Action@v1.0
         with:
-          path: ./project
-
-      - name: Create Better-Tree Directory
-        run: mkdir -p ./better-tree
-
-      - name: Get Better-Tree
-        run: |
-          curl -L -o better-tree https://raw.githubusercontent.com/MRfantastic3DGamer/Better-Tree/main/executables/better-tree
-          chmod +x better-tree
-
-      - name: Run Better-Tree Executable
-        run: |
-          ./better-tree ./app -n
-
-      - name: Push updated docs
-        working-directory: ./project
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "[bot]Update Folder Structure"
-          git push origin master
-        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          root: "./"
+          auto-doc: true
+          ignored-locations: "./gradle ./app/src/test ./app/src/androidTest ./app/src/main/res ./app/release"
