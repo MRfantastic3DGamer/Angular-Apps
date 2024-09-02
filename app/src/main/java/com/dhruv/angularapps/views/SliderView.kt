@@ -63,7 +63,7 @@ class SliderView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        val path = SliderPath(
+        val path = areaPath(
             offset = offset,
             selectionPos = selectionPos,
             width = width,
@@ -80,7 +80,7 @@ class SliderView @JvmOverloads constructor(
 }
 
 
-private fun SliderPath(
+private fun areaPath(
     offset: Offset,
     selectionPos: Float,
 

@@ -125,7 +125,6 @@ class AppsIconsPositioning {
             Bot: Float,
             LabelHeight: Float,
         ): IconOffsetComputeResult {
-//            val top = if (sliderPosY > LabelHeight+50f) sliderPosY + 50f else Top
             val bot = if (sliderPosY > LabelHeight+50f) Bot else sliderPosY + sliderHeight - 50f
             if (allOffsets.isEmpty()) return IconOffsetComputeResult(0, allOffsets, emptyList())
             val iconSizeOffset = Offset(2.5f, 2.5f)
@@ -139,14 +138,14 @@ class AppsIconsPositioning {
                     if (!(
                         (c.x > left)
                         && (c.x < right)
-//                        && (c.y > top)
+                        && (c.y > Top)
                         && (c.y < bot)
                         )){
                         val skipStart: Int = j
                         while (!(
                             (c.x > left)
                             && (c.x < right)
-//                            && (c.y > top)
+                            && (c.y > Top)
                             && (c.y < bot)
                                 ))
                         {

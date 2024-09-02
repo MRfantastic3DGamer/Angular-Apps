@@ -41,6 +41,7 @@ import com.dhruv.angularapps.settings_app.settings.sliderBottomPaddingKey
 import com.dhruv.angularapps.settings_app.settings.sliderHeightKey
 import com.dhruv.angularapps.settings_app.settings.sliderWidthKey
 import com.dhruv.angularapps.settings_app.settings.touchOffsetKey
+import com.dhruv.angularapps.views.AppsAreaView
 import com.dhruv.angularapps.views.ItemValues
 import com.dhruv.angularapps.views.PositionedLayoutView
 import com.dhruv.angularapps.views.SliderView
@@ -63,6 +64,7 @@ class OverlayService : Service(), OnTouchListener{
 
 
     private var slider: SliderView? = null
+    private var appsArea: AppsAreaView? = null
     private var trigger: View? = null
     private var triggerPrams: WindowManager.LayoutParams? = null
 
@@ -95,10 +97,14 @@ class OverlayService : Service(), OnTouchListener{
     private var groupSelectionRadius = 70
     private var groupBasePop = 30
     private var groupSelectionPop = 70
+    private var appsAreaRadiusMax = 10f
     private var appsPop = 60
     private var appsPositioning = AppsIconsPositioning.IconCoordinatesGenerationScheme()
     private var appsName = mapOf<String, String>()
 
+    private var bottomY = 2000f
+    private var topY = 0f
+    private val triggerAreaPadding = 90
     private val perGroupNotchHeight:Int
         get() = dpToPx((sliderHeight.toFloat() / groups.size).roundToInt())
 
@@ -109,6 +115,7 @@ class OverlayService : Service(), OnTouchListener{
             // update groups
             updateGroups()
             updateSlider()
+            updateAppsArea()
             handler.postDelayed(this, 8)  // Roughly 60 FPS
         }
     }
@@ -120,6 +127,8 @@ class OverlayService : Service(), OnTouchListener{
      * updated only while touch is in slider region
      */
     private var triggerTouchYPos = 0f
+    private var clampedTriggerRelativeTouchYPos = 0f
+
     private var sliderVisibility = 0f
     private val sliderVisibilityAnimator = AnimatedFloat(0f, 300L){
         sliderVisibility = it
@@ -135,6 +144,8 @@ class OverlayService : Service(), OnTouchListener{
 
         appsManager.initialize(this)
         appsManager.appsData.observeForever { appsName = it ?: emptyMap() }
+        bottomY = resources.displayMetrics.heightPixels - dpToPx(10).toFloat()
+        topY = dpToPxF(10)
 
         if (Build.VERSION.SDK_INT >= 26) {
             val CHANNEL_ID = "channel1"
@@ -160,6 +171,7 @@ class OverlayService : Service(), OnTouchListener{
 
         triggerSetUp()
         sliderSetUp()
+        appsAreaSetUp()
 //        debugSetUp()
         groupsSetUp()
         appsSetUp()
@@ -230,6 +242,23 @@ class OverlayService : Service(), OnTouchListener{
         }
         wm!!.addView(
             slider,
+            WindowManager.LayoutParams(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT,
+                type,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                PixelFormat.TRANSLUCENT
+            )
+        )
+    }
+
+    private fun appsAreaSetUp() {
+        appsArea = AppsAreaView(this).apply {
+            setOnTouchListener(overlayService)
+            z = 1000f
+        }
+        wm!!.addView(
+            appsArea,
             WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT,
@@ -329,6 +358,10 @@ class OverlayService : Service(), OnTouchListener{
                         visibility = VISIBLE
                         alpha = 0.3f
                     }
+                    appsArea?.apply {
+                        visibility = VISIBLE
+                        alpha = 0.3f
+                    }
                     sliderVisibilityAnimator.setTargetValue(1f)
                     groupsPositionedLayoutView?.apply {
                         visibility = VISIBLE
@@ -364,6 +397,7 @@ class OverlayService : Service(), OnTouchListener{
                     appsPositionedLayoutView?.apply { visibility = GONE }
                     sliderVisibilityAnimator.setTargetValue(0f)
                     slider?.apply { visibility = GONE }
+                    appsArea?.apply { visibility = GONE }
                     labelText?.apply { visibility = GONE }
                     handler.removeCallbacks(updateRunnable)
                     launchAppIfPossible(touchOnSliderSide)
@@ -378,6 +412,8 @@ class OverlayService : Service(), OnTouchListener{
                     if (touchOnSliderSide) {
                         updateTrigger(Y)
                         triggerTouchYPos = Y
+                        val triggerSelectionOverflow = dpToPxF(20)
+                        clampedTriggerRelativeTouchYPos = clamp(triggerTouchYPos - triggerPrams!!.y, -triggerSelectionOverflow , dpToPxF(sliderHeight) + triggerSelectionOverflow)
                     }
 
                     if (touchOnSliderSide) {
@@ -386,7 +422,7 @@ class OverlayService : Service(), OnTouchListener{
                     val selectedGroupY = triggerPrams!!.y + ((groupSelection + 0.5f) * perGroupNotchHeight).roundToInt()
                     val selectedGroupOffset = Offset(
                         resources.displayMetrics.widthPixels - dpToPx(appsPop).toFloat(),
-                        triggerTouchYPos
+                        triggerPrams!!.y + clampedTriggerRelativeTouchYPos
                     )
 
                     if (groups.isNotEmpty() && groupSelection != -1){
@@ -401,13 +437,14 @@ class OverlayService : Service(), OnTouchListener{
                                 sliderHeight = sliderHeight.toFloat(),
                                 right = resources.displayMetrics.widthPixels - dpToPx(sliderWidthOnActive),
                                 left = dpToPx(100),
-                                Top = dpToPx(100).toFloat(),
-                                Bot = resources.displayMetrics.heightPixels - dpToPx(100).toFloat(),
+                                Top = dpToPxF(triggerAreaPadding),
+                                Bot = bottomY - appSelectionRadius,
                                 LabelHeight = 0f,
                             )
                         }
                         val touchOffset = Offset(X, Y)
                         val usedOffsets = usableData.offsets
+                        appsAreaRadiusMax = (selectedGroupOffset - usedOffsets.last()).getDistance() + 60
 
                         val appSelectionResult = AppsIconsPositioning.getIconSelection(touchOffset, usedOffsets, 200f)
                         appSelection = appSelectionResult.selectedApp
@@ -415,6 +452,7 @@ class OverlayService : Service(), OnTouchListener{
                     }
 
                     updateSlider()
+                    updateAppsArea()
                     updateGroups()
                     updateLabel()
 
@@ -430,12 +468,14 @@ class OverlayService : Service(), OnTouchListener{
     // region updation
     private fun updateTrigger(touchY: Float) {
         val yOffset = (touchY - initialTouchY).roundToInt()
+        var finalY = triggerPrams!!.y
         if (initialY + yOffset < triggerPrams!!.y){
-            triggerPrams!!.y = initialY + yOffset
+            finalY = initialY + yOffset
         }
         else if (initialY + yOffset > triggerPrams!!.y + dpToPx(sliderHeight)){
-            triggerPrams!!.y = initialY + yOffset - dpToPx(sliderHeight)
+            finalY = initialY + yOffset - dpToPx(sliderHeight)
         }
+        triggerPrams!!.y = clamp(finalY, topY.roundToInt() + dpToPx(triggerAreaPadding), (bottomY - dpToPxF(sliderHeight)).roundToInt() - dpToPx(triggerAreaPadding))
         wm!!.updateViewLayout(trigger, triggerPrams)
     }
 
@@ -444,12 +484,29 @@ class OverlayService : Service(), OnTouchListener{
             val currentWidth = dpToPxF(sliderWidthOnActive) * sliderVisibility
             updateVisuals(
                 Offset(width.toFloat() - currentWidth, triggerPrams!!.y.toFloat()),
-                selectionPos = triggerTouchYPos - triggerPrams!!.y,
+                selectionPos = clampedTriggerRelativeTouchYPos,
                 width = currentWidth,
                 height = dpToPxF(sliderHeight),
                 radius = 125f * sliderVisibility,
                 selectionPop = 60f * sliderVisibility,
                 vertexCount = 20
+            )
+        }
+    }
+
+    private fun updateAppsArea() {
+        appsArea?.apply {
+            val currentWidth = dpToPxF(sliderWidthOnActive) * sliderVisibility
+
+            updateVisuals(
+                Offset(width.toFloat() - currentWidth, triggerPrams!!.y.toFloat()),
+                selectionPos = clampedTriggerRelativeTouchYPos,
+                minRad = 140f * sliderVisibility,
+                maxRad = (appsAreaRadiusMax + appSelectionRadius) * sliderVisibility,
+                selectionPop = 60f * sliderVisibility,
+                vertexCount = 20,
+                bottomCutY = bottomY,
+                topCutY = topY
             )
         }
     }
@@ -472,7 +529,7 @@ class OverlayService : Service(), OnTouchListener{
                         ),
                         y = triggerPrams!!.y + lerp(
                             ((index + 0.5f) * perGroupNotchHeight) - groupBaseRadius / 2,
-                            triggerTouchYPos - triggerPrams!!.y,
+                            clampedTriggerRelativeTouchYPos,
                             transitionValue
                         )
                     ),
