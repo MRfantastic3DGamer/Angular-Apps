@@ -71,6 +71,7 @@ You can get this app on play store ```link will be awailable soon```
 ┃┃┃┃┃┃┃┣┏ views━━━━━━━━━━━━━━━━━━┓ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃
 ┃┃┃┃┃┃┃┃┣SliderView.kt           ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃
 ┃┃┃┃┃┃┃┃┣PositionedLayoutView.kt ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃
+┃┃┃┃┃┃┃┃┣AppsAreaView.kt         ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃
 ┃┃┃┃┃┃┃┃┗━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃
 ┃┃┃┃┃┃┃┣OverlayService.kt          ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃
 ┃┃┃┃┃┃┃┣MainActivity.kt            ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃
