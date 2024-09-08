@@ -1,6 +1,5 @@
 package com.dhruv.angularapps.settings_app.groups
 
-import android.util.Log
 import android.widget.ProgressBar
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -22,8 +21,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -32,7 +29,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -41,7 +37,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -51,8 +46,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.dhruv.angularapps.R
-import com.dhruv.angularapps.data.models.Group
-import com.dhruv.angularapps.settings_app.H2
+import com.dhruv.angularapps.settings_app.groups.components.GroupsLayout
 import com.dhruv.angularapps.utils.rememberDrawablePainter
 
 val TAG = "Groups Editor"
@@ -98,44 +92,44 @@ fun GroupsEditor (
         }
     }
 
-    @Composable
-    fun Group(data: Group, select: () -> Unit) {
-        Card(
-            onClick = select,
-            modifier = Modifier
-                .padding(5.dp),
-            colors = CardColors(
-                containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-                contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
-                disabledContentColor = MaterialTheme.colorScheme.background,
-            )
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                val painter: Painter = if (GroupIcons.containsKey(data.key)) {
-                    painterResource(id = GroupIcons[data.key]!!)
-                } else {
-                    painterResource(id = R.drawable.round_report_gmailerrorred_24)
-                }
-
-                // Applying the tint using the LocalContentColor
-                Image(
-                    painter = painter,
-                    contentDescription = data.key,
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .size(48.dp),
-                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondaryContainer),
-                )
-
-                H2(text = data.name)
-            }
-        }
-    }
+//    @Composable
+//    fun Group(data: Group, select: () -> Unit) {
+//        Card(
+//            onClick = select,
+//            modifier = Modifier
+//                .padding(5.dp),
+//            colors = CardColors(
+//                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+//                disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+//                contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+//                disabledContentColor = MaterialTheme.colorScheme.background,
+//            )
+//        ) {
+//            Row(
+//                modifier = Modifier.fillMaxWidth(),
+//                horizontalArrangement = Arrangement.Start,
+//                verticalAlignment = Alignment.CenterVertically,
+//            ) {
+//                val painter: Painter = if (GroupIcons.containsKey(data.key)) {
+//                    painterResource(id = GroupIcons[data.key]!!)
+//                } else {
+//                    painterResource(id = R.drawable.round_report_gmailerrorred_24)
+//                }
+//
+//                // Applying the tint using the LocalContentColor
+//                Image(
+//                    painter = painter,
+//                    contentDescription = data.key,
+//                    modifier = Modifier
+//                        .padding(10.dp)
+//                        .size(48.dp),
+//                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondaryContainer),
+//                )
+//
+//                H2(text = data.name)
+//            }
+//        }
+//    }
 
 
     @Composable
@@ -183,33 +177,40 @@ fun GroupsEditor (
         verticalArrangement = Arrangement.Top
     ) {
         Spacer(modifier = Modifier.height(25.dp))
-        LazyColumn {
-            items(groups.size) { group ->
-                Group(groups[group]) { vm.selectGroup(groups[group], group) }
-            }
-            item {
-                TextButton(
-                    onClick = {
-                        Log.d(TAG, "Added new")
-                        vm.addNewGroup()
-                    },
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp)
-                ) {
-                    Row(Modifier.align(Alignment.CenterVertically)) {
-                        Icon(imageVector = Icons.Default.Add, contentDescription = "add")
-                        Text(
-                            text = "add new group",
-                            Modifier
-                                .padding(4.dp)
-                                .clip(RoundedCornerShape(16.dp))
-                        )
-                    }
-                }
-            }
-            item { Spacer(modifier = Modifier.height(500.dp)) }
-        }
+        GroupsLayout(
+            groups = groups
+        )
+//        LazyColumn {
+//
+//            item {
+//            }
+//
+////            items(groups.size) { group ->
+////                Group(groups[group]) { vm.selectGroup(groups[group], group) }
+////            }
+//            item {
+//                TextButton(
+//                    onClick = {
+//                        Log.d(TAG, "Added new")
+//                        vm.addNewGroup()
+//                    },
+//                    Modifier
+//                        .fillMaxWidth()
+//                        .padding(8.dp)
+//                ) {
+//                    Row(Modifier.align(Alignment.CenterVertically)) {
+//                        Icon(imageVector = Icons.Default.Add, contentDescription = "add")
+//                        Text(
+//                            text = "add new group",
+//                            Modifier
+//                                .padding(4.dp)
+//                                .clip(RoundedCornerShape(16.dp))
+//                        )
+//                    }
+//                }
+//            }
+//            item { Spacer(modifier = Modifier.height(500.dp)) }
+//        }
     }
 
     if (vm.showGroupEditingDialog) {

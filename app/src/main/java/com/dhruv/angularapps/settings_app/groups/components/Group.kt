@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -42,7 +41,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.layout.Layout
-import androidx.compose.ui.layout.onPlaced
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -51,14 +50,15 @@ import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.dhruv.angularapps.data.models.Group
 import kotlin.math.ceil
+import kotlin.math.max
 
-class GroupShape(val height: Dp, val width: Dp, val cornerRadius: Dp): Shape {
+class GroupShape(val height: Dp, val width: Dp, val topCut: Float, val cornerRadius: Dp): Shape {
     override fun createOutline(
         size: Size,
         layoutDirection: LayoutDirection,
@@ -74,11 +74,11 @@ class GroupShape(val height: Dp, val width: Dp, val cornerRadius: Dp): Shape {
             moveTo(cornerRadius, 0f)
 
             // Top edge
-            lineTo(width/2 - 2 * cornerRadius, 0f)
+            lineTo(width*topCut - 2 * cornerRadius, 0f)
 
             addRoundRect(
                 RoundRect(
-                    left = 0f, top = 0f, right = width/2, bottom = height,
+                    left = 0f, top = 0f, right = width*topCut, bottom = height,
                     cornerRadius = CornerRadius(cornerRadius, cornerRadius)
                 )
             )
@@ -92,14 +92,14 @@ class GroupShape(val height: Dp, val width: Dp, val cornerRadius: Dp): Shape {
 
             val path = Path()
             path.apply {
-                moveTo(width/2, cornerRadius)
-                arcTo(Rect(left = width/2, top = 0f, right = width/2 + cornerRadius*2, bottom = cornerRadius*2),
+                moveTo(width*topCut, cornerRadius)
+                arcTo(Rect(left = width*topCut, top = 0f, right = width*topCut + cornerRadius*2, bottom = cornerRadius*2),
                     startAngleDegrees = -180f,
                     sweepAngleDegrees = -90f,
                     forceMoveTo = true
                 )
-                lineTo(width/2 + cornerRadius, cornerRadius * 2)
-                lineTo(width/2, cornerRadius * 2)
+                lineTo(width*topCut + cornerRadius, cornerRadius * 2)
+                lineTo(width*topCut, cornerRadius * 2)
                 close()
             }
             addPath(path)
@@ -109,13 +109,17 @@ class GroupShape(val height: Dp, val width: Dp, val cornerRadius: Dp): Shape {
 }
 
 @Composable
-fun Group(group: Group) {
-    val height = 130.dp
-    val width = 300.dp
+fun Group(
+    group: Group,
+    width: Dp
+) {
+    val height = 200.dp
+    val topCut = 0.6f
     val shape = GroupShape(
         height = height,
         width = width,
-        cornerRadius = 20.dp
+        topCut = topCut,
+        cornerRadius = 30.dp
     )
     Shadowed(
         Modifier
@@ -131,24 +135,30 @@ fun Group(group: Group) {
                 .background(
                     Color(0xFFFFE539),
                     shape = shape
-                )
+                ),
+            Arrangement.SpaceBetween,
+            Alignment.Start
         ) {
             Row(
                 Modifier
-                    .padding(start = 5.dp, top = 5.dp, bottom = 5.dp)
-                    .height(35.dp),
+                    .padding(5.dp)
+                    .height(70.dp),
                 Arrangement.Start,
                 Alignment.CenterVertically
             ) {
                 Box(
                     modifier = Modifier
-                        .size(40.dp)
-                        .padding(end = 5.dp)
+                        .size(70.dp)
+                        .padding(5.dp)
                         .background(Color.White, CircleShape)
                 )
                 Text(
                     text = group.name,
-                    style = TextStyle(fontSize = TextUnit.Unspecified, fontWeight = FontWeight.W900)
+                    style = TextStyle(
+                        color = Color.Black,
+                        fontSize = TextUnit(20f, TextUnitType.Sp),
+                        fontWeight = FontWeight.W900
+                    )
                 )
                 IconButton(onClick = { /*TODO*/ }) {
                     Icon(imageVector = Icons.Rounded.Edit, contentDescription = "edit", Modifier.size(15.dp))
@@ -159,13 +169,12 @@ fun Group(group: Group) {
             GroupAppsLayout(
                 Modifier
                     .padding(start = 5.dp)
-                    .height(35.dp)
-//                    .weight(1f) // Use weight to give it a flexible size
+                    .height(55.dp)
             ) {
-                repeat(8) {
+                repeat(15) {
                     Box(
                         modifier = Modifier
-                            .size(35.dp)
+                            .size(55.dp)
                             .shadow(3.dp, shape = CircleShape)
                             .background(Color.White, CircleShape)
                     )
@@ -175,18 +184,18 @@ fun Group(group: Group) {
             Row(
                 Modifier
                     .fillMaxWidth()
-                    .padding(end = 8.dp, bottom = 8.dp, top = 10.dp),
+                    .padding(10.dp),
                 Arrangement.End,
                 Alignment.CenterVertically
             ) {
-                Row(Modifier.weight(0.4f)){}
+                Row(Modifier.weight(topCut)){}
                 Spacer(modifier = Modifier.weight(0.1f))
                 Row(
                     Modifier
-                        .weight(0.425f)
-                        .height(30.dp)
+                        .weight(1-topCut)
+                        .height(40.dp)
                         .shadow(2.dp, RoundedCornerShape(15.dp))
-                        .background(Color.White, RoundedCornerShape(15.dp)),
+                        .background(Color.White, RoundedCornerShape(150.dp)),
                     Arrangement.Center,
                     Alignment.CenterVertically
                 ){
@@ -208,32 +217,18 @@ fun Group(group: Group) {
 }
 
 @Composable
-fun GroupColumn() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 50.dp)
-    ) {
-        repeat(6) { index ->
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .offset(y = (-25).dp * index)
-            ) {
-                Group(key = "home", name = "G name", apps = emptyList())
-            }
-        }
-    }
-}
-
-@Composable
 fun GroupsLayout(
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit,
+    groups: List<Group>,
 ) {
+    val configuration = LocalConfiguration.current
     Layout(
-        content,
-        modifier,
+        {
+            groups.forEach {
+                Group(group = it, width = (configuration.screenWidthDp - 40).dp)
+            }
+        },
+        modifier
     ){ measurable, constrainsts ->
         val placeables = measurable.map {
             it.measure(constrainsts)
@@ -242,7 +237,7 @@ fun GroupsLayout(
         layout(constrainsts.maxWidth, constrainsts.maxHeight) {
             placeables.forEach { placeable ->
                 placeable.place(position = IntOffset(0, y))
-                y += placeable.height - 160
+                y += placeable.height - 150
             }
         }
     }
@@ -250,22 +245,25 @@ fun GroupsLayout(
 
 @Composable
 fun GroupAppsLayout(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
-    var size = IntSize(0,0)
     Layout(
         content,
         modifier
-            .onPlaced { layoutCoordinates ->
-                size = layoutCoordinates.size
-            }
     ) { measurable, constraints ->
-        val placeables = measurable.map {
+        val placeabls = measurable.map {
             it.measure(constraints)
         }
+        var saveX = 40
         var x = 0
         layout(constraints.maxWidth, constraints.maxHeight) {
-            placeables.forEach { placeable ->
+            placeabls.forEachIndexed { i, placeable ->
                 placeable.place(position = IntOffset(x, 0))
-                x += placeable.width - 40
+                if (i == 0){
+                    saveX = max(
+                        (placeable.width * (placeabls.size+1) - constraints.maxWidth) / placeabls.size,
+                        saveX
+                    )
+                }
+                x += placeable.width - saveX
             }
         }
     }
@@ -275,39 +273,8 @@ fun GroupAppsLayout(modifier: Modifier = Modifier, content: @Composable () -> Un
 @Composable
 private fun GroupsPrev() {
     GroupsLayout(
-        modifier = Modifier
-    ) {
-        repeat(6){
-            Group(group = Group(key = "home", name = "G name", apps = emptyList()))
-        }
-    }
-}
-
-@Composable
-fun OverlappingCol(
-    modifier: Modifier = Modifier,
-    overlappingPercentage: Float,
-    content: @Composable () -> Unit
-) {
-    val factor = (1 - overlappingPercentage)
-
-    Layout(
-        modifier = modifier,
-        content = content,
-        measurePolicy = { measurables, constraints ->
-            val placeables = measurables.map { it.measure(constraints) }
-            val widthsExceptFirst = placeables.subList(1, placeables.size).sumOf { it.width }
-            val firstWidth = placeables.getOrNull(0)?.width ?: 0
-            val width = (widthsExceptFirst * factor + firstWidth).toInt()
-            val height = placeables.maxOf { it.height }
-            layout(width, height) {
-                var y = 0
-                for (placeable in placeables) {
-                    placeable.placeRelative(0, y, 0f)
-                    y += (placeable.width * factor).toInt()
-                }
-            }
-        }
+        modifier = Modifier,
+        groups = List(8) { Group(key = "home", name = "G name", apps = emptyList()) }
     )
 }
 
