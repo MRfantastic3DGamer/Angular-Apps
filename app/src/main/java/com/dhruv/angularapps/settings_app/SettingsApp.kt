@@ -1,17 +1,15 @@
 package com.dhruv.angularapps.settings_app
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -20,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import com.dhruv.angularapps.R
 import com.dhruv.angularapps.settings_app.groups.GroupsEditor
 import com.dhruv.angularapps.settings_app.groups.GroupsEditorVM
@@ -32,17 +31,16 @@ data class Tab(
     val unselectedIcon: Painter,
 )
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun SettingsApp(
     modifier: Modifier = Modifier,
     groupsEditorVM: GroupsEditorVM,
     settingsVM: SettingsVM,
-    checkDrawOverlayPermission: ()->Boolean,
-    enableOverlayPermission: ()->Unit,
-    startOverlayService: ()->Unit,
-    stopOverlayService: ()->Unit,
-    isOverlayServiceRunning: ()->Boolean,
+    checkDrawOverlayPermission: () -> Boolean,
+    enableOverlayPermission: () -> Unit,
+    startOverlayService: () -> Unit,
+    stopOverlayService: () -> Unit,
+    isOverlayServiceRunning: () -> Boolean,
 ) {
     val tabs = listOf(
         Tab(
@@ -62,41 +60,20 @@ fun SettingsApp(
         )
     )
     var selectedTab by remember { mutableIntStateOf(1) }
-    val pagerState = rememberPagerState { tabs.size }
 
-    LaunchedEffect(selectedTab) {
-        pagerState.scrollToPage(selectedTab)
-    }
-    LaunchedEffect(pagerState.currentPage) {
-        selectedTab = pagerState.currentPage
-    }
+    val haveOverlayPermission = checkDrawOverlayPermission()
 
-    Column(
-        modifier.fillMaxSize()
+    Box(
+        modifier = modifier.fillMaxSize()
     ) {
-        TabRow(selectedTabIndex = selectedTab) {
-            tabs.forEachIndexed() { index, tab ->
-                val selected = selectedTab == index
-                Tab(
-                    selected = selected,
-                    text = { Text(text = tab.name) },
-                    icon = {
-                        Icon(
-                            painter = if (selected) tab.selectedIcon else tab.unselectedIcon,
-                            contentDescription = tab.name
-                        )
-                    },
-                    onClick = {
-                        selectedTab = index
-                    }
-                )
-            }
-        }
-
-        HorizontalPager(state = pagerState) { page ->
-            val haveOverlayPermission = checkDrawOverlayPermission()
-            when (page) {
-                0 -> GroupsEditor(Modifier.fillMaxSize(), vm = groupsEditorVM)
+        // Main content area
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 56.dp)
+        ) {
+            when (selectedTab) {
+                0 -> GroupsEditor(modifier = Modifier.fillMaxSize(), vm = groupsEditorVM)
                 1 -> Home(
                     haveOverlayPermission = haveOverlayPermission,
                     enableOverlayPermission = enableOverlayPermission,
@@ -104,11 +81,39 @@ fun SettingsApp(
                     stopOverlayService = stopOverlayService,
                     isOverlayServiceRunning = isOverlayServiceRunning,
                 )
-                2 -> Settings(Modifier.fillMaxSize(), vm = settingsVM)
+                2 -> Settings(modifier = Modifier.fillMaxSize(), vm = settingsVM)
                 else -> {
-                    Box(modifier = Modifier.fillMaxSize()){
-                        Text(text = "This page have not been designed yet", modifier = Modifier.align(Alignment.Center))
+                    Box(modifier = Modifier.fillMaxSize()) {
+                        Text(text = "This page has not been designed yet", modifier = Modifier.align(Alignment.Center))
                     }
+                }
+            }
+        }
+
+        // TabRow at the bottom
+        Column(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+//                .background(Color.White) // Optional: background color to ensure visibility
+//                .shadow(elevation = 4.dp) // Optional: shadow for better separation
+        ) {
+            TabRow(selectedTabIndex = selectedTab) {
+                tabs.forEachIndexed { index, tab ->
+                    val selected = selectedTab == index
+                    Tab(
+                        selected = selected,
+                        text = { Text(text = tab.name) },
+                        icon = {
+                            Icon(
+                                painter = if (selected) tab.selectedIcon else tab.unselectedIcon,
+                                contentDescription = tab.name
+                            )
+                        },
+                        onClick = {
+                            selectedTab = index
+                        }
+                    )
                 }
             }
         }

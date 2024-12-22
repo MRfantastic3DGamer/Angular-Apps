@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -24,6 +25,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.dhruv.angularapps.R
@@ -45,6 +47,7 @@ fun Settings(
     modifier: Modifier = Modifier,
     vm: SettingsVM
 ) {
+    val context = LocalContext.current
 
     @Composable
     fun groupedCards(vararg cards: SettingsCard, title: String, description: String, icon: Int){
@@ -138,7 +141,8 @@ fun Settings(
     fun sliderSize() {
 
         Row(
-            Modifier,
+            Modifier
+                .padding(top = 8.dp),
             Arrangement.SpaceBetween,
             Alignment.Bottom
         ) {
@@ -157,7 +161,8 @@ fun Settings(
     fun sliderOffset() {
 
         Row(
-            Modifier,
+            Modifier
+                .padding(top = 8.dp),
             Arrangement.SpaceBetween,
             Alignment.Bottom
         ) {
@@ -174,114 +179,114 @@ fun Settings(
         }
     }
 
-    @Composable
-    fun appsPositioning() {
-
-        Row(
-            Modifier,
-            Arrangement.SpaceBetween,
-            Alignment.Bottom
-        ) {
-            Column {
-                LabelForInt(key = "apps pop", min = 10, value = vm.appsPop, max = 100) {
-                    vm.appsPop = it
-                }
-                LabelForFloat(
-                    key = "first ring radius",
-                    min = 50f,
-                    value = vm.firstRingRadius,
-                    max = 500f
-                ) {
-                    vm.appsPositioning = vm.appsPositioning.copy(startingRadius = it.toDouble())
-                }
-                LabelForFloat(
-                    key = "difference between rings",
-                    min = 25f,
-                    value = vm.radiusDiff,
-                    max = 300f
-                ) {
-                    vm.appsPositioning = vm.appsPositioning.copy(radiusDiff = it.toDouble())
-                }
-                LabelForFloat(
-                    key = "distance between icons",
-                    min = 25f,
-                    value = vm.iconsDiff,
-                    max = 300f
-                ) {
-                    vm.appsPositioning = vm.appsPositioning.copy(iconDistance = it.toDouble())
-                }
-            }
-        }
-    }
+//    @Composable
+//    fun appsPositioning() {
+//
+//        Row(
+//            Modifier
+//                .padding(top = 8.dp),
+//            Arrangement.SpaceBetween,
+//            Alignment.Bottom
+//        ) {
+//            Column {
+//                LabelForInt(key = "apps pop", min = 10, value = vm.appsPop, max = 100) {
+//                    vm.appsPop = it
+//                }
+//                LabelForFloat(
+//                    key = "first ring radius",
+//                    min = 50f,
+//                    value = vm.firstRingRadius,
+//                    max = 500f
+//                ) {
+//                    vm.appsPositioning = vm.appsPositioning.copy(startingRadius = it.toDouble())
+//                }
+//                LabelForFloat(
+//                    key = "difference between rings",
+//                    min = 25f,
+//                    value = vm.radiusDiff,
+//                    max = 300f
+//                ) {
+//                    vm.appsPositioning = vm.appsPositioning.copy(radiusDiff = it.toDouble())
+//                }
+//                LabelForFloat(
+//                    key = "distance between icons",
+//                    min = 25f,
+//                    value = vm.iconsDiff,
+//                    max = 300f
+//                ) {
+//                    vm.appsPositioning = vm.appsPositioning.copy(iconDistance = it.toDouble())
+//                }
+//            }
+//        }
+//    }
 
     @Composable
     fun appsLook() {
 
         Row(
-            Modifier,
+            Modifier
+                .padding(top = 8.dp),
             Arrangement.SpaceBetween,
             Alignment.Bottom
         ) {
-            Column {
-                LabelForInt(key = "base radius", min = 10, value = vm.appsBaseRad, max = 100) {
-                    vm.appsBaseRad = it
-                }
-                LabelForInt(
-                    key = "selection radius",
-                    min = 10,
-                    value = vm.appsSelectionRad,
-                    max = 100
-                ) {
-                    vm.appsSelectionRad = it
-                }
+            LabelForInt(key = "base radius", min = 16, value = vm.appsBaseRad, max = 100) {
+                vm.appsBaseRad = it
             }
+//            Column {
+//                LabelForInt(
+//                    key = "selection radius",
+//                    min = 10,
+//                    value = vm.appsSelectionRad,
+//                    max = 100
+//                ) {
+//                    vm.appsSelectionRad = it
+//                }
+//            }
         }
     }
 
-    @Composable
-    fun groupsPositioning() {
-        Row(
-            Modifier,
-            Arrangement.SpaceBetween,
-            Alignment.Bottom
-        ) {
-            Column {
-                LabelForInt(key = "base pop", min = 0, value = vm.groupBasePop, max = 200) {
-                    vm.groupBasePop = it
-                }
-                LabelForInt(key = "selection pop", min = 0, value = vm.groupSelectionPop, max = 200) {
-                    vm.groupSelectionPop = it
-                }
-            }
-        }
-    }
+//    @Composable
+//    fun groupsPositioning() {
+//        Row(
+//            Modifier
+//                .padding(top = 8.dp),
+//            Arrangement.SpaceBetween,
+//            Alignment.Bottom
+//        ) {
+//            Column {
+//                LabelForInt(key = "base pop", min = 0, value = vm.groupBasePop, max = 200) {
+//                    vm.groupBasePop = it
+//                }
+//                LabelForInt(key = "selection pop", min = 0, value = vm.groupSelectionPop, max = 200) {
+//                    vm.groupSelectionPop = it
+//                }
+//            }
+//        }
+//    }
 
     @Composable
     fun groupsLook() {
         Row(
-            Modifier,
+            Modifier
+                .padding(top = 8.dp),
             Arrangement.SpaceBetween,
             Alignment.Bottom
         ) {
-            Column {
-                LabelForInt(key = "base radius", min = 10, value = vm.groupBaseRad, max = 100) {
-                    vm.groupBaseRad = it
-                }
-                LabelForInt(key = "selection radius", min = 10, value = vm.groupSelectionRad, max = 100) {
-                    vm.groupSelectionRad = it
-                }
+            LabelForInt(key = "base radius", min = 10, value = vm.groupBaseRad, max = 100) {
+                vm.groupBaseRad = it
             }
+//            Column {
+//                LabelForInt(key = "selection radius", min = 10, value = vm.groupSelectionRad, max = 100) {
+//                    vm.groupSelectionRad = it
+//                }
+//            }
         }
     }
 
     Box(modifier = modifier) {
         LazyColumn(
-            Modifier
+            Modifier.fillMaxSize(),
         ) {
-
-            item {
-                Spacer(modifier = Modifier.height(25.dp))
-            }
             item {
                 groupedCards(
                     SettingsCard(
@@ -317,12 +322,12 @@ fun Settings(
 
             item {
                 groupedCards(
-                    SettingsCard(
-                        3.1f,
-                        icon = R.drawable.round_location_searching_24,
-                        text = "Positioning",
-                        description = "customize how the apps look"
-                    ),
+//                    SettingsCard(
+//                        3.1f,
+//                        icon = R.drawable.round_location_searching_24,
+//                        text = "Positioning",
+//                        description = "customize how the apps look"
+//                    ),
                     SettingsCard(
                         3.2f,
                         icon = R.drawable.round_looks_24,
@@ -337,12 +342,12 @@ fun Settings(
 
             item {
                 groupedCards(
-                    SettingsCard(
-                        4.1f,
-                        icon = R.drawable.round_location_searching_24,
-                        text = "Positioning",
-                        description = "where they appear"
-                    ),
+//                    SettingsCard(
+//                        4.1f,
+//                        icon = R.drawable.round_location_searching_24,
+//                        text = "Positioning",
+//                        description = "where they appear"
+//                    ),
                     SettingsCard(
                         4.2f,
                         icon = R.drawable.round_looks_24,
@@ -366,9 +371,9 @@ fun Settings(
                         1.1f -> touch()
                         2.1f -> sliderSize()
                         2.2f -> sliderOffset()
-                        3.1f -> appsPositioning()
+//                        3.1f -> appsPositioning()
                         3.2f -> appsLook()
-                        4.1f -> groupsPositioning()
+//                        4.1f -> groupsPositioning()
                         4.2f -> groupsLook()
                         else -> {
                             Text(text = "page not created")
@@ -377,7 +382,7 @@ fun Settings(
                 },
                 confirmButton = {
                     Button(
-                        onClick = { vm.confirm() }
+                        onClick = { vm.confirm(context) }
                     ) { Text(text = "Confirm") }
                 },
                 dismissButton = {

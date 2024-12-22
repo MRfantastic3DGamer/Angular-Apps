@@ -205,7 +205,8 @@ fun LabelForFloat(
                 .padding(top = 4.dp)
         ) {
             H3(text = "$key:")
-            EditableText("${(value * 100.0).roundToInt() / 100.0}", onUpdate = { it.toFloatOrNull()?.let { update(it) } })
+            Text("${(value * 100.0).roundToInt() / 100.0}")
+//            EditableText("${(value * 100.0).roundToInt() / 100.0}", onUpdate = { it.toFloatOrNull()?.let { update(it) } })
         }
         description?.let { Box ( Modifier.padding(horizontal = 8.dp) ) { Description(text = it) } }
         Slider(

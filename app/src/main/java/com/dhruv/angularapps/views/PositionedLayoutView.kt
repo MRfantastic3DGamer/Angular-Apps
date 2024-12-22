@@ -55,6 +55,10 @@ class PositionedLayoutView @JvmOverloads constructor(
         }
     }
 
+    fun numberOfDrawables():Int {
+        return drawables.size
+    }
+
     private var keys: List<String> = emptyList()
     private var offsets: List<Offset> = emptyList()
     private var radiuses: List<Float> = emptyList()
@@ -62,24 +66,24 @@ class PositionedLayoutView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        for (i in offsets.indices) {
-            val offset = offsets[i]
-            val radius = radiuses[i]
-            val drawable = drawables[keys[i]]
-            if (drawable == null) {
-                canvas.drawCircle(offset.x, offset.y, radius, nullPainterPaint)
-            } else {
-                // Calculate the bounds for the Drawable
-                val left = (offset.x - radius).toInt()
-                val top = (offset.y - radius).toInt()
-                val right = (offset.x + radius).toInt()
-                val bottom = (offset.y + radius).toInt()
+        var drawableI = 0
+        keys.forEach { d ->
+            val offset = offsets[drawableI]
+            val radius = radiuses[drawableI]
+            val drawable = drawables[d]
 
+            // Calculate the bounds for the Drawable
+            val left = (offset.x - radius).toInt()
+            val top = (offset.y - radius).toInt()
+            val right = (offset.x + radius).toInt()
+            val bottom = (offset.y + radius).toInt()
+
+            if (drawable != null) {
                 // Set the bounds for the Drawable
                 drawable.setBounds(left, top, right, bottom)
-
                 // Draw the Drawable on the Canvas
                 drawable.draw(canvas)
+                drawableI++
             }
         }
     }

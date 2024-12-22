@@ -30,16 +30,9 @@ import com.dhruv.angularapps.data.UserPref
 import com.dhruv.angularapps.data.models.Group
 import com.dhruv.angularapps.settings_app.groups.GroupIcons
 import com.dhruv.angularapps.settings_app.settings.appsBaseRadiusKey
-import com.dhruv.angularapps.settings_app.settings.appsPopKey
-import com.dhruv.angularapps.settings_app.settings.appsPositioningKey
-import com.dhruv.angularapps.settings_app.settings.appsSelectionRadiusKey
-import com.dhruv.angularapps.settings_app.settings.groupBasePopKey
-import com.dhruv.angularapps.settings_app.settings.groupSelectionPopKey
 import com.dhruv.angularapps.settings_app.settings.groupsBaseRadiusKey
-import com.dhruv.angularapps.settings_app.settings.groupsSelectionRadiusKey
 import com.dhruv.angularapps.settings_app.settings.sliderBottomPaddingKey
 import com.dhruv.angularapps.settings_app.settings.sliderHeightKey
-import com.dhruv.angularapps.settings_app.settings.sliderWidthKey
 import com.dhruv.angularapps.settings_app.settings.touchOffsetKey
 import com.dhruv.angularapps.views.AppsAreaView
 import com.dhruv.angularapps.views.ItemValues
@@ -99,7 +92,7 @@ class OverlayService : Service(), OnTouchListener{
     private var groupSelectionPop = 70
     private var appsAreaRadiusMax = 10f
     private var appsPop = 60
-    private var appsPositioning = AppsIconsPositioning.IconCoordinatesGenerationScheme()
+    private var appsPositioning = AppsIconsPositioning.IconCoordinatesGenerationScheme( startingRadius = groupSelectionRadius + 30.0, iconDistance = appSelectionRadius + 5.0, radiusDiff = groupSelectionRadius + 30.0 )
     private var appsName = mapOf<String, String>()
 
     private var bottomY = 2000f
@@ -192,20 +185,29 @@ class OverlayService : Service(), OnTouchListener{
                 }
             }
 
+
             val touchOff = pref.getData(touchOffsetKey)?.split("#") ?: listOf("0","0")
             touchOffset = Offset(touchOff[0].toFloat(), touchOff[1].toFloat())
             sliderHeight = pref.getData(sliderHeightKey)?.toInt() ?: 150
-            sliderWidthOnActive = pref.getData(sliderWidthKey)?.toInt() ?: 50
             sliderBottomPadding = pref.getData(sliderBottomPaddingKey)?.toInt() ?: 50
-            appBaseRadius = pref.getData(appsBaseRadiusKey)?.toInt() ?: 20
-            appSelectionRadius = pref.getData(appsSelectionRadiusKey)?.toInt() ?: 40
-            groupBaseRadius = pref.getData(groupsBaseRadiusKey)?.toInt() ?: 25
-            groupSelectionRadius = pref.getData(groupsSelectionRadiusKey)?.toInt() ?: 40
-            groupBasePop = pref.getData(groupBasePopKey)?.toInt() ?: 30
-            groupSelectionPop = pref.getData(groupSelectionPopKey)?.toInt() ?: 70
-            appsPop = pref.getData(appsPopKey)?.toInt() ?: 60
 
-            val positioning = AppsIconsPositioning.IconCoordinatesGenerationScheme.fromString(pref.getData(appsPositioningKey) ?: AppsIconsPositioning.IconCoordinatesGenerationScheme().toString())
+            appBaseRadius = pref.getData(appsBaseRadiusKey)?.toInt() ?: 20
+            appSelectionRadius = (appBaseRadius * 1.4).toInt()
+
+            groupBaseRadius = pref.getData(groupsBaseRadiusKey)?.toInt() ?: 25
+            groupBasePop = groupBaseRadius
+            groupSelectionRadius = (groupBaseRadius * 1.4).toInt()
+            sliderWidthOnActive = groupBaseRadius * 2 + 10
+            groupSelectionPop = (sliderWidthOnActive * 1.2).toInt()
+
+            appsPop = groupSelectionPop
+
+            val positioning =
+                AppsIconsPositioning.IconCoordinatesGenerationScheme(
+                    startingRadius = groupSelectionRadius + dpToPxF((appSelectionRadius * 2.5).toInt() + 10).toDouble(),
+                    iconDistance = dpToPxF(appSelectionRadius * 2).toDouble(),
+                    radiusDiff = dpToPxF(appSelectionRadius * 2).toDouble()
+                )
             if (positioning != appsPositioning) {
                 appsPositioning = positioning
                 appPositionsPreCompute = AppsIconsPositioning.generateIconCoordinates(appsPositioning)
@@ -487,8 +489,8 @@ class OverlayService : Service(), OnTouchListener{
                 selectionPos = clampedTriggerRelativeTouchYPos,
                 width = currentWidth,
                 height = dpToPxF(sliderHeight),
-                radius = 125f * sliderVisibility,
-                selectionPop = 60f * sliderVisibility,
+                radius = (groupSelectionRadius* 2.6).toFloat() + 10,
+                selectionPop = groupSelectionPop.toFloat(),
                 vertexCount = 20
             )
         }
@@ -501,9 +503,9 @@ class OverlayService : Service(), OnTouchListener{
             updateVisuals(
                 Offset(width.toFloat() - currentWidth, triggerPrams!!.y.toFloat()),
                 selectionPos = clampedTriggerRelativeTouchYPos,
-                minRad = 140f * sliderVisibility,
+                minRad = (groupSelectionRadius* 2.6).toFloat() + 30,
                 maxRad = (appsAreaRadiusMax + appSelectionRadius) * sliderVisibility,
-                selectionPop = 60f * sliderVisibility,
+                selectionPop = groupSelectionPop.toFloat(),
                 vertexCount = 20,
                 bottomCutY = bottomY,
                 topCutY = topY
@@ -618,6 +620,9 @@ class OverlayService : Service(), OnTouchListener{
         return null
     }
 
+    private fun iToDp(i: Int): Float {
+        return (i / resources.displayMetrics.density)
+    }
     private fun dpToPx(dp: Int): Int {
         return (dp * resources.displayMetrics.density).toInt()
     }

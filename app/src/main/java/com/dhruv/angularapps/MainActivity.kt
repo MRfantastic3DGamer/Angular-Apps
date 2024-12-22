@@ -11,11 +11,10 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -26,13 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.dhruv.angularapps.apps.AppManager
 import com.dhruv.angularapps.settings_app.SettingsApp
 import com.dhruv.angularapps.settings_app.groups.GroupsEditorVM
@@ -54,14 +47,15 @@ class MainActivity : ComponentActivity() {
         val groupsEditorVM: GroupsEditorVM by viewModels()
         val settingsVM: SettingsVM by viewModels()
         enableEdgeToEdge()
+
         setContent {
 
             val snackbarHostState = remember { SnackbarHostState() }
-            LaunchedEffect(key1 = groupsEditorVM.message)
-            {
+
+            LaunchedEffect(groupsEditorVM.message) {
                 if (groupsEditorVM.message.isNotEmpty()) {
                     snackbarHostState.showSnackbar(groupsEditorVM.message, duration = SnackbarDuration.Short)
-                    groupsEditorVM.message = ""
+                    groupsEditorVM.message = "" // Reset the message
                 }
             }
 
@@ -73,26 +67,7 @@ class MainActivity : ComponentActivity() {
                             Text(text = "Angular Apps")
                         })
                     },
-                    snackbarHost = {
-                        SnackbarHost(hostState = snackbarHostState) {
-                            Box(modifier = Modifier.fillMaxSize()) {
-                                Text(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .align(Alignment.BottomCenter)
-                                        .padding(4.dp)
-                                        .padding(vertical = 30.dp)
-                                        .graphicsLayer { shadowElevation = 10f }
-                                        .background(color = Color.Black)
-                                        .padding(vertical = 10.dp),
-                                    text = groupsEditorVM.message,
-                                    color = Color.White,
-                                    fontSize = 18.sp,
-                                    textAlign = TextAlign.Center
-                                )
-                            }
-                        }
-                    }
+                    snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
                 ) { innerPadding ->
                     Box(modifier = Modifier
                         .fillMaxSize()
@@ -126,13 +101,26 @@ class MainActivity : ComponentActivity() {
         return true
     }
 
+    private val overlayPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (checkDrawOverlayPermission()) {
+            startOverlayService()
+        } else {
+            Log.d(TAG, "Overlay permission denied")
+        }
+    }
 
-    private fun enableOverlayPermission(){
-        val intent = Intent(
-            Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-            Uri.parse("package:$packageName")
-        )
-        startActivityForResult(intent, REQUEST_CODE)
+    private fun enableOverlayPermission() {
+        if (!checkDrawOverlayPermission()) {
+            val intent = Intent(
+                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                Uri.parse("package:$packageName")
+            )
+            overlayPermissionLauncher.launch(intent)
+        } else {
+            startOverlayService()
+        }
     }
 
     private fun startOverlayService() {
