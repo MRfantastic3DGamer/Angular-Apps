@@ -18,50 +18,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up JDK 11 for Android build
-      - name: Set up JDK 11
+      # Step 2: Set up JDK 17 for Android build (instead of Java 11)
+      - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '11'
+          java-version: '17'
 
-      # Decode and save the keystore
-      - name: Decode and save keystore
-        run: |
-          echo "$KEYSTORE_FILE" | base64 -d > android.keystore
-
-      # Set up Android SDK
+      # Step 3: Set up Android SDK
       - name: Set up Android SDK
         uses: android-actions/setup-android@v2
         with:
           api-level: 34
           build-tools: 34.0.0
 
-      # Grant execute permissions for Gradle wrapper
+      # Step 4: Grant execute permission for Gradle wrapper
       - name: Grant execute permission for Gradle wrapper
         run: chmod +x ./gradlew
 
-      # Extract versionName from build.gradle
-      - name: Extract versionName
-        id: version
-        run: |
-          versionName=$(grep "versionName" app/build.gradle | awk -F '"' '{print $2}')
-          echo "VERSION_NAME=$versionName" >> $GITHUB_ENV
-
-      # Create a Git tag
-      - name: Create Git Tag
-        id: tag
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git tag "v${{ env.VERSION_NAME }}"
-          git push origin "v${{ env.VERSION_NAME }}"
-
-      # Step 4: Build the app using Gradle
+      # Step 5: Build the app using Gradle
       - name: Build APK
         run: ./gradlew assembleRelease
 
-      # Sign the APK
+      # Step 6: Sign the APK
       - name: Sign APK
         env:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -75,14 +54,14 @@ jobs:
           app/build/outputs/apk/release/app-release-unsigned.apk \
           "$KEY_ALIAS"
 
-      # Align APK using zipalign
+      # Step 7: Align APK using zipalign
       - name: Align APK
         run: |
           ${ANDROID_HOME}/build-tools/34.0.0/zipalign -v 4 \
           app/build/outputs/apk/release/app-release-unsigned.apk \
           app/build/outputs/apk/release/app-release-signed.apk
 
-      # Upload to GitHub Release
+      # Step 8: Upload APK to GitHub Release
       - name: Upload APK to GitHub Release
         uses: ncipollo/release-action@v1
         with:
