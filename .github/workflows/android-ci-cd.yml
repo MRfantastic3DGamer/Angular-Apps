@@ -40,7 +40,13 @@ jobs:
       - name: Build APK
         run: ./gradlew assembleRelease
 
-      # Step 6: Sign the APK
+      # Decode and store the keystore file
+      - name: Decode Keystore
+        run: echo "$ANDROID_KEYSTORE" | base64 --decode > keystore/android.keystore
+        env:
+          ANDROID_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
+
+      # Sign APK
       - name: Sign APK
         env:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -48,7 +54,7 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
           jarsigner -verbose \
-          -keystore android.keystore \
+          -keystore keystore/android.keystore \
           -storepass "$KEYSTORE_PASSWORD" \
           -keypass "$KEY_PASSWORD" \
           app/build/outputs/apk/release/app-release-unsigned.apk \
