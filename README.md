@@ -23,6 +23,7 @@ You can get this app on play store ```link will be awailable soon```
 ┣┏ app━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃
 ┃┣┏ src━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃ ┃
 ┃┃┣┏ main━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃ ┃ ┃
+┃┃┃┣Feature graphic.png                    ┃ ┃ ┃ ┃
 ┃┃┃┣ic_flat_app-playstore.png              ┃ ┃ ┃ ┃
 ┃┃┃┣ic_app-playstore.png                   ┃ ┃ ┃ ┃
 ┃┃┃┣AndroidManifest.xml                    ┃ ┃ ┃ ┃
@@ -92,6 +93,19 @@ You can get this app on play store ```link will be awailable soon```
 ┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃
 ┣README.md                                       ┃
 ┣gradlew.bat                                     ┃
+┣┏ SS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓            ┃
+┃┣┏ phone━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃            ┃
+┃┃┣Screenshot_20240813_232900.png ┃ ┃            ┃
+┃┃┣Screenshot_20240813_233040.png ┃ ┃            ┃
+┃┃┣Screenshot_20240813_232525.png ┃ ┃            ┃
+┃┃┣Screenshot_20240813_232437.png ┃ ┃            ┃
+┃┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃            ┃
+┃┣┏ Tablet━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃            ┃
+┃┃┣Screenshot_20240813_234323.png ┃ ┃            ┃
+┃┃┣Screenshot_20240813_234359.png ┃ ┃            ┃
+┃┃┣Screenshot_20240813_234429.png ┃ ┃            ┃
+┃┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃            ┃
+┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛            ┃
 ┣diagram.svg                                     ┃
 ┣build.gradle.kts                                ┃
 ┣gradlew                                         ┃
