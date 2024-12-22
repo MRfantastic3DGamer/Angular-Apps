@@ -40,6 +40,10 @@ jobs:
       - name: Build APK
         run: ./gradlew assembleRelease
 
+      # Create the directory to store the keystore
+      - name: Create keystore directory
+        run: mkdir -p keystore
+
       # Decode and store the keystore file
       - name: Decode Keystore
         run: echo "$ANDROID_KEYSTORE" | base64 --decode > keystore/android.keystore
