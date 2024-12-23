@@ -106,6 +106,10 @@ You can get this app on play store ```link will be awailable soon```
 ┃┃┣Screenshot_20240813_234429.png ┃ ┃            ┃
 ┃┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃            ┃
 ┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛            ┃
+┣┏ dependency-graph-reports━━━━━━━━━┓            ┃
+┃┣android_cicd-build.json           ┃            ┃
+┃┣android_cicd-build.json.processed ┃            ┃
+┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛            ┃
 ┣diagram.svg                                     ┃
 ┣build.gradle.kts                                ┃
 ┣gradlew                                         ┃
