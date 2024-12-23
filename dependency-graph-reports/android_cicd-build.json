@@ -1,0 +1,1810 @@
+{
+  "version" : 0,
+  "job" : {
+    "id" : "12461445519",
+    "correlator" : "android_cicd-build"
+  },
+  "sha" : "52c2a3dd2c17698a298dcfdf2f5155337d23fbf5",
+  "ref" : "refs/heads/master",
+  "detector" : {
+    "name" : "GitHub Dependency Graph Gradle Plugin",
+    "version" : "1.3.2",
+    "url" : "https://github.com/gradle/github-dependency-graph-gradle-plugin"
+  },
+  "manifests" : {
+    "android_cicd-build" : {
+      "name" : "android_cicd-build",
+      "resolved" : {
+        "com.android.tools.build:gradle:8.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.build/gradle@8.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "com.android.tools.build:gradle-settings-api:8.5.0", "com.android.tools:sdk-common:31.5.0", "com.android.tools:sdklib:31.5.0", "com.android.tools:repository:31.5.0", "com.android.tools.ddms:ddmlib:31.5.0", "com.android.tools.build:aapt2-proto:8.5.0-11315950", "com.android.tools.build:aaptcompiler:8.5.0", "com.android.tools.analytics-library:crash:31.5.0", "com.android.tools.analytics-library:shared:31.5.0", "com.android.tools.lint:lint-model:31.5.0", "com.android.tools.lint:lint-typedef-remover:31.5.0", "androidx.databinding:databinding-compiler-common:8.5.0", "androidx.databinding:databinding-common:8.5.0", "com.android.databinding:baseLibrary:8.5.0", "com.android.tools.build:builder-test-api:8.5.0", "com.android.tools.layoutlib:layoutlib-api:31.5.0", "com.android.tools.utp:android-device-provider-ddmlib-proto:31.5.0", "com.android.tools.utp:android-device-provider-gradle-proto:31.5.0", "com.android.tools.utp:android-test-plugin-host-additional-test-output-proto:31.5.0", "com.android.tools.utp:android-test-plugin-host-coverage-proto:31.5.0", "com.android.tools.utp:android-test-plugin-host-emulator-control-proto:31.5.0", "com.android.tools.utp:android-test-plugin-host-logcat-proto:31.5.0", "com.android.tools.utp:android-test-plugin-host-apk-installer-proto:31.5.0", "com.android.tools.utp:android-test-plugin-host-retention-proto:31.5.0", "com.android.tools.utp:android-test-plugin-result-listener-gradle-proto:31.5.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "com.android.tools.build:transform-api:2.0.0-deprecated-use-gradle-api", "org.apache.httpcomponents:httpmime:4.5.6", "commons-io:commons-io:2.13.0", "org.ow2.asm:asm:9.6", "org.ow2.asm:asm-analysis:9.6", "org.ow2.asm:asm-commons:9.6", "org.ow2.asm:asm-util:9.6", "org.bouncycastle:bcpkix-jdk18on:1.77", "org.glassfish.jaxb:jaxb-runtime:2.3.2", "net.sf.jopt-simple:jopt-simple:4.9", "com.android.tools.build:bundletool:1.16.0", "com.android.tools.build.jetifier:jetifier-core:1.0.0-beta10", "com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta10", "com.squareup:javapoet:1.13.0", "com.google.protobuf:protobuf-java:3.22.3", "com.google.protobuf:protobuf-java-util:3.22.3", "com.google.code.gson:gson:2.10.1", "io.grpc:grpc-core:1.57.0", "io.grpc:grpc-netty:1.57.0", "io.grpc:grpc-protobuf:1.57.0", "io.grpc:grpc-stub:1.57.0", "com.google.crypto.tink:tink:1.7.0", "com.google.testing.platform:core-proto:0.0.9-alpha02", "net.sf.kxml:kxml2:2.3.0", "com.google.flatbuffers:flatbuffers-java:1.12.0", "org.tensorflow:tensorflow-lite-metadata:0.1.0-rc2", "com.android.tools.build:builder:8.5.0", "com.android.tools.build:builder-model:8.5.0", "com.android.tools.build:gradle-api:8.5.0" ]
+        },
+        "com.android.tools.build:gradle-settings-api:8.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.build/gradle-settings-api@8.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20" ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk8@1.9.20",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.20", "org.jetbrains.kotlin:kotlin-stdlib:1.9.20" ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@1.9.22",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains:annotations:13.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.20", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "org.jetbrains:annotations:23.0.0", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0" ]
+        },
+        "org.jetbrains:annotations:13.0" : {
+          "package_url" : "pkg:maven/org.jetbrains/annotations@13.0",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.20" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk7@1.9.20",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib:1.9.20" ]
+        },
+        "com.android.tools:sdk-common:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools/sdk-common@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools.analytics-library:shared:31.5.0", "com.android.tools.build:aapt2-proto:8.5.0-11315950", "com.android.tools:common:31.5.0", "com.android.tools.ddms:ddmlib:31.5.0", "com.android.tools.layoutlib:layoutlib-api:31.5.0", "com.android.tools:sdklib:31.5.0", "com.google.code.gson:gson:2.10.1", "com.google.guava:guava:32.0.1-jre", "com.google.protobuf:protobuf-java:3.22.3", "javax.inject:javax.inject:1", "net.sf.kxml:kxml2:2.3.0", "org.bouncycastle:bcpkix-jdk18on:1.77", "org.bouncycastle:bcprov-jdk18on:1.77", "org.glassfish.jaxb:jaxb-runtime:2.3.2", "org.jetbrains.intellij.deps:trove4j:1.0.20200330", "org.jetbrains.kotlin:kotlin-reflect:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20" ]
+        },
+        "com.android.tools.analytics-library:shared:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.analytics-library/shared@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools.analytics-library:protos:31.5.0", "com.android.tools:annotations:31.5.0", "com.android.tools:common:31.5.0", "com.google.code.gson:gson:2.10.1", "com.google.guava:guava:32.0.1-jre", "net.java.dev.jna:jna-platform:5.6.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20" ]
+        },
+        "com.android.tools.analytics-library:protos:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.analytics-library/protos@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.protobuf:protobuf-java:3.22.3" ]
+        },
+        "com.google.protobuf:protobuf-java:3.22.3" : {
+          "package_url" : "pkg:maven/com.google.protobuf/protobuf-java@3.22.3",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android.tools:annotations:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools/annotations@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android.tools:common:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools/common@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools:annotations:31.5.0", "com.google.guava:guava:32.0.1-jre", "net.java.dev.jna:jna-platform:5.6.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20" ]
+        },
+        "com.google.guava:guava:32.0.1-jre" : {
+          "package_url" : "pkg:maven/com.google.guava/guava@32.0.1-jre",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.guava:failureaccess:1.0.1", "com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava", "com.google.code.findbugs:jsr305:3.0.2", "org.checkerframework:checker-qual:3.33.0", "com.google.errorprone:error_prone_annotations:2.18.0", "com.google.j2objc:j2objc-annotations:2.8" ]
+        },
+        "com.google.guava:failureaccess:1.0.1" : {
+          "package_url" : "pkg:maven/com.google.guava/failureaccess@1.0.1",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" : {
+          "package_url" : "pkg:maven/com.google.guava/listenablefuture@9999.0-empty-to-avoid-conflict-with-guava",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.google.code.findbugs:jsr305:3.0.2" : {
+          "package_url" : "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "org.checkerframework:checker-qual:3.33.0" : {
+          "package_url" : "pkg:maven/org.checkerframework/checker-qual@3.33.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.google.errorprone:error_prone_annotations:2.18.0" : {
+          "package_url" : "pkg:maven/com.google.errorprone/error_prone_annotations@2.18.0",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "com.google.j2objc:j2objc-annotations:2.8" : {
+          "package_url" : "pkg:maven/com.google.j2objc/j2objc-annotations@2.8",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "net.java.dev.jna:jna-platform:5.6.0" : {
+          "package_url" : "pkg:maven/net.java.dev.jna/jna-platform@5.6.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "net.java.dev.jna:jna:5.6.0" ]
+        },
+        "net.java.dev.jna:jna:5.6.0" : {
+          "package_url" : "pkg:maven/net.java.dev.jna/jna@5.6.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.google.code.gson:gson:2.10.1" : {
+          "package_url" : "pkg:maven/com.google.code.gson/gson@2.10.1",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android.tools.build:aapt2-proto:8.5.0-11315950" : {
+          "package_url" : "pkg:maven/com.android.tools.build/aapt2-proto@8.5.0-11315950?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.protobuf:protobuf-java:3.22.3" ]
+        },
+        "com.android.tools.ddms:ddmlib:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.ddms/ddmlib@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools:common:31.5.0", "com.google.protobuf:protobuf-java:3.22.3", "net.sf.kxml:kxml2:2.3.0", "org.jetbrains:annotations:13.0", "org.jetbrains:annotations:23.0.0" ]
+        },
+        "net.sf.kxml:kxml2:2.3.0" : {
+          "package_url" : "pkg:maven/net.sf.kxml/kxml2@2.3.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android.tools.layoutlib:layoutlib-api:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.layoutlib/layoutlib-api@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools:annotations:31.5.0", "com.android.tools:common:31.5.0", "net.sf.kxml:kxml2:2.3.0", "org.jetbrains:annotations:13.0" ]
+        },
+        "com.android.tools:sdklib:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools/sdklib@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools:repository:31.5.0", "com.android.tools:common:31.5.0", "com.android.tools:dvlib:31.5.0", "com.android.tools.layoutlib:layoutlib-api:31.5.0", "com.google.code.gson:gson:2.10.1", "org.apache.commons:commons-compress:1.21", "org.apache.httpcomponents:httpcore:4.4.16", "org.apache.httpcomponents:httpmime:4.5.6", "org.glassfish.jaxb:jaxb-runtime:2.3.2" ]
+        },
+        "com.android.tools:repository:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools/repository@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools.analytics-library:shared:31.5.0", "com.android.tools:common:31.5.0", "com.google.jimfs:jimfs:1.1", "com.sun.activation:javax.activation:1.2.0", "org.apache.commons:commons-compress:1.21", "org.glassfish.jaxb:jaxb-runtime:2.3.2", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20" ]
+        },
+        "com.google.jimfs:jimfs:1.1" : {
+          "package_url" : "pkg:maven/com.google.jimfs/jimfs@1.1",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.guava:guava:32.0.1-jre" ]
+        },
+        "com.sun.activation:javax.activation:1.2.0" : {
+          "package_url" : "pkg:maven/com.sun.activation/javax.activation@1.2.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.apache.commons:commons-compress:1.21" : {
+          "package_url" : "pkg:maven/org.apache.commons/commons-compress@1.21",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.glassfish.jaxb:jaxb-runtime:2.3.2" : {
+          "package_url" : "pkg:maven/org.glassfish.jaxb/jaxb-runtime@2.3.2",
+          "relationship" : "indirect",
+          "dependencies" : [ "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2", "org.glassfish.jaxb:txw2:2.3.2", "com.sun.istack:istack-commons-runtime:3.0.8", "org.jvnet.staxex:stax-ex:1.8.1", "com.sun.xml.fastinfoset:FastInfoset:1.2.16", "jakarta.activation:jakarta.activation-api:1.2.1" ]
+        },
+        "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2" : {
+          "package_url" : "pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@2.3.2",
+          "relationship" : "indirect",
+          "dependencies" : [ "jakarta.activation:jakarta.activation-api:1.2.1" ]
+        },
+        "jakarta.activation:jakarta.activation-api:1.2.1" : {
+          "package_url" : "pkg:maven/jakarta.activation/jakarta.activation-api@1.2.1",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.glassfish.jaxb:txw2:2.3.2" : {
+          "package_url" : "pkg:maven/org.glassfish.jaxb/txw2@2.3.2",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.sun.istack:istack-commons-runtime:3.0.8" : {
+          "package_url" : "pkg:maven/com.sun.istack/istack-commons-runtime@3.0.8",
+          "relationship" : "indirect",
+          "dependencies" : [ "jakarta.activation:jakarta.activation-api:1.2.1" ]
+        },
+        "org.jvnet.staxex:stax-ex:1.8.1" : {
+          "package_url" : "pkg:maven/org.jvnet.staxex/stax-ex@1.8.1",
+          "relationship" : "indirect",
+          "dependencies" : [ "jakarta.activation:jakarta.activation-api:1.2.1", "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2" ]
+        },
+        "com.sun.xml.fastinfoset:FastInfoset:1.2.16" : {
+          "package_url" : "pkg:maven/com.sun.xml.fastinfoset/FastInfoset@1.2.16",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android.tools:dvlib:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools/dvlib@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools:common:31.5.0" ]
+        },
+        "org.apache.httpcomponents:httpcore:4.4.16" : {
+          "package_url" : "pkg:maven/org.apache.httpcomponents/httpcore@4.4.16",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.apache.httpcomponents:httpmime:4.5.6" : {
+          "package_url" : "pkg:maven/org.apache.httpcomponents/httpmime@4.5.6",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.apache.httpcomponents:httpclient:4.5.14" ]
+        },
+        "org.apache.httpcomponents:httpclient:4.5.14" : {
+          "package_url" : "pkg:maven/org.apache.httpcomponents/httpclient@4.5.14",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.apache.httpcomponents:httpcore:4.4.16", "commons-logging:commons-logging:1.2", "commons-codec:commons-codec:1.11" ]
+        },
+        "commons-logging:commons-logging:1.2" : {
+          "package_url" : "pkg:maven/commons-logging/commons-logging@1.2",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "commons-codec:commons-codec:1.11" : {
+          "package_url" : "pkg:maven/commons-codec/commons-codec@1.11",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "javax.inject:javax.inject:1" : {
+          "package_url" : "pkg:maven/javax.inject/javax.inject@1",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "org.bouncycastle:bcpkix-jdk18on:1.77" : {
+          "package_url" : "pkg:maven/org.bouncycastle/bcpkix-jdk18on@1.77",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.bouncycastle:bcprov-jdk18on:1.77", "org.bouncycastle:bcutil-jdk18on:1.77" ]
+        },
+        "org.bouncycastle:bcprov-jdk18on:1.77" : {
+          "package_url" : "pkg:maven/org.bouncycastle/bcprov-jdk18on@1.77",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.bouncycastle:bcutil-jdk18on:1.77" : {
+          "package_url" : "pkg:maven/org.bouncycastle/bcutil-jdk18on@1.77",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.bouncycastle:bcprov-jdk18on:1.77" ]
+        },
+        "org.jetbrains.intellij.deps:trove4j:1.0.20200330" : {
+          "package_url" : "pkg:maven/org.jetbrains.intellij.deps/trove4j@1.0.20200330",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect:1.9.22" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-reflect@1.9.22",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "com.android.tools.build:aaptcompiler:8.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.build/aaptcompiler@8.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools.build:aapt2-proto:8.5.0-11315950", "com.android.tools.layoutlib:layoutlib-api:31.5.0", "com.android.tools:common:31.5.0", "com.google.protobuf:protobuf-java:3.22.3", "com.google.guava:guava:32.0.1-jre", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20" ]
+        },
+        "com.android.tools.analytics-library:crash:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.analytics-library/crash@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools:annotations:31.5.0", "com.google.guava:guava:32.0.1-jre", "org.apache.httpcomponents:httpclient:4.5.14", "org.apache.httpcomponents:httpcore:4.4.16", "org.apache.httpcomponents:httpmime:4.5.6" ]
+        },
+        "com.android.tools.lint:lint-model:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.lint/lint-model@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools.build:builder-model:8.5.0", "com.android.tools:common:31.5.0", "com.android.tools:sdk-common:31.5.0", "net.sf.kxml:kxml2:2.3.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20" ]
+        },
+        "com.android.tools.build:builder-model:8.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.build/builder-model@8.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools:annotations:31.5.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20" ]
+        },
+        "com.android.tools.lint:lint-typedef-remover:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.lint/lint-typedef-remover@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools:annotations:31.5.0", "com.google.guava:guava:32.0.1-jre", "org.ow2.asm:asm:9.6" ]
+        },
+        "org.ow2.asm:asm:9.6" : {
+          "package_url" : "pkg:maven/org.ow2.asm/asm@9.6",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "androidx.databinding:databinding-compiler-common:8.5.0" : {
+          "package_url" : "pkg:maven/androidx.databinding/databinding-compiler-common@8.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "androidx.databinding:databinding-common:8.5.0", "com.android.databinding:baseLibrary:8.5.0", "com.android.tools:annotations:31.5.0", "com.android.tools.build.jetifier:jetifier-core:1.0.0-beta10", "com.google.code.gson:gson:2.10.1", "com.google.guava:guava:32.0.1-jre", "com.googlecode.juniversalchardet:juniversalchardet:1.0.3", "com.squareup:javapoet:1.13.0", "commons-io:commons-io:2.13.0", "org.glassfish.jaxb:jaxb-runtime:2.3.2", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20" ]
+        },
+        "androidx.databinding:databinding-common:8.5.0" : {
+          "package_url" : "pkg:maven/androidx.databinding/databinding-common@8.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android.databinding:baseLibrary:8.5.0" : {
+          "package_url" : "pkg:maven/com.android.databinding/baseLibrary@8.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android.tools.build.jetifier:jetifier-core:1.0.0-beta10" : {
+          "package_url" : "pkg:maven/com.android.tools.build.jetifier/jetifier-core@1.0.0-beta10?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.code.gson:gson:2.10.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "com.googlecode.juniversalchardet:juniversalchardet:1.0.3" : {
+          "package_url" : "pkg:maven/com.googlecode.juniversalchardet/juniversalchardet@1.0.3",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.squareup:javapoet:1.13.0" : {
+          "package_url" : "pkg:maven/com.squareup/javapoet@1.13.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "commons-io:commons-io:2.13.0" : {
+          "package_url" : "pkg:maven/commons-io/commons-io@2.13.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android.tools.build:builder-test-api:8.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.build/builder-test-api@8.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools.ddms:ddmlib:31.5.0", "com.android.tools:annotations:31.5.0", "com.android.tools:common:31.5.0", "com.google.guava:guava:32.0.1-jre" ]
+        },
+        "com.android.tools.utp:android-device-provider-ddmlib-proto:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-device-provider-ddmlib-proto@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.protobuf:protobuf-java:3.22.3" ]
+        },
+        "com.android.tools.utp:android-device-provider-gradle-proto:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-device-provider-gradle-proto@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.protobuf:protobuf-java:3.22.3" ]
+        },
+        "com.android.tools.utp:android-test-plugin-host-additional-test-output-proto:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-host-additional-test-output-proto@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.protobuf:protobuf-java:3.22.3" ]
+        },
+        "com.android.tools.utp:android-test-plugin-host-coverage-proto:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-host-coverage-proto@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.protobuf:protobuf-java:3.22.3" ]
+        },
+        "com.android.tools.utp:android-test-plugin-host-emulator-control-proto:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-host-emulator-control-proto@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "com.google.protobuf:protobuf-java:3.22.3" ]
+        },
+        "com.android.tools.utp:android-test-plugin-host-logcat-proto:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-host-logcat-proto@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.protobuf:protobuf-java:3.22.3" ]
+        },
+        "com.android.tools.utp:android-test-plugin-host-apk-installer-proto:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-host-apk-installer-proto@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.protobuf:protobuf-java:3.22.3" ]
+        },
+        "com.android.tools.utp:android-test-plugin-host-retention-proto:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-host-retention-proto@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "com.google.protobuf:protobuf-java:3.22.3" ]
+        },
+        "com.android.tools.utp:android-test-plugin-result-listener-gradle-proto:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-result-listener-gradle-proto@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.code.gson:gson:2.10.1", "com.google.guava:guava:32.0.1-jre", "io.grpc:grpc-core:1.57.0", "io.grpc:grpc-netty:1.57.0", "io.grpc:grpc-protobuf:1.57.0", "io.grpc:grpc-stub:1.57.0", "javax.annotation:javax.annotation-api:1.3.2", "com.google.protobuf:protobuf-java:3.22.3" ]
+        },
+        "io.grpc:grpc-core:1.57.0" : {
+          "package_url" : "pkg:maven/io.grpc/grpc-core@1.57.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.grpc:grpc-api:1.57.0", "com.google.code.gson:gson:2.10.1", "com.google.android:annotations:4.1.1.4", "org.codehaus.mojo:animal-sniffer-annotations:1.23", "com.google.errorprone:error_prone_annotations:2.18.0", "com.google.guava:guava:32.0.1-jre", "io.perfmark:perfmark-api:0.26.0", "io.grpc:grpc-context:1.57.0" ]
+        },
+        "io.grpc:grpc-api:1.57.0" : {
+          "package_url" : "pkg:maven/io.grpc/grpc-api@1.57.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.code.findbugs:jsr305:3.0.2", "com.google.errorprone:error_prone_annotations:2.18.0", "com.google.guava:guava:32.0.1-jre" ]
+        },
+        "com.google.android:annotations:4.1.1.4" : {
+          "package_url" : "pkg:maven/com.google.android/annotations@4.1.1.4",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.codehaus.mojo:animal-sniffer-annotations:1.23" : {
+          "package_url" : "pkg:maven/org.codehaus.mojo/animal-sniffer-annotations@1.23",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "io.perfmark:perfmark-api:0.26.0" : {
+          "package_url" : "pkg:maven/io.perfmark/perfmark-api@0.26.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "io.grpc:grpc-context:1.57.0" : {
+          "package_url" : "pkg:maven/io.grpc/grpc-context@1.57.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.grpc:grpc-api:1.57.0" ]
+        },
+        "io.grpc:grpc-netty:1.57.0" : {
+          "package_url" : "pkg:maven/io.grpc/grpc-netty@1.57.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.grpc:grpc-core:1.57.0", "io.netty:netty-codec-http2:4.1.93.Final", "io.netty:netty-handler-proxy:4.1.93.Final", "com.google.guava:guava:32.0.1-jre", "com.google.errorprone:error_prone_annotations:2.18.0", "io.perfmark:perfmark-api:0.26.0", "io.netty:netty-transport-native-unix-common:4.1.93.Final" ]
+        },
+        "io.netty:netty-codec-http2:4.1.93.Final" : {
+          "package_url" : "pkg:maven/io.netty/netty-codec-http2@4.1.93.Final",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.netty:netty-common:4.1.93.Final", "io.netty:netty-buffer:4.1.93.Final", "io.netty:netty-transport:4.1.93.Final", "io.netty:netty-codec:4.1.93.Final", "io.netty:netty-handler:4.1.93.Final", "io.netty:netty-codec-http:4.1.93.Final" ]
+        },
+        "io.netty:netty-common:4.1.93.Final" : {
+          "package_url" : "pkg:maven/io.netty/netty-common@4.1.93.Final",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "io.netty:netty-buffer:4.1.93.Final" : {
+          "package_url" : "pkg:maven/io.netty/netty-buffer@4.1.93.Final",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.netty:netty-common:4.1.93.Final" ]
+        },
+        "io.netty:netty-transport:4.1.93.Final" : {
+          "package_url" : "pkg:maven/io.netty/netty-transport@4.1.93.Final",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.netty:netty-common:4.1.93.Final", "io.netty:netty-buffer:4.1.93.Final", "io.netty:netty-resolver:4.1.93.Final" ]
+        },
+        "io.netty:netty-resolver:4.1.93.Final" : {
+          "package_url" : "pkg:maven/io.netty/netty-resolver@4.1.93.Final",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.netty:netty-common:4.1.93.Final" ]
+        },
+        "io.netty:netty-codec:4.1.93.Final" : {
+          "package_url" : "pkg:maven/io.netty/netty-codec@4.1.93.Final",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.netty:netty-common:4.1.93.Final", "io.netty:netty-buffer:4.1.93.Final", "io.netty:netty-transport:4.1.93.Final" ]
+        },
+        "io.netty:netty-handler:4.1.93.Final" : {
+          "package_url" : "pkg:maven/io.netty/netty-handler@4.1.93.Final",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.netty:netty-common:4.1.93.Final", "io.netty:netty-resolver:4.1.93.Final", "io.netty:netty-buffer:4.1.93.Final", "io.netty:netty-transport:4.1.93.Final", "io.netty:netty-transport-native-unix-common:4.1.93.Final", "io.netty:netty-codec:4.1.93.Final" ]
+        },
+        "io.netty:netty-transport-native-unix-common:4.1.93.Final" : {
+          "package_url" : "pkg:maven/io.netty/netty-transport-native-unix-common@4.1.93.Final",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.netty:netty-common:4.1.93.Final", "io.netty:netty-buffer:4.1.93.Final", "io.netty:netty-transport:4.1.93.Final" ]
+        },
+        "io.netty:netty-codec-http:4.1.93.Final" : {
+          "package_url" : "pkg:maven/io.netty/netty-codec-http@4.1.93.Final",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.netty:netty-common:4.1.93.Final", "io.netty:netty-buffer:4.1.93.Final", "io.netty:netty-transport:4.1.93.Final", "io.netty:netty-codec:4.1.93.Final", "io.netty:netty-handler:4.1.93.Final" ]
+        },
+        "io.netty:netty-handler-proxy:4.1.93.Final" : {
+          "package_url" : "pkg:maven/io.netty/netty-handler-proxy@4.1.93.Final",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.netty:netty-common:4.1.93.Final", "io.netty:netty-buffer:4.1.93.Final", "io.netty:netty-transport:4.1.93.Final", "io.netty:netty-codec:4.1.93.Final", "io.netty:netty-codec-socks:4.1.93.Final", "io.netty:netty-codec-http:4.1.93.Final" ]
+        },
+        "io.netty:netty-codec-socks:4.1.93.Final" : {
+          "package_url" : "pkg:maven/io.netty/netty-codec-socks@4.1.93.Final",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.netty:netty-common:4.1.93.Final", "io.netty:netty-buffer:4.1.93.Final", "io.netty:netty-transport:4.1.93.Final", "io.netty:netty-codec:4.1.93.Final" ]
+        },
+        "io.grpc:grpc-protobuf:1.57.0" : {
+          "package_url" : "pkg:maven/io.grpc/grpc-protobuf@1.57.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.grpc:grpc-api:1.57.0", "com.google.code.findbugs:jsr305:3.0.2", "com.google.protobuf:protobuf-java:3.22.3", "com.google.api.grpc:proto-google-common-protos:2.17.0", "io.grpc:grpc-protobuf-lite:1.57.0", "com.google.guava:guava:32.0.1-jre" ]
+        },
+        "com.google.api.grpc:proto-google-common-protos:2.17.0" : {
+          "package_url" : "pkg:maven/com.google.api.grpc/proto-google-common-protos@2.17.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.protobuf:protobuf-java:3.22.3" ]
+        },
+        "io.grpc:grpc-protobuf-lite:1.57.0" : {
+          "package_url" : "pkg:maven/io.grpc/grpc-protobuf-lite@1.57.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.grpc:grpc-api:1.57.0", "com.google.code.findbugs:jsr305:3.0.2", "com.google.guava:guava:32.0.1-jre" ]
+        },
+        "io.grpc:grpc-stub:1.57.0" : {
+          "package_url" : "pkg:maven/io.grpc/grpc-stub@1.57.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "io.grpc:grpc-api:1.57.0", "com.google.guava:guava:32.0.1-jre", "com.google.errorprone:error_prone_annotations:2.18.0" ]
+        },
+        "javax.annotation:javax.annotation-api:1.3.2" : {
+          "package_url" : "pkg:maven/javax.annotation/javax.annotation-api@1.3.2",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android.tools.build:transform-api:2.0.0-deprecated-use-gradle-api" : {
+          "package_url" : "pkg:maven/com.android.tools.build/transform-api@2.0.0-deprecated-use-gradle-api?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.ow2.asm:asm-analysis:9.6" : {
+          "package_url" : "pkg:maven/org.ow2.asm/asm-analysis@9.6",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.ow2.asm:asm-tree:9.6" ]
+        },
+        "org.ow2.asm:asm-tree:9.6" : {
+          "package_url" : "pkg:maven/org.ow2.asm/asm-tree@9.6",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.ow2.asm:asm:9.6" ]
+        },
+        "org.ow2.asm:asm-commons:9.6" : {
+          "package_url" : "pkg:maven/org.ow2.asm/asm-commons@9.6",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.ow2.asm:asm:9.6", "org.ow2.asm:asm-tree:9.6" ]
+        },
+        "org.ow2.asm:asm-util:9.6" : {
+          "package_url" : "pkg:maven/org.ow2.asm/asm-util@9.6",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.ow2.asm:asm:9.6", "org.ow2.asm:asm-tree:9.6", "org.ow2.asm:asm-analysis:9.6" ]
+        },
+        "net.sf.jopt-simple:jopt-simple:4.9" : {
+          "package_url" : "pkg:maven/net.sf.jopt-simple/jopt-simple@4.9",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android.tools.build:bundletool:1.16.0" : {
+          "package_url" : "pkg:maven/com.android.tools.build/bundletool@1.16.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools.build:aapt2-proto:8.5.0-11315950", "com.google.auto.value:auto-value-annotations:1.6.2", "com.google.errorprone:error_prone_annotations:2.18.0", "com.google.guava:guava:32.0.1-jre", "com.google.protobuf:protobuf-java:3.22.3", "com.google.protobuf:protobuf-java-util:3.22.3", "com.google.dagger:dagger:2.28.3", "javax.inject:javax.inject:1", "org.bitbucket.b_c:jose4j:0.9.5", "org.slf4j:slf4j-api:1.7.30" ]
+        },
+        "com.google.auto.value:auto-value-annotations:1.6.2" : {
+          "package_url" : "pkg:maven/com.google.auto.value/auto-value-annotations@1.6.2",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.google.protobuf:protobuf-java-util:3.22.3" : {
+          "package_url" : "pkg:maven/com.google.protobuf/protobuf-java-util@3.22.3",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.protobuf:protobuf-java:3.22.3", "com.google.code.findbugs:jsr305:3.0.2", "com.google.code.gson:gson:2.10.1", "com.google.errorprone:error_prone_annotations:2.18.0", "com.google.guava:guava:32.0.1-jre", "com.google.j2objc:j2objc-annotations:2.8" ]
+        },
+        "com.google.dagger:dagger:2.28.3" : {
+          "package_url" : "pkg:maven/com.google.dagger/dagger@2.28.3",
+          "relationship" : "indirect",
+          "dependencies" : [ "javax.inject:javax.inject:1" ]
+        },
+        "org.bitbucket.b_c:jose4j:0.9.5" : {
+          "package_url" : "pkg:maven/org.bitbucket.b_c/jose4j@0.9.5",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.slf4j:slf4j-api:1.7.30" : {
+          "package_url" : "pkg:maven/org.slf4j/slf4j-api@1.7.30",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta10" : {
+          "package_url" : "pkg:maven/com.android.tools.build.jetifier/jetifier-processor@1.0.0-beta10?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools.build.jetifier:jetifier-core:1.0.0-beta10", "org.ow2.asm:asm:9.6", "org.ow2.asm:asm-util:9.6", "org.ow2.asm:asm-commons:9.6", "org.jdom:jdom2:2.0.6", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "org.jdom:jdom2:2.0.6" : {
+          "package_url" : "pkg:maven/org.jdom/jdom2@2.0.6",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.google.crypto.tink:tink:1.7.0" : {
+          "package_url" : "pkg:maven/com.google.crypto.tink/tink@1.7.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.protobuf:protobuf-java:3.22.3", "com.google.code.gson:gson:2.10.1" ]
+        },
+        "com.google.testing.platform:core-proto:0.0.9-alpha02" : {
+          "package_url" : "pkg:maven/com.google.testing.platform/core-proto@0.0.9-alpha02?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.google.flatbuffers:flatbuffers-java:1.12.0" : {
+          "package_url" : "pkg:maven/com.google.flatbuffers/flatbuffers-java@1.12.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.tensorflow:tensorflow-lite-metadata:0.1.0-rc2" : {
+          "package_url" : "pkg:maven/org.tensorflow/tensorflow-lite-metadata@0.1.0-rc2",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.checkerframework:checker-qual:3.33.0", "com.google.flatbuffers:flatbuffers-java:1.12.0" ]
+        },
+        "com.android.tools.build:builder:8.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.build/builder@8.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools.build:builder-model:8.5.0", "com.android.tools.build:builder-test-api:8.5.0", "com.android.tools:sdklib:31.5.0", "com.android.tools:sdk-common:31.5.0", "com.android.tools:common:31.5.0", "com.android.tools.ddms:ddmlib:31.5.0", "com.android:signflinger:8.5.0", "com.android.tools.analytics-library:protos:31.5.0", "com.android.tools.analytics-library:tracker:31.5.0", "com.android.tools.layoutlib:layoutlib-api:31.5.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "org.bouncycastle:bcpkix-jdk18on:1.77", "commons-codec:commons-codec:1.11", "org.bouncycastle:bcprov-jdk18on:1.77", "javax.inject:javax.inject:1", "org.ow2.asm:asm-commons:9.6", "com.android.tools.build:manifest-merger:31.5.0", "com.android:zipflinger:8.5.0", "com.android.tools.build:apksig:8.5.0", "com.android.tools.build:apkzlib:8.5.0", "com.squareup:javawriter:2.5.0" ]
+        },
+        "com.android:signflinger:8.5.0" : {
+          "package_url" : "pkg:maven/com.android/signflinger@8.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools:annotations:31.5.0", "com.android.tools.build:apksig:8.5.0", "com.android:zipflinger:8.5.0" ]
+        },
+        "com.android.tools.build:apksig:8.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.build/apksig@8.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android:zipflinger:8.5.0" : {
+          "package_url" : "pkg:maven/com.android/zipflinger@8.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools:annotations:31.5.0" ]
+        },
+        "com.android.tools.analytics-library:tracker:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.analytics-library/tracker@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools.analytics-library:protos:31.5.0", "com.android.tools.analytics-library:shared:31.5.0", "com.android.tools:annotations:31.5.0", "com.android.tools:common:31.5.0", "com.google.guava:guava:32.0.1-jre", "com.google.protobuf:protobuf-java:3.22.3", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20" ]
+        },
+        "com.android.tools.build:manifest-merger:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.build/manifest-merger@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools:common:31.5.0", "com.android.tools:sdklib:31.5.0", "com.android.tools:sdk-common:31.5.0", "com.google.code.gson:gson:2.10.1", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "net.sf.kxml:kxml2:2.3.0" ]
+        },
+        "com.android.tools.build:apkzlib:8.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.build/apkzlib@8.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools.build:apksig:8.5.0", "com.google.code.findbugs:jsr305:3.0.2", "com.google.guava:guava:32.0.1-jre", "org.bouncycastle:bcpkix-jdk18on:1.77", "org.bouncycastle:bcprov-jdk18on:1.77" ]
+        },
+        "com.squareup:javawriter:2.5.0" : {
+          "package_url" : "pkg:maven/com.squareup/javawriter@2.5.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android.tools.build:gradle-api:8.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.build/gradle-api@8.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools.build:builder-test-api:8.5.0", "com.google.guava:guava:32.0.1-jre", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "org.ow2.asm:asm:9.6" ]
+        },
+        "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-gradle-plugin@1.9.0",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-gradle-plugin-api:1.9.0", "org.jetbrains.kotlin:kotlin-gradle-plugins-bom:1.9.0", "org.jetbrains.kotlin:kotlin-gradle-plugin-model:1.9.0", "org.jetbrains.kotlin:kotlin-tooling-core:1.9.0", "org.jetbrains.kotlin:kotlin-gradle-plugin-idea:1.9.0", "org.jetbrains.kotlin:kotlin-gradle-plugin-idea-proto:1.9.0", "org.jetbrains.kotlin:kotlin-util-klib:1.9.0", "org.jetbrains.kotlin:kotlin-klib-commonizer-api:1.9.0", "org.jetbrains.kotlin:kotlin-project-model:1.9.0", "org.jetbrains.kotlin:kotlin-build-tools-api:1.9.0", "org.jetbrains.kotlin:kotlin-compiler-embeddable:1.9.0", "org.jetbrains.kotlin:kotlin-android-extensions:1.9.0", "org.jetbrains.kotlin:kotlin-compiler-runner:1.9.0", "org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable:1.9.0", "org.jetbrains.kotlin:kotlin-scripting-compiler-impl-embeddable:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-gradle-plugin-api:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-gradle-plugin-api@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-gradle-plugins-bom:1.9.0", "org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:1.9.0", "org.jetbrains.kotlin:kotlin-native-utils:1.9.0", "org.jetbrains.kotlin:kotlin-project-model:1.9.0", "org.jetbrains.kotlin:kotlin-tooling-core:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-gradle-plugins-bom:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-gradle-plugins-bom@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-gradle-plugin-api:1.9.0", "org.jetbrains.kotlin:kotlin-gradle-plugin-model:1.9.0", "org.jetbrains.kotlin:kotlin-tooling-core:1.9.0", "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0", "org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:1.9.0", "org.jetbrains.kotlin:kotlin-native-utils:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-gradle-plugin-model:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-gradle-plugin-model@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-gradle-plugin-api:1.9.0", "org.jetbrains.kotlin:kotlin-gradle-plugins-bom:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-tooling-core:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-tooling-core@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-gradle-plugin-annotations@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlin:kotlin-native-utils:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-native-utils@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-util-io:1.9.0", "org.jetbrains.kotlin:kotlin-util-klib:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-util-io:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-util-io@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlin:kotlin-util-klib:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-util-klib@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-util-io:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-project-model:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-project-model@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-tooling-core:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-gradle-plugin-idea:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-gradle-plugin-idea@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-tooling-core:1.9.0", "org.jetbrains.kotlin:kotlin-gradle-plugin-annotations:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-gradle-plugin-idea-proto:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-gradle-plugin-idea-proto@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-gradle-plugin-idea:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-klib-commonizer-api:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-klib-commonizer-api@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-native-utils:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-build-tools-api:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-build-tools-api@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlin:kotlin-compiler-embeddable:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-compiler-embeddable@1.9.0",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-daemon-embeddable:1.9.0", "org.jetbrains.intellij.deps:trove4j:1.0.20200330", "org.jetbrains.kotlin:kotlin-stdlib:1.9.0", "org.jetbrains.kotlin:kotlin-script-runtime:1.9.0", "org.jetbrains.kotlin:kotlin-reflect:1.6.10" ]
+        },
+        "org.jetbrains.kotlin:kotlin-daemon-embeddable:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-daemon-embeddable@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlin:kotlin-android-extensions:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-android-extensions@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-compiler-embeddable:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-compiler-runner:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-compiler-runner@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-daemon-client:1.9.0", "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.0", "org.jetbrains.kotlin:kotlin-compiler-embeddable:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-daemon-client:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-daemon-client@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm@1.5.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-scripting-compiler-embeddable@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-scripting-compiler-impl-embeddable:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-scripting-compiler-impl-embeddable:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-scripting-compiler-impl-embeddable@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-scripting-common:1.9.0", "org.jetbrains.kotlin:kotlin-scripting-jvm:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-scripting-common:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-scripting-common@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlin:kotlin-scripting-jvm:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-scripting-jvm@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-scripting-common:1.9.0" ]
+        },
+        "com.google.devtools.ksp:symbol-processing-gradle-plugin:1.8.10-1.0.9" : {
+          "package_url" : "pkg:maven/com.google.devtools.ksp/symbol-processing-gradle-plugin@1.8.10-1.0.9",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-gradle-plugin-api:1.9.0", "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20" ]
+        },
+        "com.google.dagger:hilt-android-gradle-plugin:2.48" : {
+          "package_url" : "pkg:maven/com.google.dagger/hilt-android-gradle-plugin@2.48",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "org.ow2.asm:asm:9.6", "com.squareup:javapoet:1.13.0" ]
+        },
+        "com.google.dagger:hilt-android-compiler:2.48" : {
+          "package_url" : "pkg:maven/com.google.dagger/hilt-android-compiler@2.48",
+          "relationship" : "direct",
+          "dependencies" : [ "com.google.dagger:dagger:2.48", "com.google.dagger:dagger-compiler:2.48", "com.google.dagger:dagger-spi:2.48", "com.google.code.findbugs:jsr305:3.0.2", "com.google.devtools.ksp:symbol-processing-api:1.9.0-1.0.12", "com.google.guava:failureaccess:1.0.1", "com.google.guava:guava:31.0.1-jre", "com.squareup:javapoet:1.13.0", "javax.inject:javax.inject:1", "net.ltgt.gradle.incap:incap:0.2", "org.jetbrains.kotlin:kotlin-stdlib:1.9.0" ]
+        },
+        "com.google.dagger:dagger:2.48" : {
+          "package_url" : "pkg:maven/com.google.dagger/dagger@2.48",
+          "relationship" : "direct",
+          "dependencies" : [ "javax.inject:javax.inject:1" ]
+        },
+        "com.google.dagger:dagger-compiler:2.48" : {
+          "package_url" : "pkg:maven/com.google.dagger/dagger-compiler@2.48",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.dagger:dagger:2.48", "com.google.dagger:dagger-producers:2.48", "com.google.dagger:dagger-spi:2.48", "com.google.code.findbugs:jsr305:3.0.2", "com.google.devtools.ksp:symbol-processing-api:1.9.0-1.0.12", "com.google.googlejavaformat:google-java-format:1.5", "com.google.guava:failureaccess:1.0.1", "com.google.guava:guava:31.0.1-jre", "com.squareup:javapoet:1.13.0", "com.squareup:kotlinpoet:1.11.0", "javax.inject:javax.inject:1", "net.ltgt.gradle.incap:incap:0.2", "org.checkerframework:checker-compat-qual:2.5.5", "org.jetbrains.kotlin:kotlin-stdlib:1.9.0" ]
+        },
+        "com.google.dagger:dagger-producers:2.48" : {
+          "package_url" : "pkg:maven/com.google.dagger/dagger-producers@2.48",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.dagger:dagger:2.48", "com.google.guava:failureaccess:1.0.1", "com.google.guava:guava:31.0.1-jre", "javax.inject:javax.inject:1", "org.checkerframework:checker-compat-qual:2.5.5" ]
+        },
+        "com.google.guava:guava:31.0.1-jre" : {
+          "package_url" : "pkg:maven/com.google.guava/guava@31.0.1-jre",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.guava:failureaccess:1.0.1", "com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava", "com.google.code.findbugs:jsr305:3.0.2", "org.checkerframework:checker-qual:3.12.0", "com.google.errorprone:error_prone_annotations:2.7.1", "com.google.j2objc:j2objc-annotations:1.3" ]
+        },
+        "org.checkerframework:checker-qual:3.12.0" : {
+          "package_url" : "pkg:maven/org.checkerframework/checker-qual@3.12.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.google.errorprone:error_prone_annotations:2.7.1" : {
+          "package_url" : "pkg:maven/com.google.errorprone/error_prone_annotations@2.7.1",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.google.j2objc:j2objc-annotations:1.3" : {
+          "package_url" : "pkg:maven/com.google.j2objc/j2objc-annotations@1.3",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.checkerframework:checker-compat-qual:2.5.5" : {
+          "package_url" : "pkg:maven/org.checkerframework/checker-compat-qual@2.5.5",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.google.dagger:dagger-spi:2.48" : {
+          "package_url" : "pkg:maven/com.google.dagger/dagger-spi@2.48",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.dagger:dagger:2.48", "com.google.dagger:dagger-producers:2.48", "com.google.code.findbugs:jsr305:3.0.2", "com.google.devtools.ksp:symbol-processing-api:1.9.0-1.0.12", "com.google.guava:failureaccess:1.0.1", "com.google.guava:guava:31.0.1-jre", "com.squareup:javapoet:1.13.0", "javax.inject:javax.inject:1" ]
+        },
+        "com.google.devtools.ksp:symbol-processing-api:1.9.0-1.0.12" : {
+          "package_url" : "pkg:maven/com.google.devtools.ksp/symbol-processing-api@1.9.0-1.0.12",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@1.9.0",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.0", "org.jetbrains:annotations:13.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-common@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.google.googlejavaformat:google-java-format:1.5" : {
+          "package_url" : "pkg:maven/com.google.googlejavaformat/google-java-format@1.5",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.guava:guava:31.0.1-jre", "com.google.errorprone:javac-shaded:9-dev-r4023-3" ]
+        },
+        "com.google.errorprone:javac-shaded:9-dev-r4023-3" : {
+          "package_url" : "pkg:maven/com.google.errorprone/javac-shaded@9-dev-r4023-3",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.squareup:kotlinpoet:1.11.0" : {
+          "package_url" : "pkg:maven/com.squareup/kotlinpoet@1.11.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-reflect:1.6.10", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10" ]
+        },
+        "org.jetbrains.kotlin:kotlin-reflect:1.6.10" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-reflect@1.6.10",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk8@1.6.10",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.10" ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.10" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk7@1.6.10",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.0" ]
+        },
+        "net.ltgt.gradle.incap:incap:0.2" : {
+          "package_url" : "pkg:maven/net.ltgt.gradle.incap/incap@0.2",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android.tools.utp:android-device-provider-ddmlib:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-device-provider-ddmlib@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "com.android.tools:common:31.5.0", "com.android.tools.ddms:ddmlib:31.5.0", "com.google.protobuf:protobuf-java:3.22.3", "com.android.tools.utp:android-device-provider-ddmlib-proto:31.5.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4", "com.google.testing.platform:core-proto:0.0.9-alpha02", "com.google.testing.platform:android-device-provider-local:0.0.9-alpha02" ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib:1.9.20" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@1.9.20",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains:annotations:23.0.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.20", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.20", "org.jetbrains:annotations:13.0" ]
+        },
+        "org.jetbrains:annotations:23.0.0" : {
+          "package_url" : "pkg:maven/org.jetbrains/annotations@23.0.0",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.20" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-common@1.9.20",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.20" ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core@1.6.4",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4" ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm@1.6.4",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.6.4", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.20" ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.6.4" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-bom@1.6.4",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4" ]
+        },
+        "com.google.testing.platform:android-device-provider-local:0.0.9-alpha02" : {
+          "package_url" : "pkg:maven/com.google.testing.platform/android-device-provider-local@0.0.9-alpha02?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "com.android.tools.utp:android-device-provider-gradle:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-device-provider-gradle@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "com.android.tools:common:31.5.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "com.google.protobuf:protobuf-java:3.22.3", "com.android.tools.utp:android-device-provider-gradle-proto:31.5.0", "com.google.testing.platform:core-proto:0.0.9-alpha02", "com.google.testing.platform:android-device-provider-local:0.0.9-alpha02" ]
+        },
+        "com.google.testing.platform:android-driver-instrumentation:0.0.9-alpha02" : {
+          "package_url" : "pkg:maven/com.google.testing.platform/android-driver-instrumentation@0.0.9-alpha02?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "com.google.testing.platform:android-test-plugin:0.0.9-alpha02" : {
+          "package_url" : "pkg:maven/com.google.testing.platform/android-test-plugin@0.0.9-alpha02?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "com.android.tools.utp:android-test-plugin-host-additional-test-output:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-host-additional-test-output@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "com.android.tools:common:31.5.0", "com.android.tools.utp:utp-common:31.5.0", "com.android.tools.utp:android-test-plugin-host-additional-test-output-proto:31.5.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "com.google.protobuf:protobuf-java:3.22.3", "com.google.testing.platform:android-device-provider-local:0.0.9-alpha02" ]
+        },
+        "com.android.tools.utp:utp-common:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/utp-common@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.android.tools:common:31.5.0", "com.google.testing.platform:launcher:0.0.9-alpha02", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20" ]
+        },
+        "com.google.testing.platform:launcher:0.0.9-alpha02" : {
+          "package_url" : "pkg:maven/com.google.testing.platform/launcher@0.0.9-alpha02?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "com.android.tools.utp:android-test-plugin-host-apk-installer:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-host-apk-installer@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "com.android.tools:common:31.5.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "com.google.protobuf:protobuf-java:3.22.3", "com.android.tools.utp:android-test-plugin-host-apk-installer-proto:31.5.0", "com.google.testing.platform:android-device-provider-local:0.0.9-alpha02", "com.google.testing.platform:core-proto:0.0.9-alpha02" ]
+        },
+        "com.android.tools.utp:android-test-plugin-host-coverage:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-host-coverage@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "com.android.tools:common:31.5.0", "com.android.tools.utp:android-test-plugin-host-coverage-proto:31.5.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "com.google.protobuf:protobuf-java:3.22.3", "com.google.testing.platform:android-device-provider-local:0.0.9-alpha02" ]
+        },
+        "com.android.tools.utp:android-test-plugin-host-device-info:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-host-device-info@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "com.android.tools:common:31.5.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "com.google.protobuf:protobuf-java:3.22.3", "com.android.tools.utp:utp-common:31.5.0", "com.android.tools.utp:android-test-plugin-host-device-info-proto:31.5.0", "com.google.testing.platform:android-device-provider-local:0.0.9-alpha02" ]
+        },
+        "com.android.tools.utp:android-test-plugin-host-device-info-proto:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-host-device-info-proto@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.protobuf:protobuf-java:3.22.3" ]
+        },
+        "com.android.tools.utp:android-test-plugin-host-emulator-control:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-host-emulator-control@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "com.android.tools:common:31.5.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4", "commons-io:commons-io:2.13.0", "com.google.code.gson:gson:2.10.1", "com.google.protobuf:protobuf-java:3.22.3", "com.google.guava:guava:32.0.1-jre", "com.android.tools.utp:android-test-plugin-host-emulator-control-proto:31.5.0", "com.android.tools.emulator:proto:31.5.0", "com.google.testing.platform:android-device-provider-local:0.0.9-alpha02", "com.google.crypto.tink:tink:1.7.0", "com.google.testing.platform:android-driver-instrumentation:0.0.9-alpha02" ]
+        },
+        "com.android.tools.emulator:proto:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.emulator/proto@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "com.google.code.gson:gson:2.10.1", "com.google.guava:guava:32.0.1-jre", "io.grpc:grpc-core:1.57.0", "io.grpc:grpc-netty:1.57.0", "io.grpc:grpc-protobuf:1.57.0", "io.grpc:grpc-stub:1.57.0", "javax.annotation:javax.annotation-api:1.3.2", "com.google.protobuf:protobuf-java:3.22.3" ]
+        },
+        "com.android.tools.utp:android-test-plugin-host-logcat:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-host-logcat@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "com.android.tools:common:31.5.0", "com.android.tools.utp:utp-common:31.5.0", "com.android.tools.utp:android-test-plugin-host-logcat-proto:31.5.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "com.google.protobuf:protobuf-java:3.22.3", "com.google.testing.platform:android-device-provider-local:0.0.9-alpha02" ]
+        },
+        "com.android.tools.utp:android-test-plugin-host-retention:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-host-retention@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "com.android.tools:common:31.5.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4", "commons-io:commons-io:2.13.0", "com.google.code.gson:gson:2.10.1", "io.grpc:grpc-core:1.57.0", "io.grpc:grpc-netty:1.57.0", "io.grpc:grpc-protobuf:1.57.0", "io.grpc:grpc-stub:1.57.0", "com.google.protobuf:protobuf-java:3.22.3", "com.google.guava:guava:32.0.1-jre", "com.android.tools.utp:utp-common:31.5.0", "com.android.tools.utp:android-test-plugin-host-retention-proto:31.5.0", "com.android.tools.emulator:proto:31.5.0", "com.google.testing.platform:android-device-provider-local:0.0.9-alpha02" ]
+        },
+        "com.android.tools.utp:android-test-plugin-result-listener-gradle:31.5.0" : {
+          "package_url" : "pkg:maven/com.android.tools.utp/android-test-plugin-result-listener-gradle@31.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "com.android.tools:common:31.5.0", "com.android.tools.utp:android-test-plugin-result-listener-gradle-proto:31.5.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4", "com.google.code.gson:gson:2.10.1", "io.grpc:grpc-core:1.57.0", "io.grpc:grpc-protobuf:1.57.0", "io.grpc:grpc-stub:1.57.0", "io.grpc:grpc-netty:1.57.0", "com.google.protobuf:protobuf-java:3.22.3", "com.google.guava:guava:32.0.1-jre", "com.google.testing.platform:core-proto:0.0.9-alpha02", "com.google.testing.platform:android-device-provider-local:0.0.9-alpha02" ]
+        },
+        "com.google.testing.platform:core:0.0.9-alpha02" : {
+          "package_url" : "pkg:maven/com.google.testing.platform/core@0.0.9-alpha02?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "androidx.test.ext:junit:1.2.1" : {
+          "package_url" : "pkg:maven/androidx.test.ext/junit@1.2.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.7.0", "androidx.test.services:storage:1.5.0", "androidx.test:core:1.6.1", "androidx.test:monitor:1.7.1", "junit:junit:4.13.2", "org.jetbrains.kotlin:kotlin-stdlib:1.8.22", "androidx.annotation:annotation:1.8.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.annotation:annotation:1.7.0" : {
+          "package_url" : "pkg:maven/androidx.annotation/annotation@1.7.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.8.22" ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib:1.8.22" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@1.8.22",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22", "org.jetbrains:annotations:23.0.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-common@1.8.22",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "androidx.test.services:storage:1.5.0" : {
+          "package_url" : "pkg:maven/androidx.test.services/storage@1.5.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.7.0", "androidx.test:monitor:1.7.1", "androidx.annotation:annotation:1.8.0" ]
+        },
+        "androidx.test:monitor:1.7.1" : {
+          "package_url" : "pkg:maven/androidx.test/monitor@1.7.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.7.0", "androidx.tracing:tracing:1.1.0", "org.jetbrains.kotlin:kotlin-stdlib:1.8.22", "androidx.annotation:annotation:1.8.0", "androidx.tracing:tracing:1.0.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.tracing:tracing:1.1.0" : {
+          "package_url" : "pkg:maven/androidx.tracing/tracing@1.1.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "androidx.test:core:1.6.1" : {
+          "package_url" : "pkg:maven/androidx.test/core@1.6.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.7.0", "androidx.concurrent:concurrent-futures-ktx:1.1.0", "androidx.lifecycle:lifecycle-common:2.3.1", "androidx.test:monitor:1.7.1", "androidx.tracing:tracing:1.1.0", "com.google.guava:listenablefuture:1.0", "org.jetbrains.kotlin:kotlin-stdlib:1.8.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.1", "androidx.annotation:annotation:1.8.0", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.tracing:tracing:1.0.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.3" ]
+        },
+        "androidx.concurrent:concurrent-futures-ktx:1.1.0" : {
+          "package_url" : "pkg:maven/androidx.concurrent/concurrent-futures-ktx@1.1.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.concurrent:concurrent-futures:1.1.0", "org.jetbrains.kotlin:kotlin-stdlib:1.8.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3" ]
+        },
+        "androidx.concurrent:concurrent-futures:1.1.0" : {
+          "package_url" : "pkg:maven/androidx.concurrent/concurrent-futures@1.1.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.7.0", "com.google.guava:listenablefuture:1.0", "androidx.annotation:annotation:1.8.0" ]
+        },
+        "com.google.guava:listenablefuture:1.0" : {
+          "package_url" : "pkg:maven/com.google.guava/listenablefuture@1.0",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core@1.7.1",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20", "org.jetbrains.kotlinx:atomicfu:0.20.2" ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk8@1.8.20",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.8.22", "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.20" ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.20" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk7@1.8.20",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.8.22" ]
+        },
+        "org.jetbrains.kotlinx:atomicfu:0.20.2" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/atomicfu@0.20.2",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22" ]
+        },
+        "androidx.lifecycle:lifecycle-common:2.3.1" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-common@2.3.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "androidx.annotation:annotation:1.7.0" ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.1" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm@1.7.1",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains:annotations:23.0.0", "org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.1", "org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20" ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.1" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-bom@1.7.1",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.1", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1", "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1" ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-test@1.7.1",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1", "org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22", "org.jetbrains.kotlinx:atomicfu:0.20.2" ]
+        },
+        "junit:junit:4.13.2" : {
+          "package_url" : "pkg:maven/junit/junit@4.13.2",
+          "relationship" : "direct",
+          "dependencies" : [ "org.hamcrest:hamcrest-core:1.3" ]
+        },
+        "org.hamcrest:hamcrest-core:1.3" : {
+          "package_url" : "pkg:maven/org.hamcrest/hamcrest-core@1.3",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "androidx.test.espresso:espresso-core:3.6.1" : {
+          "package_url" : "pkg:maven/androidx.test.espresso/espresso-core@3.6.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.7.0", "androidx.concurrent:concurrent-futures:1.1.0", "androidx.test.espresso:espresso-idling-resource:3.6.1", "androidx.test.services:storage:1.5.0", "androidx.test:core:1.6.1", "androidx.test:monitor:1.7.1", "androidx.test:runner:1.6.1", "com.google.code.findbugs:jsr305:3.0.2", "com.google.errorprone:error_prone_annotations:2.18.0", "com.google.guava:listenablefuture:1.0", "javax.inject:javax.inject:1", "junit:junit:4.13.2", "org.hamcrest:hamcrest-core:1.3", "org.hamcrest:hamcrest-library:1.3", "org.jetbrains.kotlin:kotlin-stdlib:1.8.22", "androidx.annotation:annotation:1.8.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.test.espresso:espresso-idling-resource:3.6.1" : {
+          "package_url" : "pkg:maven/androidx.test.espresso/espresso-idling-resource@3.6.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "androidx.test:runner:1.6.1" : {
+          "package_url" : "pkg:maven/androidx.test/runner@1.6.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.7.0", "androidx.test.services:storage:1.5.0", "androidx.test:monitor:1.7.1", "androidx.tracing:tracing:1.1.0", "junit:junit:4.13.2", "androidx.annotation:annotation:1.8.0", "androidx.tracing:tracing:1.0.0" ]
+        },
+        "org.hamcrest:hamcrest-library:1.3" : {
+          "package_url" : "pkg:maven/org.hamcrest/hamcrest-library@1.3",
+          "relationship" : "direct",
+          "dependencies" : [ "org.hamcrest:hamcrest-core:1.3" ]
+        },
+        "androidx.compose:compose-bom:2024.04.01" : {
+          "package_url" : "pkg:maven/androidx.compose/compose-bom@2024.04.01?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.ui:ui-test-junit4:1.6.6", "androidx.compose.ui:ui-test:1.6.6", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.runtime:runtime-saveable:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.compose.material3:material3:1.2.1", "androidx.compose.ui:ui-test-manifest:1.6.6", "androidx.compose.ui:ui-tooling:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6", "androidx.compose.material3:material3-android:1.2.1", "androidx.compose.runtime:runtime-android:1.6.6", "androidx.compose.runtime:runtime-saveable-android:1.6.6", "androidx.compose.ui:ui-android:1.6.6", "androidx.compose.ui:ui-graphics-android:1.6.6", "androidx.compose.ui:ui-tooling-android:1.6.6", "androidx.compose.ui:ui-tooling-preview-android:1.6.6", "androidx.compose.animation:animation-core:1.6.6", "androidx.compose.foundation:foundation:1.6.6", "androidx.compose.foundation:foundation-layout:1.6.6", "androidx.compose.material:material-icons-core:1.6.6", "androidx.compose.material:material-ripple:1.6.6", "androidx.compose.animation:animation:1.6.6", "androidx.compose.material:material:1.6.6", "androidx.compose.ui:ui-tooling-data:1.6.6", "androidx.compose.ui:ui-text-android:1.6.6", "androidx.compose.ui:ui-util-android:1.6.6", "androidx.compose.animation:animation-core-android:1.6.6", "androidx.compose.foundation:foundation-android:1.6.6", "androidx.compose.foundation:foundation-layout-android:1.6.6", "androidx.compose.material:material-icons-core-android:1.6.6", "androidx.compose.material:material-ripple-android:1.6.6", "androidx.compose.ui:ui-geometry-android:1.6.6", "androidx.compose.ui:ui-unit-android:1.6.6", "androidx.compose.ui:ui-tooling-data-android:1.6.6", "androidx.compose.animation:animation-android:1.6.6", "androidx.compose.material:material-android:1.6.6", "androidx.compose.ui:ui-test-junit4-android:1.6.6", "androidx.compose.ui:ui-test-android:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-test-junit4:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-test-junit4@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.ui:ui-test:1.6.6", "junit:junit:4.13.2", "org.jetbrains.kotlin:kotlin-stdlib:1.8.22", "org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.compose.ui:ui-test-junit4-android:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-test:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-test@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "org.jetbrains.kotlin:kotlin-stdlib:1.8.22", "org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1", "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1", "androidx.compose.ui:ui-test-junit4:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.compose.ui:ui-test-android:1.6.6" ]
+        },
+        "androidx.compose.runtime:runtime:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.runtime/runtime@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1", "androidx.compose.runtime:runtime-saveable:1.6.6", "androidx.compose.runtime:runtime-android:1.6.6", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3" ]
+        },
+        "androidx.compose.runtime:runtime-saveable:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.runtime/runtime-saveable@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.runtime:runtime-saveable-android:1.6.6" ]
+        },
+        "androidx.compose.ui:ui:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.7.0", "androidx.compose.runtime:runtime-saveable:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.compose.ui:ui-test:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6", "androidx.compose.ui:ui-android:1.6.6", "androidx.annotation:annotation:1.8.0", "androidx.compose.ui:ui-tooling-preview:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-geometry:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-geometry@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-test:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.compose.ui:ui-geometry-android:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-graphics:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-graphics@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.7.0", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-test:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.compose.ui:ui-graphics-android:1.6.6", "androidx.annotation:annotation:1.8.0", "androidx.compose.ui:ui-tooling-preview:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-unit:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-unit@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.7.0", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-test:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.compose.ui:ui-unit-android:1.6.6", "androidx.annotation:annotation:1.8.0", "androidx.compose.ui:ui-tooling-preview:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-text:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-text@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-test:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.compose.ui:ui-text-android:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-util:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-util@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-test:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-util-android:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6" ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk8@1.9.0",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.0", "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk7@1.9.0",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-common@1.9.22",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.compose.ui:ui-tooling:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-tooling@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.ui:ui-tooling-android:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-tooling-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-tooling-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.activity:activity-compose:1.9.1", "androidx.annotation:annotation:1.8.0", "androidx.compose.animation:animation:1.6.6", "androidx.compose.material:material:1.6.6", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-tooling-data:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.savedstate:savedstate-ktx:1.2.1", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-test-manifest:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.compose.ui:ui-test:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6" ]
+        },
+        "androidx.activity:activity-compose:1.9.1" : {
+          "package_url" : "pkg:maven/androidx.activity/activity-compose@1.9.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.activity:activity-ktx:1.9.1", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.runtime:runtime-saveable:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.activity:activity:1.9.1" ]
+        },
+        "androidx.activity:activity-ktx:1.9.1" : {
+          "package_url" : "pkg:maven/androidx.activity/activity-ktx@1.9.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.activity:activity:1.9.1", "androidx.core:core-ktx:1.13.1", "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.savedstate:savedstate-ktx:1.2.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.activity:activity-compose:1.9.1" ]
+        },
+        "androidx.activity:activity:1.9.1" : {
+          "package_url" : "pkg:maven/androidx.activity/activity@1.9.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.collection:collection:1.4.0", "androidx.core:core:1.13.1", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.profileinstaller:profileinstaller:1.3.1", "androidx.savedstate:savedstate:1.2.1", "androidx.tracing:tracing:1.0.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.activity:activity-compose:1.9.1", "androidx.activity:activity-ktx:1.9.1" ]
+        },
+        "androidx.annotation:annotation:1.8.0" : {
+          "package_url" : "pkg:maven/androidx.annotation/annotation@1.8.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation-jvm:1.8.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.annotation:annotation-jvm:1.8.0" : {
+          "package_url" : "pkg:maven/androidx.annotation/annotation-jvm@1.8.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.collection:collection:1.4.0" : {
+          "package_url" : "pkg:maven/androidx.collection/collection@1.4.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.collection:collection-jvm:1.4.0", "androidx.annotation:annotation:1.8.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.collection:collection-ktx:1.4.0" ]
+        },
+        "androidx.collection:collection-jvm:1.4.0" : {
+          "package_url" : "pkg:maven/androidx.collection/collection-jvm@1.4.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.collection:collection-ktx:1.4.0" ]
+        },
+        "androidx.collection:collection-ktx:1.4.0" : {
+          "package_url" : "pkg:maven/androidx.collection/collection-ktx@1.4.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.collection:collection:1.4.0" ]
+        },
+        "androidx.core:core:1.13.1" : {
+          "package_url" : "pkg:maven/androidx.core/core@1.13.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.annotation:annotation-experimental:1.4.0", "androidx.collection:collection:1.4.0", "androidx.concurrent:concurrent-futures:1.1.0", "androidx.interpolator:interpolator:1.0.0", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.versionedparcelable:versionedparcelable:1.1.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.core:core-ktx:1.13.1" ]
+        },
+        "androidx.annotation:annotation-experimental:1.4.0" : {
+          "package_url" : "pkg:maven/androidx.annotation/annotation-experimental@1.4.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.interpolator:interpolator:1.0.0" : {
+          "package_url" : "pkg:maven/androidx.interpolator/interpolator@1.0.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0" ]
+        },
+        "androidx.lifecycle:lifecycle-runtime:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-runtime@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.lifecycle:lifecycle-runtime-android:2.8.4", "androidx.annotation:annotation:1.8.0", "androidx.arch.core:core-common:2.2.0", "androidx.lifecycle:lifecycle-common:2.8.4", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4" ]
+        },
+        "androidx.lifecycle:lifecycle-runtime-android:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-runtime-android@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.arch.core:core-common:2.2.0", "androidx.arch.core:core-runtime:2.2.0", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.profileinstaller:profileinstaller:1.3.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3", "androidx.lifecycle:lifecycle-common-java8:2.8.4", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4", "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.lifecycle:lifecycle-process:2.8.4" ]
+        },
+        "androidx.arch.core:core-common:2.2.0" : {
+          "package_url" : "pkg:maven/androidx.arch.core/core-common@2.2.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0" ]
+        },
+        "androidx.arch.core:core-runtime:2.2.0" : {
+          "package_url" : "pkg:maven/androidx.arch.core/core-runtime@2.2.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.arch.core:core-common:2.2.0" ]
+        },
+        "androidx.lifecycle:lifecycle-common:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-common@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.lifecycle:lifecycle-common-jvm:2.8.4", "androidx.annotation:annotation:1.8.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:atomicfu:0.21.0", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4" ]
+        },
+        "androidx.lifecycle:lifecycle-common-jvm:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-common-jvm@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.lifecycle:lifecycle-common-java8:2.8.4", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.lifecycle:lifecycle-process:2.8.4" ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core@1.7.3",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.3", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0", "org.jetbrains.kotlinx:atomicfu:0.21.0" ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.3" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm@1.7.3",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains:annotations:23.0.0", "org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.3", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22" ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.3" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-bom@1.7.3",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.3", "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3", "org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm:1.7.3" ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-android@1.7.3",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.3", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0" ]
+        },
+        "androidx.lifecycle:lifecycle-common-java8:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-common-java8@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.lifecycle:lifecycle-process:2.8.4" ]
+        },
+        "androidx.lifecycle:lifecycle-livedata:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-livedata@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.arch.core:core-common:2.2.0", "androidx.arch.core:core-runtime:2.2.0", "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.lifecycle:lifecycle-common-java8:2.8.4", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.lifecycle:lifecycle-process:2.8.4" ]
+        },
+        "androidx.lifecycle:lifecycle-livedata-core:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-livedata-core@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.arch.core:core-common:2.2.0", "androidx.arch.core:core-runtime:2.2.0", "androidx.lifecycle:lifecycle-common:2.8.4", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.lifecycle:lifecycle-common-java8:2.8.4", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4", "androidx.lifecycle:lifecycle-process:2.8.4" ]
+        },
+        "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-runtime-ktx@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.4", "androidx.annotation:annotation:1.8.0", "androidx.lifecycle:lifecycle-runtime:2.8.4", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4" ]
+        },
+        "androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-runtime-ktx-android@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.lifecycle:lifecycle-runtime:2.8.4", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "androidx.lifecycle:lifecycle-common-java8:2.8.4", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4", "androidx.lifecycle:lifecycle-process:2.8.4" ]
+        },
+        "androidx.lifecycle:lifecycle-viewmodel:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-viewmodel@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.lifecycle:lifecycle-viewmodel-android:2.8.4", "androidx.annotation:annotation:1.8.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4" ]
+        },
+        "androidx.lifecycle:lifecycle-viewmodel-android:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-viewmodel-android@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.lifecycle:lifecycle-common-java8:2.8.4", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.lifecycle:lifecycle-process:2.8.4" ]
+        },
+        "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-livedata-core-ktx@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.lifecycle:lifecycle-common-java8:2.8.4", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.lifecycle:lifecycle-process:2.8.4" ]
+        },
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-viewmodel-ktx@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.lifecycle:lifecycle-common-java8:2.8.4", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4", "androidx.lifecycle:lifecycle-process:2.8.4" ]
+        },
+        "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-viewmodel-savedstate@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.core:core-ktx:1.13.1", "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.savedstate:savedstate:1.2.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.lifecycle:lifecycle-common-java8:2.8.4", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4", "androidx.lifecycle:lifecycle-process:2.8.4" ]
+        },
+        "androidx.core:core-ktx:1.13.1" : {
+          "package_url" : "pkg:maven/androidx.core/core-ktx@1.13.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.core:core:1.13.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.savedstate:savedstate:1.2.1" : {
+          "package_url" : "pkg:maven/androidx.savedstate/savedstate@1.2.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.arch.core:core-common:2.2.0", "androidx.lifecycle:lifecycle-common:2.8.4", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.savedstate:savedstate-ktx:1.2.1" ]
+        },
+        "androidx.savedstate:savedstate-ktx:1.2.1" : {
+          "package_url" : "pkg:maven/androidx.savedstate/savedstate-ktx@1.2.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.savedstate:savedstate:1.2.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.lifecycle:lifecycle-process:2.8.4" : {
+          "package_url" : "pkg:maven/androidx.lifecycle/lifecycle-process@2.8.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.startup:startup-runtime:1.1.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.lifecycle:lifecycle-common-java8:2.8.4", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4", "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4" ]
+        },
+        "androidx.startup:startup-runtime:1.1.1" : {
+          "package_url" : "pkg:maven/androidx.startup/startup-runtime@1.1.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.tracing:tracing:1.0.0" ]
+        },
+        "androidx.tracing:tracing:1.0.0" : {
+          "package_url" : "pkg:maven/androidx.tracing/tracing@1.0.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0" ]
+        },
+        "androidx.profileinstaller:profileinstaller:1.3.1" : {
+          "package_url" : "pkg:maven/androidx.profileinstaller/profileinstaller@1.3.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.concurrent:concurrent-futures:1.1.0", "androidx.startup:startup-runtime:1.1.1", "com.google.guava:listenablefuture:1.0" ]
+        },
+        "androidx.versionedparcelable:versionedparcelable:1.1.1" : {
+          "package_url" : "pkg:maven/androidx.versionedparcelable/versionedparcelable@1.1.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.collection:collection:1.4.0" ]
+        },
+        "androidx.compose.runtime:runtime-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.runtime/runtime-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.collection:collection:1.4.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.compose.runtime:runtime-saveable:1.6.6" ]
+        },
+        "androidx.compose.runtime:runtime-saveable-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.runtime/runtime-saveable-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.compose.runtime:runtime:1.6.6", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22" ]
+        },
+        "androidx.compose.ui:ui-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.activity:activity-ktx:1.9.1", "androidx.annotation:annotation:1.8.0", "androidx.autofill:autofill:1.0.0", "androidx.collection:collection:1.4.0", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.runtime:runtime-saveable:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.core:core:1.13.1", "androidx.customview:customview-poolingcontainer:1.0.0", "androidx.emoji2:emoji2:1.3.0", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.profileinstaller:profileinstaller:1.3.1", "androidx.savedstate:savedstate-ktx:1.2.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.compose.ui:ui-test-manifest:1.6.6", "androidx.compose.ui:ui-tooling:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6", "androidx.compose.foundation:foundation:1.6.6", "androidx.compose.ui:ui-tooling-data:1.6.6", "androidx.compose.ui:ui-test:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6" ]
+        },
+        "androidx.autofill:autofill:1.0.0" : {
+          "package_url" : "pkg:maven/androidx.autofill/autofill@1.0.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.core:core:1.13.1" ]
+        },
+        "androidx.compose.ui:ui-geometry-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-geometry-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-test-manifest:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-tooling:1.6.6", "androidx.compose.ui:ui-tooling-data:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-test:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-util-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-util-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-test-manifest:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-tooling:1.6.6", "androidx.compose.ui:ui-tooling-data:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6", "androidx.compose.ui:ui-test:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-graphics-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-graphics-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.collection:collection:1.4.0", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-test-manifest:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-tooling:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6", "androidx.compose.ui:ui-tooling-data:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6", "androidx.compose.ui:ui-test:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-unit-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-unit-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.collection:collection-ktx:1.4.0", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-test-manifest:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-tooling:1.6.6", "androidx.compose.ui:ui-tooling-data:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6", "androidx.compose.ui:ui-test:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-test-manifest:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-test-manifest@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.activity:activity:1.9.1", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-tooling:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-tooling-data:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6", "androidx.compose.ui:ui-test:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-tooling-preview:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-tooling-preview@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.ui:ui-tooling-preview-android:1.6.6", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-util:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-tooling-preview-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-tooling-preview-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.compose.runtime:runtime:1.6.6", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-test-manifest:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-tooling:1.6.6", "androidx.compose.ui:ui-tooling-data:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.compose.ui:ui-test:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-text-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-text-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.collection:collection:1.4.0", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.runtime:runtime-saveable:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.core:core:1.13.1", "androidx.emoji2:emoji2:1.3.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-test-manifest:1.6.6", "androidx.compose.ui:ui-tooling:1.6.6", "androidx.compose.ui:ui-tooling-data:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6", "androidx.compose.ui:ui-test:1.6.6" ]
+        },
+        "androidx.emoji2:emoji2:1.3.0" : {
+          "package_url" : "pkg:maven/androidx.emoji2/emoji2@1.3.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.collection:collection:1.4.0", "androidx.core:core:1.13.1", "androidx.lifecycle:lifecycle-process:2.8.4", "androidx.startup:startup-runtime:1.1.1" ]
+        },
+        "androidx.compose.ui:ui-tooling-data:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-tooling-data@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.ui:ui-tooling-data-android:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-tooling-data-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-tooling-data-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui:1.6.6", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-test-manifest:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-tooling:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.compose.ui:ui-test:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6" ]
+        },
+        "androidx.customview:customview-poolingcontainer:1.0.0" : {
+          "package_url" : "pkg:maven/androidx.customview/customview-poolingcontainer@1.0.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.core:core-ktx:1.13.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.compose.foundation:foundation:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.foundation/foundation@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.foundation:foundation-android:1.6.6", "androidx.collection:collection:1.4.0", "androidx.compose.animation:animation:1.6.6", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.foundation:foundation-layout:1.6.6" ]
+        },
+        "androidx.compose.foundation:foundation-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.foundation/foundation-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.collection:collection:1.4.0", "androidx.compose.animation:animation:1.6.6", "androidx.compose.foundation:foundation-layout:1.6.6", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.core:core:1.13.1", "androidx.emoji2:emoji2:1.3.0", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22" ]
+        },
+        "androidx.compose.animation:animation:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.animation/animation@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.animation:animation-android:1.6.6", "androidx.compose.animation:animation-core:1.6.6", "androidx.compose.foundation:foundation-layout:1.6.6", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6" ]
+        },
+        "androidx.compose.animation:animation-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.animation/animation-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.compose.animation:animation-core:1.6.6", "androidx.compose.foundation:foundation-layout:1.6.6", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22" ]
+        },
+        "androidx.compose.animation:animation-core:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.animation/animation-core@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.animation:animation-core-android:1.6.6", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.compose.animation:animation:1.6.6" ]
+        },
+        "androidx.compose.animation:animation-core-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.animation/animation-core-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.collection:collection:1.4.0", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.compose.animation:animation:1.6.6" ]
+        },
+        "androidx.compose.foundation:foundation-layout:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.foundation/foundation-layout@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.foundation:foundation-layout-android:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.foundation:foundation:1.6.6" ]
+        },
+        "androidx.compose.foundation:foundation-layout-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.foundation/foundation-layout-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.compose.animation:animation-core:1.6.6", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.core:core:1.13.1", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "androidx.compose.foundation:foundation:1.6.6" ]
+        },
+        "androidx.compose.material:material:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.material/material@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "androidx.compose.material:material-android:1.6.6" ]
+        },
+        "androidx.compose.material:material-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.material/material-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.compose.animation:animation:1.6.6", "androidx.compose.animation:animation-core:1.6.6", "androidx.compose.foundation:foundation:1.6.6", "androidx.compose.foundation:foundation-layout:1.6.6", "androidx.compose.material:material-icons-core:1.6.6", "androidx.compose.material:material-ripple:1.6.6", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.savedstate:savedstate:1.2.1", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22" ]
+        },
+        "androidx.compose.material:material-icons-core:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.material/material-icons-core@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.material:material-icons-core-android:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.material:material-ripple:1.6.6" ]
+        },
+        "androidx.compose.material:material-icons-core-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.material/material-icons-core-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.ui:ui:1.6.6", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "androidx.compose.material:material:1.6.6", "androidx.compose.material:material-ripple:1.6.6" ]
+        },
+        "androidx.compose.material:material-ripple:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.material/material-ripple@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.material:material-ripple-android:1.6.6", "androidx.compose.foundation:foundation:1.6.6", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.material:material-icons-core:1.6.6" ]
+        },
+        "androidx.compose.material:material-ripple-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.material/material-ripple-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.animation:animation:1.6.6", "androidx.compose.foundation:foundation:1.6.6", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "androidx.compose.material:material:1.6.6", "androidx.compose.material:material-icons-core:1.6.6" ]
+        },
+        "androidx.compose.material3:material3:1.2.1" : {
+          "package_url" : "pkg:maven/androidx.compose.material3/material3@1.2.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.compose.material3:material3-android:1.2.1", "androidx.compose.foundation:foundation:1.6.6", "androidx.compose.foundation:foundation-layout:1.6.6", "androidx.compose.material:material-icons-core:1.6.6", "androidx.compose.material:material-ripple:1.6.6", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-text:1.6.6" ]
+        },
+        "androidx.compose.material3:material3-android:1.2.1" : {
+          "package_url" : "pkg:maven/androidx.compose.material3/material3-android@1.2.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.activity:activity-compose:1.9.1", "androidx.annotation:annotation:1.8.0", "androidx.annotation:annotation-experimental:1.4.0", "androidx.collection:collection:1.4.0", "androidx.compose.animation:animation-core:1.6.6", "androidx.compose.foundation:foundation:1.6.6", "androidx.compose.foundation:foundation-layout:1.6.6", "androidx.compose.material:material-icons-core:1.6.6", "androidx.compose.material:material-ripple:1.6.6", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.lifecycle:lifecycle-common-java8:2.8.4", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.savedstate:savedstate-ktx:1.2.1", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22" ]
+        },
+        "androidx.constraintlayout:constraintlayout:2.1.4" : {
+          "package_url" : "pkg:maven/androidx.constraintlayout/constraintlayout@2.1.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.appcompat:appcompat:1.2.0", "androidx.core:core:1.13.1", "androidx.constraintlayout:constraintlayout-core:1.0.4" ]
+        },
+        "androidx.appcompat:appcompat:1.2.0" : {
+          "package_url" : "pkg:maven/androidx.appcompat/appcompat@1.2.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.core:core:1.13.1", "androidx.cursoradapter:cursoradapter:1.0.0", "androidx.fragment:fragment:1.5.1", "androidx.appcompat:appcompat-resources:1.2.0", "androidx.drawerlayout:drawerlayout:1.0.0", "androidx.collection:collection:1.4.0" ]
+        },
+        "androidx.cursoradapter:cursoradapter:1.0.0" : {
+          "package_url" : "pkg:maven/androidx.cursoradapter/cursoradapter@1.0.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0" ]
+        },
+        "androidx.fragment:fragment:1.5.1" : {
+          "package_url" : "pkg:maven/androidx.fragment/fragment@1.5.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.activity:activity:1.9.1", "androidx.annotation:annotation:1.8.0", "androidx.annotation:annotation-experimental:1.4.0", "androidx.collection:collection:1.4.0", "androidx.core:core-ktx:1.13.1", "androidx.lifecycle:lifecycle-livedata-core:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.loader:loader:1.0.0", "androidx.savedstate:savedstate:1.2.1", "androidx.viewpager:viewpager:1.0.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.loader:loader:1.0.0" : {
+          "package_url" : "pkg:maven/androidx.loader/loader@1.0.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.core:core:1.13.1", "androidx.lifecycle:lifecycle-livedata:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4" ]
+        },
+        "androidx.viewpager:viewpager:1.0.0" : {
+          "package_url" : "pkg:maven/androidx.viewpager/viewpager@1.0.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.core:core:1.13.1", "androidx.customview:customview:1.0.0" ]
+        },
+        "androidx.customview:customview:1.0.0" : {
+          "package_url" : "pkg:maven/androidx.customview/customview@1.0.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.core:core:1.13.1" ]
+        },
+        "androidx.appcompat:appcompat-resources:1.2.0" : {
+          "package_url" : "pkg:maven/androidx.appcompat/appcompat-resources@1.2.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "androidx.collection:collection:1.4.0", "androidx.annotation:annotation:1.8.0", "androidx.core:core:1.13.1", "androidx.vectordrawable:vectordrawable:1.1.0", "androidx.vectordrawable:vectordrawable-animated:1.1.0" ]
+        },
+        "androidx.vectordrawable:vectordrawable:1.1.0" : {
+          "package_url" : "pkg:maven/androidx.vectordrawable/vectordrawable@1.1.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.core:core:1.13.1", "androidx.collection:collection:1.4.0" ]
+        },
+        "androidx.vectordrawable:vectordrawable-animated:1.1.0" : {
+          "package_url" : "pkg:maven/androidx.vectordrawable/vectordrawable-animated@1.1.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "androidx.vectordrawable:vectordrawable:1.1.0", "androidx.interpolator:interpolator:1.0.0", "androidx.collection:collection:1.4.0" ]
+        },
+        "androidx.drawerlayout:drawerlayout:1.0.0" : {
+          "package_url" : "pkg:maven/androidx.drawerlayout/drawerlayout@1.0.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.core:core:1.13.1", "androidx.customview:customview:1.0.0" ]
+        },
+        "androidx.constraintlayout:constraintlayout-core:1.0.4" : {
+          "package_url" : "pkg:maven/androidx.constraintlayout/constraintlayout-core@1.0.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "androidx.datastore:datastore-preferences-core-jvm:1.1.1" : {
+          "package_url" : "pkg:maven/androidx.datastore/datastore-preferences-core-jvm@1.1.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.datastore:datastore-core:1.1.1", "androidx.datastore:datastore-core-okio:1.1.1", "com.squareup.okio:okio:3.4.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.datastore:datastore-preferences:1.1.1", "androidx.datastore:datastore:1.1.1" ]
+        },
+        "androidx.datastore:datastore-core:1.1.1" : {
+          "package_url" : "pkg:maven/androidx.datastore/datastore-core@1.1.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.datastore:datastore-core-android:1.1.1", "androidx.annotation:annotation:1.8.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:atomicfu:0.21.0", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.datastore:datastore:1.1.1", "androidx.datastore:datastore-core-okio:1.1.1", "androidx.datastore:datastore-preferences:1.1.1", "androidx.datastore:datastore-preferences-core:1.1.1" ]
+        },
+        "androidx.datastore:datastore-core-android:1.1.1" : {
+          "package_url" : "pkg:maven/androidx.datastore/datastore-core-android@1.1.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "org.jetbrains.kotlin:kotlin-parcelize-runtime:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.datastore:datastore:1.1.1", "androidx.datastore:datastore-core-okio:1.1.1", "androidx.datastore:datastore-preferences:1.1.1", "androidx.datastore:datastore-preferences-core:1.1.1" ]
+        },
+        "org.jetbrains.kotlin:kotlin-parcelize-runtime:1.9.22" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-parcelize-runtime@1.9.22",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.9.22" ]
+        },
+        "org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.9.22" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-android-extensions-runtime@1.9.22",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.datastore:datastore:1.1.1" : {
+          "package_url" : "pkg:maven/androidx.datastore/datastore@1.1.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.datastore:datastore-android:1.1.1", "androidx.annotation:annotation:1.8.0", "androidx.datastore:datastore-core:1.1.1", "androidx.datastore:datastore-core-okio:1.1.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.datastore:datastore-preferences:1.1.1", "androidx.datastore:datastore-preferences-core:1.1.1" ]
+        },
+        "androidx.datastore:datastore-android:1.1.1" : {
+          "package_url" : "pkg:maven/androidx.datastore/datastore-android@1.1.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.datastore:datastore-core:1.1.1", "androidx.datastore:datastore-core-okio:1.1.1", "com.squareup.okio:okio:3.4.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.datastore:datastore-preferences:1.1.1", "androidx.datastore:datastore-preferences-core:1.1.1" ]
+        },
+        "androidx.datastore:datastore-core-okio:1.1.1" : {
+          "package_url" : "pkg:maven/androidx.datastore/datastore-core-okio@1.1.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.datastore:datastore-core-okio-jvm:1.1.1", "androidx.datastore:datastore-core:1.1.1", "com.squareup.okio:okio:3.4.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:atomicfu:0.21.0", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.datastore:datastore:1.1.1", "androidx.datastore:datastore-preferences:1.1.1", "androidx.datastore:datastore-preferences-core:1.1.1" ]
+        },
+        "androidx.datastore:datastore-core-okio-jvm:1.1.1" : {
+          "package_url" : "pkg:maven/androidx.datastore/datastore-core-okio-jvm@1.1.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.datastore:datastore-core:1.1.1", "com.squareup.okio:okio:3.4.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.datastore:datastore:1.1.1", "androidx.datastore:datastore-preferences:1.1.1", "androidx.datastore:datastore-preferences-core:1.1.1" ]
+        },
+        "com.squareup.okio:okio:3.4.0" : {
+          "package_url" : "pkg:maven/com.squareup.okio/okio@3.4.0",
+          "relationship" : "direct",
+          "dependencies" : [ "com.squareup.okio:okio-jvm:3.4.0", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22" ]
+        },
+        "com.squareup.okio:okio-jvm:3.4.0" : {
+          "package_url" : "pkg:maven/com.squareup.okio/okio-jvm@3.4.0",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22" ]
+        },
+        "androidx.datastore:datastore-preferences:1.1.1" : {
+          "package_url" : "pkg:maven/androidx.datastore/datastore-preferences@1.1.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.datastore:datastore-preferences-android:1.1.1", "androidx.datastore:datastore:1.1.1", "androidx.datastore:datastore-preferences-core:1.1.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.datastore:datastore-core:1.1.1", "androidx.datastore:datastore-core-okio:1.1.1" ]
+        },
+        "androidx.datastore:datastore-preferences-android:1.1.1" : {
+          "package_url" : "pkg:maven/androidx.datastore/datastore-preferences-android@1.1.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.datastore:datastore:1.1.1", "androidx.datastore:datastore-preferences-core:1.1.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "androidx.datastore:datastore-core:1.1.1", "androidx.datastore:datastore-core-okio:1.1.1" ]
+        },
+        "androidx.datastore:datastore-preferences-core:1.1.1" : {
+          "package_url" : "pkg:maven/androidx.datastore/datastore-preferences-core@1.1.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.datastore:datastore-preferences-core-jvm:1.1.1", "androidx.datastore:datastore-core:1.1.1", "androidx.datastore:datastore-core-okio:1.1.1", "com.squareup.okio:okio:3.4.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.3", "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.6.3", "androidx.datastore:datastore:1.1.1", "androidx.datastore:datastore-preferences:1.1.1" ]
+        },
+        "com.google.dagger:hilt-android:2.48" : {
+          "package_url" : "pkg:maven/com.google.dagger/hilt-android@2.48",
+          "relationship" : "direct",
+          "dependencies" : [ "com.google.dagger:dagger:2.48", "com.google.dagger:dagger-lint-aar:2.48", "com.google.dagger:hilt-core:2.48", "com.google.code.findbugs:jsr305:3.0.2", "androidx.activity:activity:1.9.1", "androidx.annotation:annotation:1.8.0", "androidx.fragment:fragment:1.5.1", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4", "androidx.savedstate:savedstate:1.2.1", "javax.inject:javax.inject:1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "com.google.dagger:dagger-lint-aar:2.48" : {
+          "package_url" : "pkg:maven/com.google.dagger/dagger-lint-aar@2.48",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "com.google.dagger:hilt-core:2.48" : {
+          "package_url" : "pkg:maven/com.google.dagger/hilt-core@2.48",
+          "relationship" : "direct",
+          "dependencies" : [ "com.google.dagger:dagger:2.48", "com.google.code.findbugs:jsr305:3.0.2", "javax.inject:javax.inject:1" ]
+        },
+        "androidx.hilt:hilt-navigation-fragment:1.0.0" : {
+          "package_url" : "pkg:maven/androidx.hilt/hilt-navigation-fragment@1.0.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.hilt:hilt-navigation:1.0.0", "androidx.navigation:navigation-fragment-ktx:2.3.2" ]
+        },
+        "androidx.hilt:hilt-navigation:1.0.0" : {
+          "package_url" : "pkg:maven/androidx.hilt/hilt-navigation@1.0.0?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.annotation:annotation:1.8.0", "androidx.navigation:navigation-runtime:2.3.2", "com.google.dagger:hilt-android:2.48" ]
+        },
+        "androidx.navigation:navigation-runtime:2.3.2" : {
+          "package_url" : "pkg:maven/androidx.navigation/navigation-runtime@2.3.2?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.navigation:navigation-common:2.3.2", "androidx.activity:activity:1.9.1", "androidx.lifecycle:lifecycle-viewmodel:2.8.4", "androidx.savedstate:savedstate:1.2.1", "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4" ]
+        },
+        "androidx.navigation:navigation-common:2.3.2" : {
+          "package_url" : "pkg:maven/androidx.navigation/navigation-common@2.3.2?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.core:core:1.13.1", "androidx.collection:collection:1.4.0" ]
+        },
+        "androidx.navigation:navigation-fragment-ktx:2.3.2" : {
+          "package_url" : "pkg:maven/androidx.navigation/navigation-fragment-ktx@2.3.2?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.navigation:navigation-fragment:2.3.2", "androidx.navigation:navigation-runtime-ktx:2.3.2", "androidx.fragment:fragment-ktx:1.2.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.navigation:navigation-fragment:2.3.2" : {
+          "package_url" : "pkg:maven/androidx.navigation/navigation-fragment@2.3.2?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.fragment:fragment:1.5.1", "androidx.navigation:navigation-runtime:2.3.2" ]
+        },
+        "androidx.navigation:navigation-runtime-ktx:2.3.2" : {
+          "package_url" : "pkg:maven/androidx.navigation/navigation-runtime-ktx@2.3.2?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.navigation:navigation-runtime:2.3.2", "androidx.navigation:navigation-common-ktx:2.3.2", "androidx.activity:activity-ktx:1.9.1", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.navigation:navigation-common-ktx:2.3.2" : {
+          "package_url" : "pkg:maven/androidx.navigation/navigation-common-ktx@2.3.2?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.navigation:navigation-common:2.3.2", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.core:core-ktx:1.13.1", "androidx.collection:collection:1.4.0" ]
+        },
+        "androidx.fragment:fragment-ktx:1.2.4" : {
+          "package_url" : "pkg:maven/androidx.fragment/fragment-ktx@1.2.4?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "androidx.fragment:fragment:1.5.1", "androidx.activity:activity-ktx:1.9.1", "androidx.core:core-ktx:1.13.1", "androidx.collection:collection-ktx:1.4.0", "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4", "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4" ]
+        },
+        "com.google.code.gson:gson:2.10" : {
+          "package_url" : "pkg:maven/com.google.code.gson/gson@2.10",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-test@1.7.3",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm:1.7.3" ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm:1.7.3" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-test-jvm@1.7.3",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains:annotations:23.0.0", "org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.3", "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22" ]
+        },
+        "androidx.compose.ui:ui-test-junit4-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-test-junit4-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.activity:activity:1.9.1", "androidx.activity:activity-compose:1.9.1", "androidx.annotation:annotation:1.8.0", "androidx.compose.runtime:runtime-saveable:1.6.6", "androidx.compose.ui:ui-test:1.6.6", "androidx.lifecycle:lifecycle-common:2.8.4", "androidx.lifecycle:lifecycle-runtime:2.8.4", "androidx.test:core:1.6.1", "androidx.test:monitor:1.7.1", "androidx.test.espresso:espresso-core:3.6.1", "androidx.test.espresso:espresso-idling-resource:3.6.1", "androidx.test.ext:junit:1.2.1", "junit:junit:4.13.2", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "androidx.compose.ui:ui-test-manifest:1.6.6", "androidx.compose.ui:ui-tooling:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6", "androidx.compose.ui:ui-tooling-data:1.6.6" ]
+        },
+        "androidx.compose.ui:ui-test-android:1.6.6" : {
+          "package_url" : "pkg:maven/androidx.compose.ui/ui-test-android@1.6.6?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ "androidx.annotation:annotation:1.8.0", "androidx.compose.runtime:runtime:1.6.6", "androidx.compose.ui:ui:1.6.6", "androidx.compose.ui:ui-graphics:1.6.6", "androidx.compose.ui:ui-text:1.6.6", "androidx.compose.ui:ui-unit:1.6.6", "androidx.compose.ui:ui-util:1.6.6", "androidx.core:core-ktx:1.13.1", "androidx.test:monitor:1.7.1", "androidx.test.espresso:espresso-core:3.6.1", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3", "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3", "androidx.compose.ui:ui-geometry:1.6.6", "androidx.compose.ui:ui-test-junit4:1.6.6", "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "androidx.compose.ui:ui-test-manifest:1.6.6", "androidx.compose.ui:ui-tooling:1.6.6", "androidx.compose.ui:ui-tooling-data:1.6.6", "androidx.compose.ui:ui-tooling-preview:1.6.6" ]
+        },
+        "com.google.dagger:hilt-compiler:2.48" : {
+          "package_url" : "pkg:maven/com.google.dagger/hilt-compiler@2.48",
+          "relationship" : "direct",
+          "dependencies" : [ "com.google.dagger:dagger:2.48", "com.google.dagger:dagger-compiler:2.48", "com.google.dagger:dagger-spi:2.48", "com.google.code.findbugs:jsr305:3.0.2", "com.google.devtools.ksp:symbol-processing-api:1.9.0-1.0.12", "com.google.guava:failureaccess:1.0.1", "com.google.guava:guava:31.0.1-jre", "com.squareup:javapoet:1.13.0", "javax.inject:javax.inject:1", "net.ltgt.gradle.incap:incap:0.2", "org.jetbrains.kotlin:kotlin-stdlib:1.9.0" ]
+        },
+        "org.jetbrains.kotlinx:atomicfu:0.21.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/atomicfu@0.21.0",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22" ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.3" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-serialization-core@1.6.3",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.6.3" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlinx/kotlinx-serialization-protobuf@1.6.3",
+          "relationship" : "indirect",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.22", "org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.3", "org.jetbrains.kotlin:kotlin-stdlib:1.9.22" ]
+        },
+        "androidx.compose.compiler:compiler:1.5.1" : {
+          "package_url" : "pkg:maven/androidx.compose.compiler/compiler@1.5.1?repository_url=https%3A%2F%2Fdl.google.com%2Fdl%2Fandroid%2Fmaven2",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlin:kotlin-build-tools-impl:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-build-tools-impl@1.9.0",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-build-tools-api:1.9.0", "org.jetbrains.kotlin:kotlin-stdlib:1.9.0" ]
+        },
+        "org.jetbrains.kotlin:kotlin-script-runtime:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-script-runtime@1.9.0",
+          "relationship" : "indirect",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlin:kotlin-annotation-processing-gradle:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-annotation-processing-gradle@1.9.0",
+          "relationship" : "direct",
+          "dependencies" : [ ]
+        },
+        "org.jetbrains.kotlin:kotlin-klib-commonizer-embeddable:1.9.0" : {
+          "package_url" : "pkg:maven/org.jetbrains.kotlin/kotlin-klib-commonizer-embeddable@1.9.0",
+          "relationship" : "direct",
+          "dependencies" : [ "org.jetbrains.kotlin:kotlin-stdlib:1.9.0", "org.jetbrains.kotlin:kotlin-compiler-embeddable:1.9.0" ]
+        }
+      },
+      "file" : {
+        "source_location" : "settings.gradle.kts"
+      }
+    }
+  },
+  "scanned" : "2024-12-23T04:57:27Z"
+}
