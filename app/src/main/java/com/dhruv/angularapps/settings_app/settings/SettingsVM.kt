@@ -1,7 +1,5 @@
 package com.dhruv.angularapps.settings_app.settings
 
-import android.content.Context
-import android.widget.Toast
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
@@ -179,7 +177,7 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
         popup = pop
     }
 
-    fun confirm(context: Context) {
+    fun confirm() {
         when (popup) {
             1.1f -> {
                 saveTouchOffset(touchOffset)
@@ -210,7 +208,6 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
             else -> {}
         }
         closePopup()
-        showConfirmationMessage(context)
     }
 
     fun dismiss() {
@@ -221,9 +218,6 @@ class SettingsVM @Inject constructor(val pref: UserPref) : ViewModel() {
         popup = 0f
     }
 
-    private fun showConfirmationMessage(context: Context) {
-        Toast.makeText(context, "Settings saved", Toast.LENGTH_SHORT).show()
-    }
 }
 
 

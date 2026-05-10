@@ -2,6 +2,7 @@ package com.dhruv.angularapps.apps
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.graphics.Bitmap
@@ -25,22 +26,26 @@ import kotlin.math.min
 @Singleton
 class AppManager @Inject constructor() {
 
-    private val _appsIconData = MutableLiveData<Map<String,Drawable>?>(null)
+    private val _appsIconData = MutableLiveData<Map<String, Drawable>?>(null)
     val appsIcon: LiveData<Map<String, Drawable>?>
         get() = _appsIconData
 
-    private val _appsData = MutableLiveData<Map<String,String>?>(null)
-    val appsData: LiveData<Map<String,String>?>
+    private val _appsData = MutableLiveData<Map<String, String>?>(null)
+    val appsData: LiveData<Map<String, String>?>
         get() = _appsData
+
+    private val _appsCategory = MutableLiveData<Map<String, Int>?>(null)
+    /** Package name -> [ApplicationInfo.category] (with game fallback). */
+    val appsCategory: LiveData<Map<String, Int>?>
+        get() = _appsCategory
 
     private var initialized = false
     fun initialize(context: Context, force: Boolean = false) {
         if (initialized) {
             Log.d(TAG, "already initialized")
-            if (force){
+            if (force) {
                 Log.d(TAG, "force initializing")
-            }
-            else{
+            } else {
                 return
             }
         }
@@ -48,7 +53,7 @@ class AppManager @Inject constructor() {
         initialized = true
         _appsIconData.postValue(null)
         _appsData.postValue(null)
-        // get all apps
+        _appsCategory.postValue(null)
         Log.d(TAG, "initialization: start")
         val main = Intent(Intent.ACTION_MAIN, null)
         main.addCategory(Intent.CATEGORY_LAUNCHER)
@@ -56,26 +61,38 @@ class AppManager @Inject constructor() {
         val newData = getAllAppsDAta(context, appsL)
         _appsData.postValue(newData.first)
         _appsIconData.postValue(newData.second)
+        _appsCategory.postValue(newData.third)
     }
 
     companion object {
         val TAG = "Apps Manager"
 
+        fun resolveLauncherAppCategory(appInfo: ApplicationInfo): Int {
+            if (appInfo.flags and ApplicationInfo.FLAG_IS_GAME != 0) {
+                return ApplicationInfo.CATEGORY_GAME
+            }
+            return appInfo.category
+        }
+
         fun getAllAppsDAta(
             context: Context,
             appsL: MutableList<ResolveInfo>,
-        ): Pair<Map<String,String>, Map<String, Drawable>> {
+        ): Triple<Map<String, String>, Map<String, Drawable>, Map<String, Int>> {
             val packageManager = context.packageManager
-            val apps: MutableMap<String,String> = mutableMapOf()
+            val apps: MutableMap<String, String> = mutableMapOf()
             val icons: MutableMap<String, Drawable> = mutableMapOf()
+            val categories: MutableMap<String, Int> = mutableMapOf()
 
             for (app in appsL) {
                 val pkg = app.activityInfo.packageName
                 val icon = getAppIcon(packageManager, pkg, context)
-                if (icon != null){ icons[pkg] = app.loadIcon(packageManager) }
+                if (icon != null) {
+                    icons[pkg] = app.loadIcon(packageManager)
+                }
                 apps[pkg] = app.loadLabel(packageManager) as String
+                categories[pkg] = resolveLauncherAppCategory(app.activityInfo.applicationInfo)
             }
-            return Pair(apps, icons)
+            return Triple(apps, icons, categories)
         }
 
         fun getAppIcon(packageManager: PackageManager, packageName: String, context: Context): Bitmap? {
@@ -85,25 +102,24 @@ class AppManager @Inject constructor() {
                 if (drawable is AdaptiveIconDrawable) {
                     val aid = drawable
 
-                    // Retrieve the theme color for monochrome tinting
                     val themeColor = if (android.os.Build.VERSION.SDK_INT >= 33) {
                         val typedValue = TypedValue()
                         context.theme.resolveAttribute(android.R.attr.colorPrimary, typedValue, true)
                         typedValue.data
                     } else {
-                        Color.BLACK // Fallback color for pre-API 33
+                        Color.BLACK
                     }
 
                     val drr: Array<Drawable?> = if (android.os.Build.VERSION.SDK_INT >= 33) {
                         aid.monochrome?.let {
-                            it.setTint(themeColor) // Tint the monochrome layer with the theme color
+                            it.setTint(themeColor)
                             arrayOf(
-                                ColorDrawable(Color.GRAY), // Background layer of solid color
-                                it
+                                ColorDrawable(Color.GRAY),
+                                it,
                             )
-                        } ?: arrayOf(aid.background, aid.foreground) // Use default layers if monochrome is null
+                        } ?: arrayOf(aid.background, aid.foreground)
                     } else {
-                        arrayOf(aid.background, aid.foreground) // Use default layers for pre-API 33
+                        arrayOf(aid.background, aid.foreground)
                     }
 
                     val layerDrawable = LayerDrawable(drr)
@@ -111,7 +127,7 @@ class AppManager @Inject constructor() {
                     val width = layerDrawable.intrinsicWidth
                     val height = layerDrawable.intrinsicHeight
 
-                    if (!(width > 0 && height > 0)){
+                    if (!(width > 0 && height > 0)) {
                         throw PackageManager.NameNotFoundException(packageName)
                     }
                     var bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
@@ -120,9 +136,7 @@ class AppManager @Inject constructor() {
                     layerDrawable.setBounds(0, 0, canvas.width, canvas.height)
                     layerDrawable.draw(canvas)
 
-                    // Clip the bitmap to a circle if needed
                     bitmap = GetBitmapClippedCircle(bitmap)
-//                    Log.d(TAG, "getAppIcon: $packageName")
                     return bitmap
                 } else if (drawable is BitmapDrawable) {
                     return drawable.bitmap
@@ -134,8 +148,6 @@ class AppManager @Inject constructor() {
             return null
         }
 
-
-
         private fun GetBitmapClippedCircle(bitmap: Bitmap): Bitmap {
             val width = bitmap.width
             val height = bitmap.height
@@ -146,7 +158,7 @@ class AppManager @Inject constructor() {
                 (width / 2).toFloat(),
                 (height / 2).toFloat(),
                 min(width.toDouble(), (height / 2).toDouble()).toFloat(),
-                Path.Direction.CCW
+                Path.Direction.CCW,
             )
 
             val canvas: Canvas = Canvas(outputBitmap)
@@ -154,6 +166,5 @@ class AppManager @Inject constructor() {
             canvas.drawBitmap(bitmap, 0f, 0f, null)
             return outputBitmap
         }
-
     }
 }

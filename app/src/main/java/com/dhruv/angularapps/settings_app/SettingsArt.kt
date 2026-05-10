@@ -23,6 +23,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,23 +45,39 @@ import androidx.compose.ui.unit.dp
 import kotlin.math.roundToInt
 
 @Composable
-fun H1 (text: String, modifier: Modifier = Modifier){
-    Text(text = text, modifier.padding( vertical = 4.dp, horizontal = 8.dp), fontSize = TextUnit(25f, TextUnitType.Sp), fontWeight = FontWeight.W800)
+fun H1(text: String, modifier: Modifier = Modifier) {
+    Text(
+        text = text,
+        modifier = modifier.padding(vertical = 4.dp, horizontal = 8.dp),
+        style = MaterialTheme.typography.headlineMedium,
+    )
 }
 
 @Composable
-fun H2 (text: String, modifier: Modifier = Modifier){
-    Text(text = text, modifier.padding( vertical = 2.dp, horizontal = 8.dp), fontSize = TextUnit(18f, TextUnitType.Sp), fontWeight = FontWeight.W600)
+fun H2(text: String, modifier: Modifier = Modifier) {
+    Text(
+        text = text,
+        modifier = modifier.padding(vertical = 2.dp, horizontal = 8.dp),
+        style = MaterialTheme.typography.titleLarge,
+    )
 }
 
 @Composable
-fun H3 (text: String, modifier: Modifier = Modifier){
-    Text(text = text, modifier.padding( vertical = 1.dp, horizontal = 8.dp), fontSize = TextUnit(16f, TextUnitType.Sp), fontWeight = FontWeight.W400)
+fun H3(text: String, modifier: Modifier = Modifier) {
+    Text(
+        text = text,
+        modifier = modifier.padding(vertical = 1.dp, horizontal = 8.dp),
+        style = MaterialTheme.typography.bodyLarge,
+    )
 }
 
 @Composable
-fun H4 (text: String, modifier: Modifier = Modifier){
-    Text(text = text, modifier.padding( vertical = 1.dp, horizontal = 8.dp), fontSize = TextUnit(12f, TextUnitType.Sp), fontWeight = FontWeight.W200)
+fun H4(text: String, modifier: Modifier = Modifier) {
+    Text(
+        text = text,
+        modifier = modifier.padding(vertical = 1.dp, horizontal = 8.dp),
+        style = MaterialTheme.typography.labelSmall,
+    )
 }
 
 @Composable

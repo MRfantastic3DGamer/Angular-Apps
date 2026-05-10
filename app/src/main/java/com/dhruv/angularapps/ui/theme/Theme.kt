@@ -2,48 +2,60 @@ package com.dhruv.angularapps.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
+    onPrimary = SeedOnPrimary,
+    primaryContainer = Color(0xFF4F378B),
+    onPrimaryContainer = SeedPrimaryContainer,
     secondary = PurpleGrey80,
+    onSecondary = SeedDarkSurface,
+    secondaryContainer = Color(0xFF4A4458),
+    onSecondaryContainer = SeedSecondaryContainer,
     tertiary = Pink80,
-    surface = Color.DarkGray,
-    onPrimary = Color(1.0f, 1.0f, 1.0f, 1.0f),
-    onSecondary = Color(0.267f, 0.267f, 0.267f, 1.0f),
-    primaryContainer = Color(0.0f, 0.0f, 0.0f, 1.0f),
-    onPrimaryContainer = Color(0.906f, 0.906f, 0.906f, 1.0f),
-    secondaryContainer = Color(0.345f, 0.345f, 0.345f, 1.0f),
-    onSecondaryContainer = Color(0.702f, 0.702f, 0.702f, 1.0f),
+    onTertiary = SeedDarkSurface,
+    tertiaryContainer = Color(0xFF633B48),
+    onTertiaryContainer = SeedTertiaryContainer,
+    background = SeedDarkBackground,
+    onBackground = SeedDarkOnBackground,
+    surface = SeedDarkSurface,
+    onSurface = SeedDarkOnSurface,
+    surfaceVariant = SeedDarkSurfaceVariant,
+    onSurfaceVariant = SeedDarkOnSurfaceVariant,
+    outline = Color(0xFF938F99),
+    outlineVariant = Color(0xFF49454F),
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40,
-    surface = Color.White,    // Example light card background
-    onPrimary = Color(0.0f, 0.0f, 0.0f, 1.0f),
-    onSecondary = Color(0.722f, 0.722f, 0.722f, 1.0f),
-    primaryContainer = Color(0.0f, 0.0f, 0.0f, 1.0f),
-    onPrimaryContainer = Color(0.906f, 0.906f, 0.906f, 1.0f),
-    secondaryContainer = Color(0.702f, 0.702f, 0.702f, 1.0f),
-    onSecondaryContainer = Color(0.255f, 0.255f, 0.255f, 1.0f),
+    primary = SeedPrimary,
+    onPrimary = SeedOnPrimary,
+    primaryContainer = SeedPrimaryContainer,
+    onPrimaryContainer = SeedOnPrimaryContainer,
+    secondary = SeedSecondary,
+    onSecondary = SeedOnSecondary,
+    secondaryContainer = SeedSecondaryContainer,
+    onSecondaryContainer = SeedOnSecondaryContainer,
+    tertiary = SeedTertiary,
+    onTertiary = SeedOnTertiary,
+    tertiaryContainer = SeedTertiaryContainer,
+    onTertiaryContainer = SeedOnTertiaryContainer,
+    background = SeedBackground,
+    onBackground = SeedOnBackground,
+    surface = SeedSurface,
+    onSurface = SeedOnSurface,
+    surfaceVariant = SeedSurfaceVariant,
+    onSurfaceVariant = SeedOnSurfaceVariant,
+    outline = SeedOutline,
+    outlineVariant = SeedOutlineVariant,
 )
-
-// Utility function to check if a color is light or dark
-fun Color.isLightColor(): Boolean {
-    return this.luminance() > 0.5
-}
 
 @Composable
 fun AngularAppsTheme(
@@ -60,21 +72,10 @@ fun AngularAppsTheme(
         else -> LightColorScheme
     }
 
-    val cardContentColor = if (colorScheme.surface.isLightColor()) {
-        Color.Black // Darker text and icon color for light background
-    } else {
-        Color.White // Lighter text and icon color for dark background
-    }
-
-    val typography = Typography.copy()
-
-    CompositionLocalProvider(LocalContentColor provides cardContentColor) {
-        MaterialTheme(
-            colorScheme = colorScheme.copy(
-                onSurface = cardContentColor,
-            ),
-            typography = typography,
-            content = content
-        )
-    }
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = Typography,
+        shapes = AppShapes,
+        content = content
+    )
 }

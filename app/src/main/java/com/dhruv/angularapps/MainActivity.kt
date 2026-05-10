@@ -13,16 +13,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
-import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -40,7 +33,6 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var appManager: AppManager
 
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appManager.initialize(this)
@@ -60,30 +52,17 @@ class MainActivity : ComponentActivity() {
             }
 
             AngularAppsTheme {
-                Scaffold(
+                SettingsApp(
                     modifier = Modifier.fillMaxSize(),
-                    topBar = {
-                        TopAppBar(title = {
-                            Text(text = "Angular Apps")
-                        })
-                    },
-                    snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
-                ) { innerPadding ->
-                    Box(modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding)
-                    ){
-                        SettingsApp(
-                            groupsEditorVM = groupsEditorVM,
-                            settingsVM = settingsVM,
-                            checkDrawOverlayPermission = { checkDrawOverlayPermission() },
-                            enableOverlayPermission = { enableOverlayPermission() },
-                            startOverlayService = { startOverlayService() },
-                            stopOverlayService = { stopOverlayService() },
-                            isOverlayServiceRunning = { isOverlayServiceRunning() },
-                        )
-                    }
-                }
+                    groupsEditorVM = groupsEditorVM,
+                    settingsVM = settingsVM,
+                    snackbarHostState = snackbarHostState,
+                    checkDrawOverlayPermission = { checkDrawOverlayPermission() },
+                    enableOverlayPermission = { enableOverlayPermission() },
+                    startOverlayService = { startOverlayService() },
+                    stopOverlayService = { stopOverlayService() },
+                    isOverlayServiceRunning = { isOverlayServiceRunning() },
+                )
             }
         }
     }

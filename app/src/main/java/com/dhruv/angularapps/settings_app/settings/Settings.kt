@@ -1,413 +1,302 @@
 package com.dhruv.angularapps.settings_app.settings
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Stable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.dhruv.angularapps.R
-import com.dhruv.angularapps.settings_app.LabelForFloat
-import com.dhruv.angularapps.settings_app.LabelForInt
+import com.dhruv.angularapps.settings_app.settings.editors.AppsLookEditor
+import com.dhruv.angularapps.settings_app.settings.editors.GroupsLookEditor
+import com.dhruv.angularapps.settings_app.settings.editors.SliderPositionEditor
+import com.dhruv.angularapps.settings_app.settings.editors.SliderSizeEditor
+import com.dhruv.angularapps.settings_app.settings.editors.TouchOffsetEditor
+import com.dhruv.angularapps.ui.components.SectionHeader
+import com.dhruv.angularapps.ui.components.SettingsListItem
+import kotlinx.coroutines.launch
 
-const val TAG = "Settings"
-
-@Stable
-data class SettingsCard(
-    val idx : Float,
-    val icon : Int,
-    val text: String,
-    val description: String,
-)
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Settings(
     modifier: Modifier = Modifier,
-    vm: SettingsVM
+    vm: SettingsVM,
+    snackbarHostState: SnackbarHostState,
+    haveOverlayPermission: Boolean,
+    isOverlayServiceRunning: () -> Boolean,
+    onStartService: () -> Unit,
+    onStopService: () -> Unit,
+    scrollConnection: Modifier = Modifier,
 ) {
-    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    var localRunning by remember { mutableStateOf(isOverlayServiceRunning()) }
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
-    @Composable
-    fun groupedCards(vararg cards: SettingsCard, title: String, description: String, icon: Int){
-
-        val textStyle = MaterialTheme.typography.headlineMedium.copy(
-            color = MaterialTheme.colorScheme.onSecondaryContainer
-        )
-        val descriptionStyle = MaterialTheme.typography.bodyMedium.copy(
-            color = MaterialTheme.colorScheme.secondary
-        )
-
-        Card(
-            Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            colors = CardColors(
-                containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-                contentColor = MaterialTheme.colorScheme.secondary,
-                disabledContentColor = MaterialTheme.colorScheme.primary,
-            )
-        ) {
-            Column {
-                Row(Modifier.padding(8.dp)) {
-                    Icon(
-                        modifier = Modifier
-                            .padding(16.dp)
-                            .size(50.dp),
-                        painter = painterResource(id = icon),
-                        contentDescription = title,
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
-                    )
-                    Column {
-                        Text(
-                            text = title,
-                            style = MaterialTheme.typography.headlineLarge.copy(
-                                color = MaterialTheme.colorScheme.onPrimaryContainer
-                            ),
-                        )
-                        Text(
-                            text = description,
-                            style = MaterialTheme.typography.bodyLarge.copy(
-                                color = MaterialTheme.colorScheme.onPrimaryContainer
-                            ),
-                        )
-                    }
-                }
-                HorizontalDivider(thickness = 1.dp, color = Color.White)
-                cards.forEachIndexed { it, card ->
-                    Row(
-                        Modifier
-                            .fillMaxWidth()
-                            .clickable { vm.openPopup(card.idx) },
-                        horizontalArrangement = Arrangement.Start,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            modifier = Modifier
-                                .padding(16.dp)
-                                .size(40.dp),
-                            painter = painterResource(id = card.icon),
-                            contentDescription = card.text,
-//                            tint = Color.White
-                        )
-                        Column {
-                            Text(text = card.text, Modifier.padding(top = 8.dp), style = textStyle)
-                            Text(text = card.description, Modifier.padding(bottom = 8.dp), style = descriptionStyle)
-                        }
-                    }
-
-                    if (it < cards.lastIndex)
-                        HorizontalDivider(thickness = 1.dp, color = Color.Black)
-                }
-            }
-        }
+    val sheetTitle = when (vm.popup) {
+        1.1f -> "Touch offset"
+        2.1f -> "Slider size"
+        2.2f -> "Slider position"
+        3.2f -> "App icon look"
+        4.2f -> "Group icon look"
+        else -> "Settings"
     }
 
-    @Composable
-    fun touch() {
-        Column {
-            LabelForFloat(key = "X", min = -20f, value = vm.touchOffset.x, max = 20f) {
-                vm.touchOffset = vm.touchOffset.copy(x = it)
-            }
-            LabelForFloat(key = "Y", min = -20f, value = vm.touchOffset.y, max = 20f) {
-                vm.touchOffset = vm.touchOffset.copy(y = it)
-            }
-        }
-    }
-
-    @Composable
-    fun sliderSize() {
-
-        Row(
-            Modifier
-                .padding(top = 8.dp),
-            Arrangement.SpaceBetween,
-            Alignment.Bottom
-        ) {
-            Column {
-                LabelForInt(key = "height", min = 100, value = vm.slHeight, max = 1000) {
-                    vm.slHeight = it
-                }
-                LabelForInt(key = "width", min = 25, value = vm.slWidth, max = 150) {
-                    vm.slWidth = it
-                }
-            }
-        }
-    }
-
-    @Composable
-    fun sliderOffset() {
-
-        Row(
-            Modifier
-                .padding(top = 8.dp),
-            Arrangement.SpaceBetween,
-            Alignment.Bottom
-        ) {
-            Column {
-                LabelForInt(
-                    key = "distance from bottom",
-                    min = 0,
-                    value = vm.slBottomPadding,
-                    max = 1000
-                ) {
-                    vm.slBottomPadding = it
-                }
-            }
-        }
-    }
-
-//    @Composable
-//    fun appsPositioning() {
-//
-//        Row(
-//            Modifier
-//                .padding(top = 8.dp),
-//            Arrangement.SpaceBetween,
-//            Alignment.Bottom
-//        ) {
-//            Column {
-//                LabelForInt(key = "apps pop", min = 10, value = vm.appsPop, max = 100) {
-//                    vm.appsPop = it
-//                }
-//                LabelForFloat(
-//                    key = "first ring radius",
-//                    min = 50f,
-//                    value = vm.firstRingRadius,
-//                    max = 500f
-//                ) {
-//                    vm.appsPositioning = vm.appsPositioning.copy(startingRadius = it.toDouble())
-//                }
-//                LabelForFloat(
-//                    key = "difference between rings",
-//                    min = 25f,
-//                    value = vm.radiusDiff,
-//                    max = 300f
-//                ) {
-//                    vm.appsPositioning = vm.appsPositioning.copy(radiusDiff = it.toDouble())
-//                }
-//                LabelForFloat(
-//                    key = "distance between icons",
-//                    min = 25f,
-//                    value = vm.iconsDiff,
-//                    max = 300f
-//                ) {
-//                    vm.appsPositioning = vm.appsPositioning.copy(iconDistance = it.toDouble())
-//                }
-//            }
-//        }
-//    }
-
-    @Composable
-    fun appsLook() {
-
-        Row(
-            Modifier
-                .padding(top = 8.dp),
-            Arrangement.SpaceBetween,
-            Alignment.Bottom
-        ) {
-            LabelForInt(key = "base radius", min = 16, value = vm.appsBaseRad, max = 100) {
-                vm.appsBaseRad = it
-            }
-//            Column {
-//                LabelForInt(
-//                    key = "selection radius",
-//                    min = 10,
-//                    value = vm.appsSelectionRad,
-//                    max = 100
-//                ) {
-//                    vm.appsSelectionRad = it
-//                }
-//            }
-        }
-    }
-
-//    @Composable
-//    fun groupsPositioning() {
-//        Row(
-//            Modifier
-//                .padding(top = 8.dp),
-//            Arrangement.SpaceBetween,
-//            Alignment.Bottom
-//        ) {
-//            Column {
-//                LabelForInt(key = "base pop", min = 0, value = vm.groupBasePop, max = 200) {
-//                    vm.groupBasePop = it
-//                }
-//                LabelForInt(key = "selection pop", min = 0, value = vm.groupSelectionPop, max = 200) {
-//                    vm.groupSelectionPop = it
-//                }
-//            }
-//        }
-//    }
-
-    @Composable
-    fun groupsLook() {
-        Row(
-            Modifier
-                .padding(top = 8.dp),
-            Arrangement.SpaceBetween,
-            Alignment.Bottom
-        ) {
-            LabelForInt(key = "base radius", min = 10, value = vm.groupBaseRad, max = 100) {
-                vm.groupBaseRad = it
-            }
-//            Column {
-//                LabelForInt(key = "selection radius", min = 10, value = vm.groupSelectionRad, max = 100) {
-//                    vm.groupSelectionRad = it
-//                }
-//            }
-        }
-    }
-
-    Box(modifier = modifier) {
-        LazyColumn(
-            Modifier.fillMaxSize(),
-        ) {
+    Box(modifier = modifier.fillMaxSize()) {
+        Column(Modifier.fillMaxSize()) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .weight(1f)
+                    .then(scrollConnection),
+            ) {
             item {
-                groupedCards(
-                    SettingsCard(
-                        1.1f,
-                        R.drawable.round_pan_tool_alt_24,
-                        "adjust touch offset",
-                        "where the finger touches the screen and what is registered can be different"
-                    ),
+                ServiceStatusCard(
+                    isRunning = localRunning,
+                    haveOverlayPermission = haveOverlayPermission,
+                    onStart = {
+                        if (haveOverlayPermission) onStartService()
+                        localRunning = isOverlayServiceRunning()
+                    },
+                    onStop = {
+                        onStopService()
+                        localRunning = isOverlayServiceRunning()
+                    },
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                )
+            }
+
+            item {
+                SectionHeader(
                     title = "Interaction",
-                    description = "change how you interact with the app",
-                    icon = R.drawable.round_pan_tool_alt_24,
+                    description = "How touches map to the overlay",
                 )
             }
             item {
-                groupedCards(
-                    SettingsCard(
-                        2.1f,
-                        icon = R.drawable.round_open_in_full_24,
-                        text = "Size",
-                        description = "the size of the slider"
-                    ),
-                    SettingsCard(
-                        2.2f,
-                        icon = R.drawable.round_location_searching_24,
-                        text = "Positioning",
-                        description = "starting point of interaction"
-                    ),
-                    title = "adjust slider",
-                    description = "the slider is the bar present on bottom right position",
-                    icon = R.drawable.round_swipe_vertical_24
+                SettingsListItem(
+                    icon = painterResource(R.drawable.round_pan_tool_alt_24),
+                    title = "Touch offset",
+                    subtitle = "Align finger position with what the app registers",
+                    onClick = { vm.openPopup(1.1f) },
                 )
             }
 
             item {
-                groupedCards(
-//                    SettingsCard(
-//                        3.1f,
-//                        icon = R.drawable.round_location_searching_24,
-//                        text = "Positioning",
-//                        description = "customize how the apps look"
-//                    ),
-                    SettingsCard(
-                        3.2f,
-                        icon = R.drawable.round_looks_24,
-                        text = "Look",
-                        description = "customize how the apps look"
-                    ),
-                    title = "adjust apps",
-                    description = "the apps of the selected group",
-                    icon = R.drawable.round_apps_24
+                SectionHeader(
+                    title = "Slider",
+                    description = "The trigger on the bottom-right of the screen",
+                )
+            }
+            item {
+                SettingsListItem(
+                    icon = painterResource(R.drawable.round_open_in_full_24),
+                    title = "Size",
+                    subtitle = "Height and width of the slider",
+                    onClick = { vm.openPopup(2.1f) },
+                )
+            }
+            item {
+                SettingsListItem(
+                    icon = painterResource(R.drawable.round_location_searching_24),
+                    title = "Position",
+                    subtitle = "Distance from the bottom edge",
+                    onClick = { vm.openPopup(2.2f) },
                 )
             }
 
             item {
-                groupedCards(
-//                    SettingsCard(
-//                        4.1f,
-//                        icon = R.drawable.round_location_searching_24,
-//                        text = "Positioning",
-//                        description = "where they appear"
-//                    ),
-                    SettingsCard(
-                        4.2f,
-                        icon = R.drawable.round_looks_24,
-                        text = "Look",
-                        description = "how they appear"
-                    ),
-                    title = "adjust groups",
-                    description = "customize how the groups on slider look",
-                    icon = R.drawable.baseline_group_work_24,
+                SectionHeader(
+                    title = "App icons",
+                    description = "Icons when a group is open",
+                )
+            }
+            item {
+                SettingsListItem(
+                    icon = painterResource(R.drawable.round_looks_24),
+                    title = "Look",
+                    subtitle = "Base radius for app icons",
+                    onClick = { vm.openPopup(3.2f) },
                 )
             }
 
-            item{ Spacer(modifier = Modifier.height(500.dp)) }
+            item {
+                SectionHeader(
+                    title = "Group icons",
+                    description = "Icons on the slider",
+                )
+            }
+            item {
+                SettingsListItem(
+                    icon = painterResource(R.drawable.round_looks_24),
+                    title = "Look",
+                    subtitle = "Base radius for group icons",
+                    onClick = { vm.openPopup(4.2f) },
+                )
+            }
+
+            item { Spacer(Modifier.height(88.dp)) }
+        }
         }
 
         if (vm.popup != 0f) {
-            AlertDialog(
-                onDismissRequest = { vm.popup = 0f },
-                text = {
-                    when (vm.popup) {
-                        1.1f -> touch()
-                        2.1f -> sliderSize()
-                        2.2f -> sliderOffset()
-//                        3.1f -> appsPositioning()
-                        3.2f -> appsLook()
-//                        4.1f -> groupsPositioning()
-                        4.2f -> groupsLook()
-                        else -> {
-                            Text(text = "page not created")
-                        }
+            ModalBottomSheet(
+                onDismissRequest = { vm.dismiss() },
+                sheetState = sheetState,
+            ) {
+            Column(Modifier.padding(bottom = 24.dp)) {
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 4.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            painter = painterResource(
+                                when (vm.popup) {
+                                    1.1f -> R.drawable.round_pan_tool_alt_24
+                                    2.1f, 2.2f -> R.drawable.round_swipe_vertical_24
+                                    3.2f -> R.drawable.round_apps_24
+                                    4.2f -> R.drawable.baseline_group_work_24
+                                    else -> R.drawable.round_report_gmailerrorred_24
+                                },
+                            ),
+                            contentDescription = null,
+                            modifier = Modifier.size(28.dp),
+                            tint = MaterialTheme.colorScheme.primary,
+                        )
+                        Text(
+                            text = sheetTitle,
+                            style = MaterialTheme.typography.titleLarge,
+                            modifier = Modifier.padding(start = 12.dp),
+                        )
                     }
-                },
-                confirmButton = {
+                    TextButton(onClick = { vm.openPopup(vm.popup) }) {
+                        Text("Reset")
+                    }
+                }
+                HorizontalDivider()
+                when (vm.popup) {
+                    1.1f -> TouchOffsetEditor(vm)
+                    2.1f -> SliderSizeEditor(vm)
+                    2.2f -> SliderPositionEditor(vm)
+                    3.2f -> AppsLookEditor(vm)
+                    4.2f -> GroupsLookEditor(vm)
+                    else -> Text("Not available", Modifier.padding(16.dp))
+                }
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    TextButton(onClick = { vm.dismiss() }) {
+                        Text("Cancel")
+                    }
+                    Spacer(Modifier.size(8.dp))
                     Button(
-                        onClick = { vm.confirm(context) }
-                    ) { Text(text = "Confirm") }
-                },
-                dismissButton = {
-                    Button(
-                        onClick = { vm.dismiss() }
-                    ) { Text(text = "Dismiss") }
-                },
-                icon = {
-                    Icon(
-                        modifier = Modifier
-                            .padding(start = 20.dp, end = 16.dp)
-                            .size(28.dp),
-                        painter = painterResource(
-                            id = when (vm.popup) {
-                                1.1f -> R.drawable.round_pan_tool_alt_24
-                                2.1f ,2.2f -> R.drawable.round_swipe_vertical_24
-                                3.1f ,3.2f -> R.drawable.round_apps_24
-                                4.1f ,4.2f -> R.drawable.baseline_group_work_24
-                                else -> R.drawable.round_report_gmailerrorred_24
+                        onClick = {
+                            vm.confirm()
+                            scope.launch {
+                                snackbarHostState.showSnackbar("Settings saved")
                             }
-                        ),
-                        contentDescription = "popup : ${vm.popup}",
+                        },
+                    ) {
+                        Text("Save")
+                    }
+                }
+            }
+        }
+        }
+    }
+}
+
+@Composable
+private fun ServiceStatusCard(
+    isRunning: Boolean,
+    haveOverlayPermission: Boolean,
+    onStart: () -> Unit,
+    onStop: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Card(
+        modifier = modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+    ) {
+        Column(Modifier.padding(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    painter = painterResource(
+                        if (isRunning) R.drawable.round_swipe_vertical_24 else R.drawable.round_lock_24,
+                    ),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier.size(32.dp),
+                )
+                Column(Modifier.padding(start = 12.dp)) {
+                    Text(
+                        text = if (isRunning) "Overlay running" else "Overlay stopped",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    )
+                    Text(
+                        text = if (haveOverlayPermission) {
+                            if (isRunning) "Quick access is active over other apps."
+                            else "Start the overlay from Home or here."
+                        } else {
+                            "Grant draw-over-other-apps permission on the Home tab."
+                        },
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.85f),
                     )
                 }
-            )
+            }
+            Spacer(Modifier.height(12.dp))
+            if (haveOverlayPermission) {
+                if (isRunning) {
+                    OutlinedButton(onClick = onStop, modifier = Modifier.fillMaxWidth()) {
+                        Text("Stop overlay")
+                    }
+                } else {
+                    Button(onClick = onStart, modifier = Modifier.fillMaxWidth()) {
+                        Text("Start overlay")
+                    }
+                }
+            }
         }
     }
 }
